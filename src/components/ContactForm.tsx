@@ -4,7 +4,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Send } from "lucide-react";
+import { MessageCircle, CheckCircle, Loader2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -24,21 +25,48 @@ const ContactForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate required fields
+    if (!formData.name.trim() || !formData.phone.trim()) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in your name and phone number.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // Small delay for better UX
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
     // Create WhatsApp message
-    const whatsappMessage = encodeURIComponent(
-      `Hello, I would like to book an appointment.\n\nName: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\nPreferred Date: ${formData.preferredDate}\nMessage: ${formData.message}`
-    );
+    const messageParts = [
+      "🦷 *New Appointment Request*",
+      "",
+      `*Name:* ${formData.name.trim()}`,
+      `*Phone:* ${formData.phone.trim()}`,
+    ];
+
+    if (formData.email.trim()) {
+      messageParts.push(`*Email:* ${formData.email.trim()}`);
+    }
+    if (formData.preferredDate) {
+      messageParts.push(`*Preferred Date:* ${formData.preferredDate}`);
+    }
+    if (formData.message.trim()) {
+      messageParts.push("", `*Message:*`, formData.message.trim());
+    }
+
+    const whatsappMessage = encodeURIComponent(messageParts.join("\n"));
     
+    // Open WhatsApp with the message
     window.open(`https://wa.me/923453081698?text=${whatsappMessage}`, "_blank");
 
     toast({
-      title: "Redirecting to WhatsApp",
-      description: "You'll be redirected to WhatsApp to complete your booking.",
+      title: "Opening WhatsApp",
+      description: "Complete your booking by sending the message on WhatsApp.",
     });
 
     setIsSubmitting(false);
@@ -52,10 +80,21 @@ const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="name">Full Name *</Label>
+    <motion.form 
+      onSubmit={handleSubmit} 
+      className="space-y-6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <motion.div 
+          className="space-y-2"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.1 }}
+        >
+          <Label htmlFor="name" className="text-sm font-medium">Full Name *</Label>
           <Input
             id="name"
             name="name"
@@ -64,11 +103,16 @@ const ContactForm = () => {
             value={formData.name}
             onChange={handleChange}
             required
-            className="bg-background"
+            className="bg-background border-2 focus:border-primary transition-colors h-12"
           />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="phone">Phone Number *</Label>
+        </motion.div>
+        <motion.div 
+          className="space-y-2"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.15 }}
+        >
+          <Label htmlFor="phone" className="text-sm font-medium">Phone Number *</Label>
           <Input
             id="phone"
             name="phone"
@@ -77,14 +121,19 @@ const ContactForm = () => {
             value={formData.phone}
             onChange={handleChange}
             required
-            className="bg-background"
+            className="bg-background border-2 focus:border-primary transition-colors h-12"
           />
-        </div>
+        </motion.div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="email">Email</Label>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <motion.div 
+          className="space-y-2"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          <Label htmlFor="email" className="text-sm font-medium">Email</Label>
           <Input
             id="email"
             name="email"
@@ -92,24 +141,34 @@ const ContactForm = () => {
             placeholder="your@email.com"
             value={formData.email}
             onChange={handleChange}
-            className="bg-background"
+            className="bg-background border-2 focus:border-primary transition-colors h-12"
           />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="preferredDate">Preferred Date</Label>
+        </motion.div>
+        <motion.div 
+          className="space-y-2"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.25 }}
+        >
+          <Label htmlFor="preferredDate" className="text-sm font-medium">Preferred Date</Label>
           <Input
             id="preferredDate"
             name="preferredDate"
             type="date"
             value={formData.preferredDate}
             onChange={handleChange}
-            className="bg-background"
+            className="bg-background border-2 focus:border-primary transition-colors h-12"
           />
-        </div>
+        </motion.div>
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="message">Message</Label>
+      <motion.div 
+        className="space-y-2"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+      >
+        <Label htmlFor="message" className="text-sm font-medium">Message</Label>
         <Textarea
           id="message"
           name="message"
@@ -117,30 +176,59 @@ const ContactForm = () => {
           value={formData.message}
           onChange={handleChange}
           rows={4}
-          className="bg-background resize-none"
+          className="bg-background border-2 focus:border-primary transition-colors resize-none"
         />
-      </div>
+      </motion.div>
 
-      <Button
-        type="submit"
-        size="lg"
-        className="w-full bg-primary hover:bg-primary/90"
-        disabled={isSubmitting}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.35 }}
       >
-        {isSubmitting ? (
-          "Sending..."
-        ) : (
-          <>
-            <Send className="mr-2 h-4 w-4" />
-            Send via WhatsApp
-          </>
-        )}
-      </Button>
+        <Button
+          type="submit"
+          size="lg"
+          className="w-full bg-[#25D366] hover:bg-[#25D366]/90 text-white text-lg h-14 shadow-lg shadow-[#25D366]/25 hover:shadow-xl hover:shadow-[#25D366]/30 transition-all hover:-translate-y-0.5"
+          disabled={isSubmitting}
+        >
+          <AnimatePresence mode="wait">
+            {isSubmitting ? (
+              <motion.div
+                key="loading"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="flex items-center gap-2"
+              >
+                <Loader2 className="h-5 w-5 animate-spin" />
+                Preparing...
+              </motion.div>
+            ) : (
+              <motion.div
+                key="default"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="flex items-center gap-2"
+              >
+                <MessageCircle className="h-5 w-5" />
+                Send via WhatsApp
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </Button>
+      </motion.div>
 
-      <p className="text-xs text-center text-muted-foreground">
-        By submitting this form, you'll be redirected to WhatsApp to complete your appointment request.
-      </p>
-    </form>
+      <motion.div 
+        className="flex items-center justify-center gap-2 text-sm text-muted-foreground"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4 }}
+      >
+        <CheckCircle className="h-4 w-4 text-[#25D366]" />
+        <p>You'll be redirected to WhatsApp to complete your booking</p>
+      </motion.div>
+    </motion.form>
   );
 };
 
