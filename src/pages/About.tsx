@@ -39,7 +39,7 @@ const About = () => {
                 About <span className="text-primary">The Dental Lounge</span>
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                A modern dental clinic dedicated to providing exceptional care 
+                A modern dental clinic dedicated to providing exceptional care
                 to the families of Mirpur, AJK.
               </p>
             </div>
@@ -64,26 +64,21 @@ const About = () => {
                     Meet Dr. Jalal Aslam
                   </h2>
                   <p className="text-muted-foreground leading-relaxed mb-4">
-                    I am Dr. Jalal Aslam, a dedicated dental surgeon committed to bringing modern, 
-                    high-standard oral healthcare to the heart of Mirpur, AJK. My journey in dentistry 
-                    began at the prestigious Institute of Dentistry, CMH Lahore, where I developed a 
-                    foundation built on clinical excellence, ethical practice, and patient-first care. 
-                    Over the past two years, I have focused on bridging the gap between advanced dental 
+                    I am Dr. Jalal Aslam, a dedicated dental surgeon committed to bringing modern,
+                    high-standard oral healthcare to the heart of Mirpur, AJK. My journey in dentistry
+                    began at the prestigious Institute of Dentistry, CMH Lahore, where I developed a
+                    foundation built on clinical excellence, ethical practice, and patient-first care.
+                    Over the past two years, I have focused on bridging the gap between advanced dental
                     technology and a gentle, personalized patient experience.
                   </p>
                   <p className="text-muted-foreground leading-relaxed mb-4">
-                    I believe a dental visit should be informative and anxiety-free, not a source of 
-                    stress. Whether performing a routine cleaning or a complex smile makeover, my 
-                    priority is a painless and transparent process where you are an active partner in 
-                    your treatment. By utilizing minimally invasive techniques and the latest clinical 
+                    I believe a dental visit should be informative and anxiety-free, not a source of
+                    stress. Whether performing a routine cleaning or a complex smile makeover, my
+                    priority is a painless and transparent process where you are an active partner in
+                    your treatment. By utilizing minimally invasive techniques and the latest clinical
                     standards, I strive to deliver results that are both functional and aesthetically pleasing.
                   </p>
-                  <p className="text-muted-foreground leading-relaxed">
-                    My mission is simple: to provide the Mirpur community with honest, high-quality 
-                    dental care that transforms your confidence. I look forward to welcoming you to 
-                    the clinic and helping you achieve a healthy, lasting smile you are proud to share 
-                    with the world.
-                  </p>
+
                 </div>
               </div>
             </div>
@@ -100,8 +95,8 @@ const About = () => {
                     Our Vision
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    To be the most trusted dental care provider in Mirpur, AJK — known for 
-                    our commitment to excellence, patient comfort, and transforming smiles 
+                    To be the most trusted dental care provider in Mirpur, AJK — known for
+                    my commitment to excellence, patient comfort, and transforming smiles
                     that boost confidence and improve lives.
                   </p>
                 </div>
@@ -110,10 +105,10 @@ const About = () => {
                     Our Mission
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    To provide accessible, high-quality dental care using modern techniques 
-                    and equipment, while maintaining the highest standards of hygiene and 
-                    patient safety. We aim to educate our community about oral health and 
-                    make every dental visit a positive experience.
+                    My mission is simple: to provide the Mirpur community with honest, high-quality
+                    dental care that transforms your confidence. I look forward to welcoming you to
+                    the clinic and helping you achieve a healthy, lasting smile you are proud to share
+                    with the world.
                   </p>
                 </div>
               </div>

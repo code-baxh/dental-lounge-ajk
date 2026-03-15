@@ -27,13 +27,13 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Address",
-    details: "[Your Address Here], Mirpur, AJK",
-    link: null,
+    details: "Sardar plaza, Fazal chowk, Mirpur, AJK",
+    link: "https://maps.app.goo.gl/MJ273LxUTJ1hXx1d6",
   },
   {
     icon: Clock,
     title: "Hours",
-    details: "[Operating Hours]",
+    details: "1PM - 5PM & 7PM - 10PM",
     link: null,
   },
 ];
@@ -51,7 +51,7 @@ const Contact = () => {
                 Contact <span className="text-primary">Us</span>
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Ready to book your appointment? Get in touch with us through any 
+                Ready to book your appointment? Get in touch with us through any
                 of the methods below. We're here to help you achieve a healthier smile.
               </p>
             </div>
@@ -68,8 +68,8 @@ const Contact = () => {
                   Get In Touch
                 </h2>
                 <p className="text-muted-foreground mb-8">
-                  Have questions or want to schedule an appointment? Reach out to us 
-                  via phone, WhatsApp, or fill out the form. We typically respond within 
+                  Have questions or want to schedule an appointment? Reach out to us
+                  via phone, WhatsApp, or fill out the form. We typically respond within
                   a few hours.
                 </p>
 
@@ -84,7 +84,7 @@ const Contact = () => {
                           <div>
                             <h3 className="font-semibold text-foreground">{info.title}</h3>
                             {info.link ? (
-                              <a 
+                              <a
                                 href={info.link}
                                 target={info.link.startsWith("http") ? "_blank" : undefined}
                                 rel={info.link.startsWith("http") ? "noopener noreferrer" : undefined}
@@ -145,11 +145,13 @@ const Contact = () => {
               {/* Map Placeholder */}
               <div className="bg-muted rounded-2xl aspect-video flex items-center justify-center border border-border">
                 <div className="text-center p-8">
-                  <MapPin className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                  {/* <MapPin className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                   <p className="text-muted-foreground">
                     Google Maps Embed<br />
                     <span className="text-sm">(Add your clinic's address to enable the map)</span>
-                  </p>
+
+                  </p> */}
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4367.064681671599!2d73.75559407657603!3d33.14735297351112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391feb2c23e2fbb3%3A0x57817c5738eab132!2sThe%20Dental%20Lounge!5e1!3m2!1sen!2s!4v1773600462287!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
               </div>
             </div>

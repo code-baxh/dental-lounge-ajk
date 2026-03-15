@@ -67,7 +67,7 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
                 <span className="text-sm text-primary-foreground/80">
-                  [Your Address Here], Mirpur, AJK
+                  Sardar plaza, Fazal chowk, Mirpur, AJK
                 </span>
               </li>
               <li className="flex items-center gap-3">
@@ -85,7 +85,7 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <Clock className="h-4 w-4 mt-0.5 shrink-0" />
                 <span className="text-sm text-primary-foreground/80">
-                  [Operating Hours]
+                  1PM - 5PM & 7PM - 10PM
                 </span>
               </li>
             </ul>
