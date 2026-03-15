@@ -133,9 +133,9 @@ const Hero = () => {
             className="mt-20 grid grid-cols-3 gap-8 max-w-lg mx-auto"
           >
             {[
-              { value: "500+", label: "Happy Patients" },
-              { value: "10+", label: "Years Experience" },
-              { value: "7", label: "Services" },
+              { value: "200+", label: "Happy Patients" },
+              { value: "2+", label: "Years Experience" },
+              { value: "7+", label: "Services" },
             ].map((stat, index) => (
               <motion.div 
                 key={index}
