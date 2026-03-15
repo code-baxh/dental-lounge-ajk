@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import ServicesPreview from "@/components/ServicesPreview";
 import WhyChooseUs from "@/components/WhyChooseUs";
+import Testimonials from "@/components/Testimonials";
 import LocationCTA from "@/components/LocationCTA";
 
 const Index = () => {
@@ -13,6 +14,7 @@ const Index = () => {
         <Hero />
         <ServicesPreview />
         <WhyChooseUs />
+        <Testimonials />
         <LocationCTA />
       </main>
       <Footer />
