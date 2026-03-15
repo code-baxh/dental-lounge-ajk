@@ -61,11 +61,10 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight mb-6"
+            className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight mb-4"
           >
-            Healthy Teeth,{" "}
             <span className="text-primary relative">
-              Better Smile
+              The Dental Lounge
               <motion.svg 
                 className="absolute -bottom-2 left-0 w-full" 
                 viewBox="0 0 200 12" 
@@ -84,6 +83,14 @@ const Hero = () => {
               </motion.svg>
             </span>
           </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="font-display text-2xl md:text-3xl lg:text-4xl font-semibold text-muted-foreground mb-6"
+          >
+            Healthy Teeth, Better Smile
+          </motion.p>
 
           {/* Subheading */}
           <motion.p 

@@ -64,20 +64,25 @@ const About = () => {
                     Meet Dr. Jalal Aslam
                   </h2>
                   <p className="text-muted-foreground leading-relaxed mb-4">
-                    Dr. Jalal Aslam is a dedicated dental professional with years of experience 
-                    in providing comprehensive dental care. With a passion for helping patients 
-                    achieve their best smiles, Dr. Aslam combines technical expertise with a 
-                    gentle, patient-centered approach.
+                    I am Dr. Jalal Aslam, a dedicated dental surgeon committed to bringing modern, 
+                    high-standard oral healthcare to the heart of Mirpur, AJK. My journey in dentistry 
+                    began at the prestigious Institute of Dentistry, CMH Lahore, where I developed a 
+                    foundation built on clinical excellence, ethical practice, and patient-first care. 
+                    Over the past two years, I have focused on bridging the gap between advanced dental 
+                    technology and a gentle, personalized patient experience.
                   </p>
                   <p className="text-muted-foreground leading-relaxed mb-4">
-                    After completing rigorous dental training, Dr. Aslam has committed to 
-                    continuous learning and staying updated with the latest advancements in 
-                    dental technology and techniques.
+                    I believe a dental visit should be informative and anxiety-free, not a source of 
+                    stress. Whether performing a routine cleaning or a complex smile makeover, my 
+                    priority is a painless and transparent process where you are an active partner in 
+                    your treatment. By utilizing minimally invasive techniques and the latest clinical 
+                    standards, I strive to deliver results that are both functional and aesthetically pleasing.
                   </p>
                   <p className="text-muted-foreground leading-relaxed">
-                    His philosophy is simple: every patient deserves personalized attention, 
-                    honest advice, and treatment that prioritizes their comfort and long-term 
-                    oral health.
+                    My mission is simple: to provide the Mirpur community with honest, high-quality 
+                    dental care that transforms your confidence. I look forward to welcoming you to 
+                    the clinic and helping you achieve a healthy, lasting smile you are proud to share 
+                    with the world.
                   </p>
                 </div>
               </div>

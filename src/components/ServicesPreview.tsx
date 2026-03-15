@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Stethoscope, Sparkles, Paintbrush } from "lucide-react";
+import { ArrowRight, Stethoscope, Sparkles, Paintbrush, Plug, AlignCenter, Layers } from "lucide-react";
 import { motion } from "framer-motion";
+
+import serviceGeneral from "@/assets/service-general.jpg";
+import serviceImplants from "@/assets/service-implants.jpg";
+import serviceOrthodontic from "@/assets/service-orthodontic.jpg";
+import serviceProsthesis from "@/assets/service-prosthesis.jpg";
+import serviceWhitening from "@/assets/service-whitening.jpg";
+import serviceCosmetic from "@/assets/service-cosmetic.jpg";
 
 const services = [
   {
@@ -9,18 +16,42 @@ const services = [
     title: "General Dentistry",
     description: "Comprehensive dental care including check-ups, cleanings, and preventive treatments.",
     gradient: "from-blue-500/10 via-blue-400/5 to-transparent",
+    image: serviceGeneral,
+  },
+  {
+    icon: Plug,
+    title: "Dental Implants",
+    description: "Permanent, natural-looking implants to restore missing teeth with confidence.",
+    gradient: "from-emerald-500/10 via-emerald-400/5 to-transparent",
+    image: serviceImplants,
+  },
+  {
+    icon: AlignCenter,
+    title: "Orthodontic Care",
+    description: "Braces and aligners to straighten your teeth and perfect your bite.",
+    gradient: "from-violet-500/10 via-violet-400/5 to-transparent",
+    image: serviceOrthodontic,
+  },
+  {
+    icon: Layers,
+    title: "Fixed & Removable Prosthesis",
+    description: "Custom bridges, crowns, and dentures for a complete, natural smile.",
+    gradient: "from-cyan-500/10 via-cyan-400/5 to-transparent",
+    image: serviceProsthesis,
   },
   {
     icon: Sparkles,
     title: "Teeth Whitening",
     description: "Professional whitening treatments to brighten your smile safely and effectively.",
     gradient: "from-amber-500/10 via-amber-400/5 to-transparent",
+    image: serviceWhitening,
   },
   {
     icon: Paintbrush,
     title: "Cosmetic Dentistry",
     description: "Enhance your smile with veneers, bonding, and other cosmetic procedures.",
     gradient: "from-rose-500/10 via-rose-400/5 to-transparent",
+    image: serviceCosmetic,
   },
 ];
 
@@ -29,7 +60,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.15,
     },
   },
 };
@@ -81,7 +112,7 @@ const ServicesPreview = () => {
         </motion.div>
 
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -93,23 +124,32 @@ const ServicesPreview = () => {
               variants={cardVariants}
               className="group"
             >
-              <div className="relative bg-card rounded-2xl p-8 border border-border hover:border-primary/30 hover:shadow-2xl transition-all duration-500 h-full hover:-translate-y-2 overflow-hidden">
+              <div className="relative bg-card rounded-2xl border border-border hover:border-primary/30 hover:shadow-2xl transition-all duration-500 h-full hover:-translate-y-2 overflow-hidden">
+                {/* Service Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={service.image} 
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+                </div>
+                
                 {/* Gradient background */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                 
-                <div className="relative z-10">
-                  <motion.div 
-                    className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:scale-110 transition-all duration-300"
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.8 }}
-                  >
-                    <service.icon className="h-8 w-8 text-primary group-hover:text-primary-foreground transition-colors" />
-                  </motion.div>
-                  <h3 className="font-display text-2xl font-semibold text-foreground mb-4 group-hover:text-primary transition-colors">{service.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+                <div className="relative z-10 p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                      <service.icon className="h-5 w-5 text-primary group-hover:text-primary-foreground transition-colors" />
+                    </div>
+                    <h3 className="font-display text-xl font-semibold text-foreground group-hover:text-primary transition-colors">{service.title}</h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed text-sm">{service.description}</p>
                   
                   {/* Learn more link */}
-                  <div className="mt-6 flex items-center gap-2 text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                  <div className="mt-4 flex items-center gap-2 text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                     <span className="text-sm font-medium">Learn more</span>
                     <ArrowRight className="h-4 w-4" />
                   </div>
