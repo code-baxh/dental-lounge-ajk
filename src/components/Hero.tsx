@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
@@ -112,7 +114,7 @@ const Hero = () => {
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8 py-7 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5">
-              <Link to="/contact">
+              <Link href="/contact">
                 Book Appointment
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>

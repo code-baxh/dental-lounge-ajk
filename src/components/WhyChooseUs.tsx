@@ -1,3 +1,5 @@
+"use client";
+
 import { Shield, Heart, Sparkles, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 

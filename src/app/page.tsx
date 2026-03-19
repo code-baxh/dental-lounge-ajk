@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
@@ -6,7 +7,16 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import Testimonials from "@/components/Testimonials";
 import LocationCTA from "@/components/LocationCTA";
 
-const Index = () => {
+export const metadata: Metadata = {
+  title: "The Dental Lounge | Dentist in Mirpur AJK",
+  description:
+    "Welcome to The Dental Lounge — your trusted dental care partner in Mirpur, AJK. We provide comprehensive dental services with a focus on patient comfort, hygiene, and modern techniques.",
+  alternates: {
+    canonical: "https://thedentallounge.com",
+  },
+};
+
+export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -20,6 +30,4 @@ const Index = () => {
       <Footer />
     </div>
   );
-};
-
-export default Index;
+}

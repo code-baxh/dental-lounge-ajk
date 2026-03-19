@@ -26,7 +26,7 @@ const values = [
   },
 ];
 
-const About = () => {
+export default function About() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -151,6 +151,4 @@ const About = () => {
       <Footer />
     </div>
   );
-};
-
-export default About;
+}

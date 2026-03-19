@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Stethoscope, Sparkles, Paintbrush, Plug, AlignCenter, Layers } from "lucide-react";
 import { motion } from "framer-motion";
@@ -128,7 +130,7 @@ const ServicesPreview = () => {
                 {/* Service Image */}
                 <div className="relative h-48 overflow-hidden">
                   <img 
-                    src={service.image} 
+                    src={service.image.src} 
                     alt={service.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     loading="lazy"
@@ -167,7 +169,7 @@ const ServicesPreview = () => {
           transition={{ delay: 0.4 }}
         >
           <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8 py-6 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/25 transition-all hover:-translate-y-0.5">
-            <Link to="/services">
+            <Link href="/services">
               View All Services
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
