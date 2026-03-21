@@ -12,4 +12,4 @@ Allow: /
 
 User-agent: *
 Allow: /
-Sitemap: https://thedentallounge.com/sitemap.xml
+Sitemap: https://thedentalloungemirpur.com.pk/sitemap.xml

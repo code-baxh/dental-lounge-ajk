@@ -123,7 +123,7 @@ export const metadata: Metadata = {
   title: "Page Title",
   description: "Page description",
   alternates: {
-    canonical: "https://thedentallounge.com/page",
+    canonical: "https://thedentalloungemirpur.com.pk/page",
   },
 };
 ```

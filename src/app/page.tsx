@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description:
     "Welcome to The Dental Lounge — your trusted dental care partner in Mirpur, AJK. We provide comprehensive dental services with a focus on patient comfort, hygiene, and modern techniques.",
   alternates: {
-    canonical: "https://thedentallounge.com",
+    canonical: "https://thedentalloungemirpur.com.pk",
   },
 };
 

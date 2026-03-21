@@ -47,7 +47,7 @@ export default function RootLayout({
     "@type": "LocalBusiness",
     "@id": "https://thedentalloungemirpur.com.pk",
     name: "The Dental Lounge Mirpur",
-    image: "https://thedentalloungemirpur.com.pk/logo.png",
+    image: "https://thedentalloungemirpur.com.pk/web-app-manifest-512x512.png",
     description:
       "The Dental Lounge Mirpur - Professional dental care services in Mirpur, Azad Kashmir. We offer comprehensive dental treatments including general dentistry, teeth cleaning, whitening, root canal, dental implants, orthodontics, and cosmetic dentistry.",
     address: {
@@ -72,7 +72,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="canonical" href="https://thedentalloungemirpur.com.pk" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
