@@ -45,7 +45,7 @@ const Footer = () => {
                 </svg>
               </a>
               <a 
-                href="https://www.tiktok.com/@thedentallounge" 
+                href="https://www.tiktok.com/@drjalalaslam?_r=1&_t=ZS-94seo9y0CiT" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"
@@ -122,7 +122,7 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <Clock className="h-4 w-4 mt-0.5 shrink-0" />
                 <span className="text-sm text-primary-foreground/80">
-                  1PM - 5PM & 7PM - 10PM
+                  10AM - 9PM
                 </span>
               </li>
             </ul>
