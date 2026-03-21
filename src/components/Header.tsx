@@ -1,5 +1,8 @@
+"use client";
+
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X, Phone, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,7 +11,7 @@ import logo from "@/assets/logo.jpeg";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,14 +28,11 @@ const Header = () => {
     { name: "Contact", path: "/contact" },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => pathname === path;
 
   return (
-    <motion.header 
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`sticky top-0 z-50 transition-all duration-300 ${
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
           ? "bg-background/98 backdrop-blur-md shadow-lg border-b border-border" 
           : "bg-background/95 backdrop-blur-sm border-b border-transparent"
@@ -41,9 +41,9 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
+          <Link href="/" className="flex items-center gap-3 group">
             <motion.img 
-              src={logo} 
+              src={logo.src} 
               alt="The Dental Lounge" 
               className="h-14 w-auto rounded-lg shadow-md group-hover:shadow-lg transition-shadow"
               whileHover={{ scale: 1.02 }}
@@ -60,7 +60,7 @@ const Header = () => {
             {navLinks.map((link) => (
               <Link
                 key={link.path}
-                to={link.path}
+                href={link.path}
                 className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-primary/5 ${
                   isActive(link.path) ? "text-primary" : "text-muted-foreground hover:text-primary"
                 }`}
@@ -95,7 +95,7 @@ const Header = () => {
               <span className="hidden lg:inline">0345-3081698</span>
             </a>
             <Button asChild className="bg-primary hover:bg-primary/90 shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5">
-              <Link to="/contact">Book Appointment</Link>
+              <Link href="/contact">Book Appointment</Link>
             </Button>
           </div>
 
@@ -152,7 +152,7 @@ const Header = () => {
                       transition={{ delay: index * 0.1 }}
                     >
                       <Link
-                        to={link.path}
+                        href={link.path}
                         onClick={() => setIsMenuOpen(false)}
                         className={`block px-4 py-3 rounded-lg text-base font-medium transition-all ${
                           isActive(link.path) 
@@ -187,7 +187,7 @@ const Header = () => {
                       WhatsApp
                     </a>
                     <Button asChild className="w-full bg-primary hover:bg-primary/90">
-                      <Link to="/contact" onClick={() => setIsMenuOpen(false)}>Book Appointment</Link>
+                      <Link href="/contact" onClick={() => setIsMenuOpen(false)}>Book Appointment</Link>
                     </Button>
                   </motion.div>
                 </div>
@@ -196,7 +196,7 @@ const Header = () => {
           )}
         </AnimatePresence>
       </div>
-    </motion.header>
+    </header>
   );
 };
 

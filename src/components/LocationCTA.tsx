@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MapPin, Phone, MessageCircle, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
@@ -75,7 +77,7 @@ const LocationCTA = () => {
             transition={{ delay: 0.5 }}
           >
             <Button asChild size="lg" variant="secondary" className="text-lg px-8 py-7 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1">
-              <Link to="/contact">
+              <Link href="/contact">
                 Book Appointment
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
@@ -90,7 +92,7 @@ const LocationCTA = () => {
                 WhatsApp Us
               </a>
             </Button>
-            <Button asChild size="lg" variant="outline" className="text-lg px-8 py-7 border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 transition-all">
+            <Button asChild size="lg" variant="outline" className="text-lg px-8 py-7 border-2 border-primary-foreground/30 text-primary-foreground bg-primary-foreground/10 transition-all">
               <a href="tel:03453081698">
                 <Phone className="mr-2 h-5 w-5" />
                 Call Now

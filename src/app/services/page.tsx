@@ -1,17 +1,19 @@
+"use client";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LocationCTA from "@/components/LocationCTA";
-import { 
-  Stethoscope, 
-  Sparkles, 
-  Paintbrush, 
+import {
+  Stethoscope,
+  Sparkles,
+  Paintbrush,
   Heart,
   Wrench,
   CircleOff,
   Smile,
   Plug,
   AlignCenter,
-  Layers
+  Layers,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
@@ -100,7 +102,7 @@ const services = [
   },
 ];
 
-const Services = () => {
+export default function Services() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -113,8 +115,8 @@ const Services = () => {
                 Our <span className="text-primary">Services</span>
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                We offer a comprehensive range of dental services to address all your 
-                oral health needs. Each treatment is delivered with care, precision, 
+                We offer a comprehensive range of dental services to address all your
+                oral health needs. Each treatment is delivered with care, precision,
                 and a commitment to your comfort.
               </p>
             </div>
@@ -138,7 +140,7 @@ const Services = () => {
                       <div className="grid md:grid-cols-3 gap-0">
                         <div className="relative overflow-hidden">
                           <img
-                            src={service.image}
+                            src={service.image.src}
                             alt={service.title}
                             className="w-full h-full object-cover min-h-[200px] md:min-h-full"
                             loading="lazy"
@@ -164,7 +166,7 @@ const Services = () => {
                           </p>
                           <div className="flex flex-wrap gap-2">
                             {service.features.map((feature, idx) => (
-                              <span 
+                              <span
                                 key={idx}
                                 className="bg-primary/10 text-primary text-sm px-3 py-1 rounded-full"
                               >
@@ -187,6 +189,4 @@ const Services = () => {
       <Footer />
     </div>
   );
-};
-
-export default Services;
+}

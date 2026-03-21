@@ -33,12 +33,12 @@ const contactInfo = [
   {
     icon: Clock,
     title: "Hours",
-    details: "1PM - 5PM & 7PM - 10PM",
+    details: "10AM - 9PM",
     link: null,
   },
 ];
 
-const Contact = () => {
+export default function Contact() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -103,8 +103,16 @@ const Contact = () => {
                 </div>
 
                 {/* Quick WhatsApp Button */}
-                <Button asChild size="lg" className="w-full bg-[#25D366] hover:bg-[#25D366]/90 text-white">
-                  <a href="https://wa.me/923453081698" target="_blank" rel="noopener noreferrer">
+                <Button
+                  asChild
+                  size="lg"
+                  className="w-full bg-[#25D366] hover:bg-[#25D366]/90 text-white"
+                >
+                  <a
+                    href="https://wa.me/923453081698"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <MessageCircle className="mr-2 h-5 w-5" />
                     Chat on WhatsApp
                   </a>
@@ -145,13 +153,15 @@ const Contact = () => {
               {/* Map Placeholder */}
               <div className="bg-muted rounded-2xl aspect-video flex items-center justify-center border border-border">
                 <div className="text-center p-8">
-                  {/* <MapPin className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                  <p className="text-muted-foreground">
-                    Google Maps Embed<br />
-                    <span className="text-sm">(Add your clinic's address to enable the map)</span>
-
-                  </p> */}
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4367.064681671599!2d73.75559407657603!3d33.14735297351112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391feb2c23e2fbb3%3A0x57817c5738eab132!2sThe%20Dental%20Lounge!5e1!3m2!1sen!2s!4v1773600462287!5m2!1sen!2s" width="600" height="450" style={{border: 0}} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4367.064681671599!2d73.75559407657603!3d33.14735297351112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391feb2c23e2fbb3%3A0x57817c5738eab132!2sThe%20Dental%20Lounge!5e1!3m2!1sen!2s!4v1773600462287!5m2!1sen!2s"
+                    width="600"
+                    height="450"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
                 </div>
               </div>
             </div>
@@ -161,6 +171,4 @@ const Contact = () => {
       <Footer />
     </div>
   );
-};
-
-export default Contact;
+}
