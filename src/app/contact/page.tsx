@@ -52,7 +52,7 @@ export default function Contact() {
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Ready to book your appointment? Get in touch with us through any
-                of the methods below. We're here to help you achieve a healthier smile.
+                of the methods below. We&apos;re here to help you achieve a healthier smile.
               </p>
             </div>
           </div>
@@ -127,7 +127,7 @@ export default function Contact() {
                       Book an Appointment
                     </h2>
                     <p className="text-muted-foreground mb-6">
-                      Fill out the form below and we'll get back to you shortly.
+                      Fill out the form below and we&apos;ll get back to you shortly.
                     </p>
                     <ContactForm />
                   </CardContent>

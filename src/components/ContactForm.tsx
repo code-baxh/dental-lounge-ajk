@@ -228,7 +228,7 @@ const ContactForm = () => {
         transition={{ delay: 0.4 }}
       >
         <CheckCircle className="h-4 w-4 text-[#25D366]" />
-        <p>You'll be redirected to WhatsApp to complete your booking</p>
+        <p>You&apos;ll be redirected to WhatsApp to complete your booking</p>
       </motion.div>
     </motion.form>
   );

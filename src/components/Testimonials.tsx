@@ -53,7 +53,7 @@ const Testimonials = () => {
             What Our Patients Say
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Don't just take our word for it — hear from the families who trust us with their smiles.
+            Don&apos;t just take our word for it — hear from the families who trust us with their smiles.
           </p>
         </motion.div>
 
@@ -75,9 +75,8 @@ const Testimonials = () => {
                     <Star key={i} className="h-4 w-4 fill-primary text-primary" />
                   ))}
                 </div>
-
                 <p className="text-muted-foreground leading-relaxed mb-6 italic">
-                  "{testimonial.review}"
+                  &quot;{testimonial.review}&quot;
                 </p>
 
                 <div className="flex items-center justify-between">
