@@ -80,12 +80,10 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <RootProvider>
-          {children}
-        </RootProvider>
-        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
-        )}
+        <RootProvider>{children}</RootProvider>
+        {/* {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && ( */}
+        <GoogleAnalytics gaId="G-TJHLCHBH5B" />
+        {/* )} */}
       </body>
     </html>
   );
