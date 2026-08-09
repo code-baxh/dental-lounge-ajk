@@ -1,0 +1,147 @@
+{
+  "site": "https://thedentalloungemirpur.com.pk",
+  "brand": "The Dental Lounge",
+  "practitioner": "Dr. Jalal Aslam",
+
+  "geo": {
+    "primaryCity": "Mirpur",
+    "region": "Azad Jammu and Kashmir",
+    "regionShort": "AJK",
+    "country": "PK",
+    "postalCode": "10250",
+    "latitude": 33.147353,
+    "longitude": 73.755594,
+
+    "cityTerms": [
+      "mirpur",
+      "new mirpur city",
+      "mirpur ajk",
+      "mirpur azad kashmir",
+      "میرپور"
+    ],
+
+    "regionTerms": [
+      "ajk",
+      "azad kashmir",
+      "azad jammu",
+      "kashmir",
+      "آزاد کشمیر"
+    ],
+
+    "nearbyAreas": [
+      "Dadyal",
+      "Chakswari",
+      "Islamgarh",
+      "Khari Sharif",
+      "Afzalpur",
+      "Jatlan",
+      "Mangla",
+      "Rathoa Haryam",
+      "Chitterpari",
+      "Bhimber",
+      "Kotli",
+      "Dina",
+      "Jhelum"
+    ],
+
+    "landmarks": [
+      "Fazal Chowk",
+      "Sardar Plaza",
+      "Allama Iqbal Road",
+      "Kachehri Chowk",
+      "Shaheed Chowk",
+      "Mangla Dam",
+      "Sector F-1",
+      "Sector F-2",
+      "Sector B-3",
+      "Sector C-1",
+      "Sector D-2"
+    ],
+
+    "diasporaAngle": [
+      "little england",
+      "overseas",
+      "uk",
+      "british",
+      "visiting"
+    ]
+  },
+
+  "nap": {
+    "name": "The Dental Lounge",
+    "street": "Sardar Plaza, Fazal Chowk",
+    "locality": "Mirpur",
+    "region": "Azad Jammu and Kashmir",
+    "country": "PK",
+    "phoneLocal": "0345-3081698",
+    "phoneIntl": "+923453081698",
+    "email": "thedentalloungmirpur@gmail.com",
+    "hours": "10AM - 9PM"
+  },
+
+  "services": [
+    "general dentistry",
+    "dental implants",
+    "orthodontic",
+    "braces",
+    "prosthesis",
+    "dentures",
+    "crown",
+    "bridge",
+    "teeth cleaning",
+    "scaling",
+    "teeth whitening",
+    "dental filling",
+    "root canal",
+    "tooth extraction",
+    "wisdom tooth",
+    "cosmetic dentistry",
+    "veneers",
+    "smile makeover"
+  ],
+
+  "moneyKeywords": [
+    "dentist in mirpur",
+    "best dentist in mirpur",
+    "dental clinic in mirpur",
+    "dental clinic mirpur ajk",
+    "root canal in mirpur",
+    "braces in mirpur",
+    "dental implants in mirpur",
+    "teeth whitening mirpur",
+    "teeth scaling mirpur",
+    "emergency dentist mirpur",
+    "dentist near me mirpur",
+    "dental clinic dadyal",
+    "dentist chakswari",
+    "dentist khari sharif",
+    "dentist bhimber",
+    "dentist kotli"
+  ],
+
+  "trustPages": [
+    { "path": "/privacy-policy", "label": "Privacy policy" },
+    { "path": "/terms", "label": "Terms of service" }
+  ],
+
+  "aiCrawlers": [
+    "GPTBot",
+    "OAI-SearchBot",
+    "ChatGPT-User",
+    "PerplexityBot",
+    "ClaudeBot",
+    "Google-Extended",
+    "Bingbot"
+  ],
+
+  "pageTypeWordFloors": {
+    "home": 500,
+    "service": 800,
+    "location": 500,
+    "about": 500,
+    "contact": 250,
+    "blog": 1200,
+    "hub": 400,
+    "other": 300
+  }
+}

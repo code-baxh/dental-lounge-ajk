@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import { GoogleRatingBadge } from "@/components/GoogleRating";
 
 const Hero = () => {
   return (
@@ -55,7 +56,9 @@ const Hero = () => {
             className="inline-flex items-center gap-2 bg-primary/10 text-primary px-5 py-2.5 rounded-full mb-8 border border-primary/20"
           >
             <Sparkles className="w-4 h-4 text-primary animate-pulse" />
-            <span className="text-sm font-medium">Now Open in Mirpur, AJK</span>
+            <span className="text-sm font-medium">
+              Fazal Chowk, New Mirpur City · Open 10am–9pm, 7 days
+            </span>
           </motion.div>
 
           {/* Main Heading */}
@@ -63,22 +66,23 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight mb-4"
+            className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-4"
           >
             <span className="text-primary relative">
-              The Dental Lounge
-              <motion.svg 
-                className="absolute -bottom-2 left-0 w-full" 
-                viewBox="0 0 200 12" 
+              Dentist in Mirpur, AJK
+              <motion.svg
+                className="absolute -bottom-2 left-0 w-full"
+                viewBox="0 0 200 12"
                 fill="none"
+                aria-hidden="true"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
                 transition={{ duration: 1, delay: 0.8 }}
               >
-                <motion.path 
-                  d="M2 8C50 2 150 2 198 8" 
-                  stroke="currentColor" 
-                  strokeWidth="3" 
+                <motion.path
+                  d="M2 8C50 2 150 2 198 8"
+                  stroke="currentColor"
+                  strokeWidth="3"
                   strokeLinecap="round"
                   className="text-primary/40"
                 />
@@ -89,21 +93,21 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="font-display text-2xl md:text-3xl lg:text-4xl font-semibold text-muted-foreground mb-6"
+            className="font-display text-2xl md:text-3xl font-semibold text-muted-foreground mb-6"
           >
-            Healthy Teeth, Better Smile
+            The Dental Lounge — Healthy Teeth, Better Smile
           </motion.p>
 
           {/* Subheading */}
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed"
           >
-            Welcome to The Dental Lounge — your trusted dental care partner. 
-            We provide comprehensive dental services with a focus on patient comfort, 
-            hygiene, and modern techniques.
+            A modern dental clinic at Sardar Plaza, Fazal Chowk in New Mirpur City,
+            Azad Kashmir. Root canals, implants, braces, crowns and family check-ups —
+            led by Dr. Jalal Aslam, seven days a week until 9pm.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -120,24 +124,36 @@ const Hero = () => {
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="text-lg px-8 py-7 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300">
-              <a href="tel:03453081698">
+              <a href="tel:+923453081698">
                 <Phone className="mr-2 h-5 w-5" />
                 Call Now
               </a>
             </Button>
           </motion.div>
 
+          {/* Google rating — real, verifiable social proof, linked to source */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="mt-10 flex justify-center"
+          >
+            <GoogleRatingBadge />
+          </motion.div>
+
           {/* Trust Indicators */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-20 grid grid-cols-3 gap-8 max-w-lg mx-auto"
+            className="mt-12 grid grid-cols-3 gap-8 max-w-lg mx-auto"
           >
+            {/* Concrete, checkable facts rather than unverifiable claims —
+                these are the statements AI answers and snippets can lift. */}
             {[
-              { value: "200+", label: "Happy Patients" },
-              { value: "2+", label: "Years Experience" },
-              { value: "7+", label: "Services" },
+              { value: "10am–9pm", label: "Open every day" },
+              { value: "10", label: "Treatments offered" },
+              { value: "Fazal Chowk", label: "New Mirpur City" },
             ].map((stat, index) => (
               <motion.div 
                 key={index}

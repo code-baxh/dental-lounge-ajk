@@ -1,6 +1,10 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "The Dental Lounge — Dentist in Mirpur, AJK",
+  "short_name": "Dental Lounge",
+  "description": "Dental clinic at Sardar Plaza, Fazal Chowk, New Mirpur City, Azad Kashmir. Open 10am–9pm, seven days a week.",
+  "lang": "en-PK",
+  "start_url": "/",
+  "scope": "/",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,7 +19,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#ffffff",
+  "theme_color": "#3b2a1f",
   "background_color": "#ffffff",
   "display": "standalone"
 }

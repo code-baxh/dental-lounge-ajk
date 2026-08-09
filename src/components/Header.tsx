@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X, Phone, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/logo.jpeg";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,10 +27,13 @@ const Header = () => {
     { name: "Home", path: "/" },
     { name: "About Us", path: "/about" },
     { name: "Services", path: "/services" },
+    { name: "Areas We Serve", path: "/areas" },
+    { name: "Guides", path: "/guides" },
     { name: "Contact", path: "/contact" },
   ];
 
-  const isActive = (path: string) => pathname === path;
+  const isActive = (path: string) =>
+    pathname === path || (path !== "/" && pathname.startsWith(`${path}/`));
 
   return (
     <header 
@@ -42,16 +47,23 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <motion.img 
-              src={logo.src} 
-              alt="The Dental Lounge" 
-              className="h-14 w-auto rounded-lg shadow-md group-hover:shadow-lg transition-shadow"
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
+            {/* next/image, not a raw <img>: this renders on every page, so the
+                missing intrinsic dimensions were causing layout shift site-wide. */}
+            <Image
+              src={logo}
+              alt="The Dental Lounge — dental clinic in Mirpur, AJK"
+              width={56}
+              height={56}
+              priority
+              className="h-14 w-auto rounded-lg shadow-md transition-transform duration-200 group-hover:scale-[1.02] group-hover:shadow-lg"
             />
+            {/* Deliberately NOT an <h1>: this renders on every page, so it
+                gave every page a second H1 competing with the real one. */}
             <div className="hidden sm:block">
-              <h1 className="font-display text-xl font-semibold text-primary group-hover:text-primary/80 transition-colors">The Dental Lounge</h1>
-              <p className="text-xs text-muted-foreground">Healthy Teeth, Better Smile</p>
+              <span className="block font-display text-xl font-semibold text-primary transition-colors group-hover:text-primary/80">
+                The Dental Lounge
+              </span>
+              <span className="block text-xs text-muted-foreground">Dentist in Mirpur, AJK</span>
             </div>
           </Link>
 
@@ -78,30 +90,36 @@ const Header = () => {
           </nav>
 
           {/* CTA Buttons */}
-          <div className="hidden md:flex items-center gap-3">
-            <a 
-              href="https://wa.me/923453081698" 
-              target="_blank" 
+          <div className="hidden md:flex items-center gap-2">
+            <ThemeToggle />
+            {/* Icon-only control: needs an accessible name and a 44px hit
+                area. It had neither — 16px icon in 8px padding = 32px. */}
+            <a
+              href="https://wa.me/923453081698"
+              target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-[#25D366] transition-colors p-2 rounded-lg hover:bg-[#25D366]/10"
+              aria-label="Message The Dental Lounge on WhatsApp"
+              className="flex min-h-[44px] min-w-[44px] items-center justify-center gap-2 rounded-lg text-sm text-muted-foreground transition-colors hover:bg-[#25D366]/10 hover:text-[#25D366]"
             >
-              <MessageCircle className="h-4 w-4" />
+              <MessageCircle className="h-4 w-4" aria-hidden />
             </a>
-            <a 
-              href="tel:03453081698" 
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors p-2 rounded-lg hover:bg-primary/5"
+            <a
+              href="tel:+923453081698"
+              className="flex min-h-[44px] items-center gap-2 rounded-lg px-2 text-sm text-muted-foreground transition-colors hover:bg-primary/5 hover:text-primary"
             >
               <Phone className="h-4 w-4" />
-              <span className="hidden lg:inline">0345-3081698</span>
+              <span className="hidden lg:inline">+92 345 308 1698</span>
             </a>
             <Button asChild className="bg-primary hover:bg-primary/90 shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5">
               <Link href="/contact">Book Appointment</Link>
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile: toggle sits outside the menu so it is reachable in one tap */}
+          <div className="flex items-center gap-1 md:hidden">
+            <ThemeToggle />
           <motion.button
-            className="md:hidden p-2 rounded-lg hover:bg-primary/5 transition-colors"
+            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg transition-colors hover:bg-primary/5 md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
             whileTap={{ scale: 0.95 }}
@@ -130,6 +148,7 @@ const Header = () => {
               )}
             </AnimatePresence>
           </motion.button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -171,11 +190,11 @@ const Header = () => {
                     transition={{ delay: 0.4 }}
                   >
                     <a 
-                      href="tel:03453081698" 
+                      href="tel:+923453081698" 
                       className="flex items-center gap-3 px-4 py-2 text-sm text-muted-foreground hover:text-primary transition-colors"
                     >
                       <Phone className="h-4 w-4" />
-                      0345-3081698
+                      +92 345 308 1698
                     </a>
                     <a 
                       href="https://wa.me/923453081698" 

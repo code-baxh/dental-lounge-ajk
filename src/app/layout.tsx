@@ -1,89 +1,102 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Inter, Playfair_Display } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { RootProvider } from "./providers";
+import JsonLd from "@/components/JsonLd";
+import { BUSINESS, SITE_URL } from "@/lib/site";
+import { clinicSchema, graph, practitionerSchema, websiteSchema } from "@/lib/schema";
 import "./globals.css";
 
+// Self-hosted at build time by next/font — removes the render-blocking
+// stylesheet request to fonts.googleapis.com and the layout shift with it.
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-sans",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-display",
+});
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://thedentalloungemirpur.com.pk"),
-  title: "The Dental Lounge Mirpur | Best Dentist in Mirpur AJK",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    // Every page inherits the geo qualifier, so no title can ship without it.
+    default: "Dentist in Mirpur AJK | The Dental Lounge | Dr. Jalal Aslam",
+    template: "%s | The Dental Lounge Mirpur",
+  },
   description:
-    "The Dental Lounge Mirpur - Your trusted dental care partner in Mirpur, Azad Kashmir. Professional dental services including teeth cleaning, whitening, root canal, implants, and cosmetic dentistry. Expert care from Dr. Jalal.",
-  keywords:
-    "dentist Mirpur, The Dental Lounge Mirpur, dental clinic AJK, teeth cleaning, teeth whitening, root canal Mirpur, cosmetic dentistry Mirpur, dental implants, Dr. Jalal, best dentist",
-  authors: [{ name: "The Dental Lounge" }],
+    "Dental clinic at Fazal Chowk, New Mirpur City, Azad Kashmir. Root canals, implants, braces, crowns, whitening and family check-ups. Open 10am–9pm, seven days. Call +92 345 308 1698.",
+  applicationName: BUSINESS.name,
+  authors: [{ name: "Dr. Jalal Aslam", url: `${SITE_URL}/about` }],
+  creator: "The Dental Lounge Mirpur",
+  publisher: "The Dental Lounge Mirpur",
+  category: "Dentistry",
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "The Dental Lounge Mirpur | Best Dentist in Mirpur AJK",
-    description:
-      "The Dental Lounge Mirpur - Healthy Teeth, Better Smile. Professional dental care in Mirpur, Azad Kashmir.",
-    url: "https://thedentalloungemirpur.com.pk",
-    siteName: "The Dental Lounge",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
     type: "website",
+    locale: "en_PK",
+    url: SITE_URL,
+    siteName: BUSINESS.name,
+    title: "Dentist in Mirpur AJK | The Dental Lounge",
+    description:
+      "Dental clinic at Fazal Chowk, New Mirpur City, Azad Kashmir. Open 10am–9pm, seven days a week.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Dental Lounge Mirpur | Best Dentist in Mirpur AJK",
+    title: "Dentist in Mirpur AJK | The Dental Lounge",
     description:
-      "The Dental Lounge Mirpur - Professional dental care in Mirpur, Azad Kashmir.",
-    images: ["/og-image.png"],
+      "Dental clinic at Fazal Chowk, New Mirpur City, Azad Kashmir. Open 10am–9pm, seven days a week.",
   },
-  alternates: {
-    canonical: "https://thedentalloungemirpur.com.pk",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
+  // Geo meta tags are not Google ranking signals, but Bing and several local
+  // directories still read them, and they cost nothing.
+  other: {
+    "geo.region": "PK-JK",
+    "geo.placename": "New Mirpur City, Azad Jammu and Kashmir",
+    "geo.position": `${BUSINESS.latitude};${BUSINESS.longitude}`,
+    ICBM: `${BUSINESS.latitude}, ${BUSINESS.longitude}`,
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://thedentalloungemirpur.com.pk",
-    name: "The Dental Lounge Mirpur",
-    image: "https://thedentalloungemirpur.com.pk/web-app-manifest-512x512.png",
-    description:
-      "The Dental Lounge Mirpur - Professional dental care services in Mirpur, Azad Kashmir. We offer comprehensive dental treatments including general dentistry, teeth cleaning, whitening, root canal, dental implants, orthodontics, and cosmetic dentistry.",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Sardar plaza, Fazal chowk, Mirpur, Azad Kashmir",
-      addressCountry: "PK",
-    },
-    telephone: "+92-3453081698",
-    url: "https://thedentalloungemirpur.com.pk",
-    priceRange: "$$",
-    sameAs: [
-      "https://www.facebook.com/profile.php?id=61584884788327",
-      "https://www.instagram.com/thedentallounge_mirpur/",
-      "https://www.tiktok.com/@thedentallounge",
-    ],
-    serviceArea: {
-      "@type": "City",
-      name: "Mirpur",
-    },
-  };
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  // Browser chrome follows the active theme rather than always showing the
+  // light-mode brown.
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#181310" },
+  ],
+};
 
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-          suppressHydrationWarning
-        />
-      </head>
+    // suppressHydrationWarning is required by next-themes: it writes the theme
+    // class onto <html> before React hydrates, which is what prevents a
+    // light-mode flash for dark-mode visitors.
+    <html
+      lang="en-PK"
+      suppressHydrationWarning
+      className={`${inter.variable} ${playfair.variable}`}
+    >
       <body>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+        >
+          Skip to content
+        </a>
         <RootProvider>{children}</RootProvider>
-        {/* {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && ( */}
+        <JsonLd data={graph(clinicSchema(), practitionerSchema(), websiteSchema())} />
         <GoogleAnalytics gaId="G-TJHLCHBH5B" />
-        {/* )} */}
       </body>
     </html>
   );

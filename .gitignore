@@ -47,3 +47,11 @@ next-env.d.ts
 
 # OS
 Thumbs.db
+
+# Test + audit output (regenerate with `npm run test:e2e` / `npm run seo:audit`)
+/test-results/
+/playwright-report/
+/screenshots/
+/blob-report/
+/playwright/.cache/
+/seo-reports/

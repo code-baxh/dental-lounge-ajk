@@ -190,7 +190,7 @@ const ContactForm = () => {
         <Button
           type="submit"
           size="lg"
-          className="w-full bg-[#25D366] hover:bg-[#25D366]/90 text-white text-lg h-14 shadow-lg shadow-[#25D366]/25 hover:shadow-xl hover:shadow-[#25D366]/30 transition-all hover:-translate-y-0.5"
+          className="w-full bg-[#25D366] hover:bg-[#25D366]/90 text-[#0A2E1F] text-lg h-14 shadow-lg shadow-[#25D366]/25 hover:shadow-xl hover:shadow-[#25D366]/30 transition-all hover:-translate-y-0.5"
           disabled={isSubmitting}
         >
           <AnimatePresence mode="wait">

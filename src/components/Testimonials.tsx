@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
+import { GOOGLE_REVIEWS } from "@/lib/site";
 
 const testimonials = [
   {
@@ -53,7 +54,18 @@ const Testimonials = () => {
             What Our Patients Say
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Don&apos;t just take our word for it — hear from the families who trust us with their smiles.
+            A few of the things patients tell us. For verified reviews you can check
+            independently, see our{" "}
+            <a
+              href={GOOGLE_REVIEWS.readUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-primary underline-offset-4 hover:underline"
+            >
+              {GOOGLE_REVIEWS.ratingValue.toFixed(1)}-star rating from{" "}
+              {GOOGLE_REVIEWS.reviewCount} reviews on Google
+            </a>
+            .
           </p>
         </motion.div>
 

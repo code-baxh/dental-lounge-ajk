@@ -10,7 +10,12 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:a11y": "playwright test accessibility",
+    "shots": "playwright test screenshots",
+    "seo:audit": "node scripts/seo-audit.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -66,8 +71,10 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
     "@eslint/js": "^9.32.0",
     "@netlify/plugin-nextjs": "^5.15.9",
+    "@playwright/test": "^1.62.1",
     "@tailwindcss/typography": "^0.5.16",
     "@testing-library/jest-dom": "^6.6.0",
     "@testing-library/react": "^16.0.0",
@@ -85,5 +92,8 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.8.3"
+  },
+  "optionalDependencies": {
+    "sharp": "^0.35.3"
   }
 }

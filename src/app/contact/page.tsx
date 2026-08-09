@@ -1,133 +1,171 @@
+import type { Metadata } from "next";
+import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
-import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import JsonLd from "@/components/JsonLd";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import {
+  ADDRESS_ONE_LINE,
+  BUSINESS,
+  MAILTO_HREF,
+  TEL_HREF,
+  WHATSAPP_HREF,
+} from "@/lib/site";
+import { breadcrumbSchema, graph } from "@/lib/schema";
+
+export const metadata: Metadata = {
+  title: { absolute: "Contact & Book an Appointment | Dentist in Mirpur AJK" },
+  description:
+    "Book a dental appointment at The Dental Lounge, Sardar Plaza, Fazal Chowk, New Mirpur City, Azad Kashmir. Call +92 345 308 1698 or message on WhatsApp. Open 10am–9pm daily.",
+  alternates: { canonical: "/contact" },
+};
+
+const trail = [
+  { name: "Home", path: "/" },
+  { name: "Contact", path: "/contact" },
+];
 
 const contactInfo = [
   {
     icon: Phone,
     title: "Phone",
-    details: "0345-3081698",
-    link: "tel:03453081698",
+    details: BUSINESS.phoneIntlDisplay,
+    sub: `Local: ${BUSINESS.phoneDisplay}`,
+    link: TEL_HREF,
   },
   {
     icon: MessageCircle,
     title: "WhatsApp",
-    details: "0345-3081698",
-    link: "https://wa.me/923453081698",
+    details: BUSINESS.phoneIntlDisplay,
+    sub: "Fastest way to reach us",
+    link: WHATSAPP_HREF,
   },
   {
     icon: Mail,
     title: "Email",
-    details: "thedentalloungmirpur@gmail.com",
-    link: "mailto:thedentalloungmirpur@gmail.com",
+    details: BUSINESS.email,
+    sub: null,
+    link: MAILTO_HREF,
   },
   {
     icon: MapPin,
     title: "Address",
-    details: "Sardar plaza, Fazal chowk, Mirpur, AJK",
-    link: "https://maps.app.goo.gl/MJ273LxUTJ1hXx1d6",
+    details: ADDRESS_ONE_LINE,
+    sub: "In the centre of New Mirpur City",
+    link: BUSINESS.mapsUrl,
   },
   {
     icon: Clock,
-    title: "Hours",
-    details: "10AM - 9PM",
+    title: "Opening hours",
+    details: BUSINESS.openingHours.human,
+    sub: "Including evenings and weekends",
     link: null,
   },
 ];
 
 export default function Contact() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-br from-secondary via-background to-muted">
+      <JsonLd data={graph(breadcrumbSchema(trail))} />
+
+      <main id="main" className="flex-1">
+        <Breadcrumbs trail={trail} />
+
+        <section className="bg-gradient-to-br from-secondary via-background to-muted py-14">
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-                Contact <span className="text-primary">Us</span>
+            <div className="mx-auto max-w-3xl text-center">
+              <h1 className="mb-6 text-balance font-display text-3xl font-bold text-foreground md:text-5xl">
+                Contact The Dental Lounge,{" "}
+                <span className="whitespace-nowrap text-primary">Mirpur AJK</span>
               </h1>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Ready to book your appointment? Get in touch with us through any
-                of the methods below. We&apos;re here to help you achieve a healthier smile.
+              <p className="text-lg leading-relaxed text-muted-foreground">
+                We are at Sardar Plaza, Fazal Chowk in New Mirpur City, open{" "}
+                {BUSINESS.openingHours.human}. Call, message on WhatsApp, or send the form below and
+                we will confirm a time.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Contact Info & Form */}
-        <section className="py-20 bg-background">
+        <section className="bg-background py-16">
           <div className="container mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-              {/* Contact Information */}
+            <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
               <div>
-                <h2 className="font-display text-2xl font-bold text-foreground mb-6">
-                  Get In Touch
-                </h2>
-                <p className="text-muted-foreground mb-8">
-                  Have questions or want to schedule an appointment? Reach out to us
-                  via phone, WhatsApp, or fill out the form. We typically respond within
-                  a few hours.
+                <h2 className="mb-6 font-display text-2xl font-bold text-foreground">Get in touch</h2>
+                <p className="mb-8 text-muted-foreground">
+                  Have a question or want to schedule an appointment? Reach out by phone, WhatsApp,
+                  or fill in the form. We usually reply within a few hours during opening times.
                 </p>
 
-                <div className="space-y-4 mb-8">
-                  {contactInfo.map((info, index) => (
-                    <Card key={index} className="border-border">
-                      <CardContent className="p-4">
-                        <div className="flex items-start gap-4">
-                          <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center shrink-0">
-                            <info.icon className="h-5 w-5 text-primary" />
+                <ul className="mb-8 space-y-4">
+                  {contactInfo.map((info) => (
+                    <li key={info.title}>
+                      <Card className="border-border">
+                        <CardContent className="p-4">
+                          <div className="flex items-start gap-4">
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+                              <info.icon className="h-5 w-5 text-primary" aria-hidden />
+                            </div>
+                            <div className="min-w-0">
+                              <h3 className="font-semibold text-foreground">{info.title}</h3>
+                              {info.link ? (
+                                <a
+                                  href={info.link}
+                                  target={info.link.startsWith("http") ? "_blank" : undefined}
+                                  rel={info.link.startsWith("http") ? "noopener noreferrer" : undefined}
+                                  className="break-words text-muted-foreground transition-colors hover:text-primary"
+                                >
+                                  {info.details}
+                                </a>
+                              ) : (
+                                <p className="text-muted-foreground">{info.details}</p>
+                              )}
+                              {/* Full-strength muted, not /70: dimming an
+                                  already-muted token drops it to 3.09:1. */}
+                              {info.sub && (
+                                <p className="mt-0.5 text-xs text-muted-foreground">{info.sub}</p>
+                              )}
+                            </div>
                           </div>
-                          <div>
-                            <h3 className="font-semibold text-foreground">{info.title}</h3>
-                            {info.link ? (
-                              <a
-                                href={info.link}
-                                target={info.link.startsWith("http") ? "_blank" : undefined}
-                                rel={info.link.startsWith("http") ? "noopener noreferrer" : undefined}
-                                className="text-muted-foreground hover:text-primary transition-colors"
-                              >
-                                {info.details}
-                              </a>
-                            ) : (
-                              <p className="text-muted-foreground">{info.details}</p>
-                            )}
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
+                        </CardContent>
+                      </Card>
+                    </li>
                   ))}
-                </div>
+                </ul>
 
-                {/* Quick WhatsApp Button */}
                 <Button
                   asChild
                   size="lg"
-                  className="w-full bg-[#25D366] hover:bg-[#25D366]/90 text-white"
+                  className="w-full bg-[#25D366] text-[#0A2E1F] hover:bg-[#25D366]/90"
                 >
-                  <a
-                    href="https://wa.me/923453081698"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href={WHATSAPP_HREF} target="_blank" rel="noopener noreferrer">
                     <MessageCircle className="mr-2 h-5 w-5" />
                     Chat on WhatsApp
                   </a>
                 </Button>
+
+                <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+                  Please do not send detailed medical history or clinical photographs by WhatsApp —
+                  bring those to your appointment. For facial swelling, difficulty breathing or
+                  swallowing, or uncontrolled bleeding, go to the nearest hospital immediately.
+                </p>
               </div>
 
-              {/* Contact Form */}
               <div>
                 <Card className="border-border">
                   <CardContent className="p-8">
-                    <h2 className="font-display text-2xl font-bold text-foreground mb-2">
-                      Book an Appointment
+                    <h2 className="mb-2 font-display text-2xl font-bold text-foreground">
+                      Book an appointment
                     </h2>
-                    <p className="text-muted-foreground mb-6">
-                      Fill out the form below and we&apos;ll get back to you shortly.
+                    <p className="mb-6 text-muted-foreground">
+                      Fill in the form and we will get back to you shortly. Travelling in from
+                      Dadyal, Bhimber or Kotli? Mention it and we will group your treatment into
+                      fewer visits.
                     </p>
                     <ContactForm />
                   </CardContent>
@@ -137,37 +175,46 @@ export default function Contact() {
           </div>
         </section>
 
-        {/* Map Section */}
-        <section className="py-20 bg-secondary/50">
+        {/* Map */}
+        <section className="bg-secondary/50 py-16">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-10">
-                <h2 className="font-display text-3xl font-bold text-foreground mb-4">
-                  Find Us
+            <div className="mx-auto max-w-4xl">
+              <div className="mb-8 text-center">
+                <h2 className="mb-4 font-display text-3xl font-bold text-foreground">
+                  Find us at Fazal Chowk, Mirpur
                 </h2>
-                <p className="text-muted-foreground">
-                  Located in the heart of Mirpur, AJK — easily accessible for all your dental needs.
-                </p>
+                <address className="not-italic text-muted-foreground">{ADDRESS_ONE_LINE}</address>
               </div>
 
-              {/* Map Placeholder */}
-              <div className="bg-muted rounded-2xl aspect-video flex items-center justify-center border border-border">
-                <div className="text-center p-8">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4367.064681671599!2d73.75559407657603!3d33.14735297351112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391feb2c23e2fbb3%3A0x57817c5738eab132!2sThe%20Dental%20Lounge!5e1!3m2!1sen!2s!4v1773600462287!5m2!1sen!2s"
-                    width="600"
-                    height="450"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  ></iframe>
-                </div>
+              {/* Previously a fixed 600x450 iframe inside an aspect-video box,
+                  which overflowed on mobile. Now fluid. */}
+              <div className="overflow-hidden rounded-2xl border border-border">
+                <iframe
+                  src={BUSINESS.mapEmbedSrc}
+                  title="Map showing The Dental Lounge at Sardar Plaza, Fazal Chowk, New Mirpur City, AJK"
+                  className="aspect-video w-full"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+
+              <div className="mt-6 text-center">
+                <a
+                  href={BUSINESS.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-primary underline underline-offset-2 hover:decoration-2"
+                >
+                  Open in Google Maps and get directions →
+                </a>
               </div>
             </div>
           </div>
         </section>
       </main>
+
       <Footer />
     </div>
   );
