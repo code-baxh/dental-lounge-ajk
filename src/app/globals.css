@@ -154,6 +154,126 @@ body {
   overflow-x: hidden;
 }
 
+/* ---------------------------------------------------------------------------
+   Above-the-fold entrance animations, in CSS rather than framer-motion.
+
+   These ran as motion.div entrances with initial={{ opacity: 0 }}, which meant
+   the hero text stayed invisible until the 164KB client bundle had downloaded,
+   parsed and hydrated. LCP does not count an element at opacity 0, so the
+   largest text block on the homepage was reporting LCP 3.2s against FCP 0.8s —
+   2.4 seconds of waiting for text that was already in the server HTML.
+
+   CSS animations start at first paint and owe nothing to hydration.
+
+   The rule that matters: .hero-rise animates transform ONLY. Opacity gates LCP;
+   transform does not. So the LCP element paints at FCP and still moves.
+   Anything that fades (.hero-fade-rise) must not be the largest element.
+   --------------------------------------------------------------------------- */
+@keyframes hero-rise {
+  from {
+    transform: translateY(14px);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes hero-fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@layer utilities {
+  /* LCP-safe: no opacity, so the element is painted immediately. */
+  .hero-rise {
+    animation: hero-rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* For supporting chrome only — never the largest element in the viewport. */
+  .hero-fade-rise {
+    animation: hero-fade-rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
+/* Ambient background blobs. Uses the individual `scale` and `rotate`
+   properties rather than `transform`, so Tailwind's -translate-x-1/2 on the
+   centre blob is not clobbered. */
+@keyframes blob-breathe-a {
+  0%,
+  100% {
+    scale: 1;
+    opacity: 0.5;
+  }
+  50% {
+    scale: 1.2;
+    opacity: 0.8;
+  }
+}
+
+@keyframes blob-breathe-b {
+  0%,
+  100% {
+    scale: 1.2;
+    opacity: 0.3;
+  }
+  50% {
+    scale: 1;
+    opacity: 0.6;
+  }
+}
+
+@keyframes blob-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes scroll-nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+@keyframes scroll-dot {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(4px);
+  }
+}
+
+@layer utilities {
+  .animate-blob-a {
+    animation: blob-breathe-a 8s ease-in-out infinite;
+  }
+  .animate-blob-b {
+    animation: blob-breathe-b 10s ease-in-out infinite;
+  }
+  .animate-blob-spin {
+    animation: blob-spin 60s linear infinite;
+  }
+  .animate-scroll-nudge {
+    animation: scroll-nudge 2s ease-in-out infinite;
+  }
+  .animate-scroll-dot {
+    animation: scroll-dot 2s ease-in-out infinite;
+  }
+}
+
 /* Covers everything framer-motion's MotionConfig does not: Tailwind's
    animate-* utilities, CSS transitions, and smooth scrolling. Motion is
    reduced to a near-instant state change rather than removed entirely, so

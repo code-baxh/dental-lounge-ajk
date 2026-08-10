@@ -106,6 +106,46 @@ for (const path of ["/about", "/services", "/services/root-canal-treatment-mirpu
   });
 }
 
+/**
+ * The homepage LCP element is the hero subheading. It used to be a framer-motion
+ * entrance starting at opacity 0, so it stayed invisible until the client bundle
+ * hydrated — LCP 3.2s against FCP 0.8s on throttled mobile, for text that was
+ * already in the server HTML.
+ *
+ * Rendering with JS disabled is the sharpest form of the invariant: if the hero
+ * text is opaque and positioned without a single line of JavaScript running,
+ * nothing can gate it behind hydration.
+ */
+test("hero text renders without JavaScript — LCP is not gated on hydration", async ({
+  browser,
+}, testInfo) => {
+  const context = await browser.newContext({
+    javaScriptEnabled: false,
+    baseURL: testInfo.project.use.baseURL,
+    viewport: testInfo.project.use.viewport,
+  });
+  const page = await context.newPage();
+  await page.goto("/");
+
+  for (const locator of [page.locator("h1"), page.getByText(/A modern dental clinic at Sardar Plaza/)]) {
+    const el = locator.first();
+    await expect(el).toBeVisible();
+
+    const { opacity, visibility } = await el.evaluate((n) => {
+      const s = getComputedStyle(n as HTMLElement);
+      return { opacity: Number(s.opacity), visibility: s.visibility };
+    });
+    expect(opacity, "above-the-fold text must not start transparent").toBe(1);
+    expect(visibility).toBe("visible");
+
+    // And it must be inside the viewport, not translated off-screen.
+    const box = (await el.boundingBox())!;
+    expect(box.y).toBeGreaterThan(0);
+  }
+
+  await context.close();
+});
+
 test("primary conversion paths are present and correctly formed", async ({ page }) => {
   await page.goto("/");
 
