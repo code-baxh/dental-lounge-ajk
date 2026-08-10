@@ -60,7 +60,11 @@ const ServicesPreview = () => {
                     src={SERVICE_IMAGES[service.image]}
                     alt={imageAlt(service.name)}
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    // 100vw overstated it: the card sits inside the container's
+                    // px-4, so on a 412px phone the real slot is ~380px, not
+                    // 412 — enough to make next/image serve w=750 instead of
+                    // w=384 and roughly double the bytes for no visible gain.
+                    sizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 1024px) calc(50vw - 2rem), 33vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     placeholder="blur"
                   />
