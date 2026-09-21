@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import LocationCTA from "@/components/LocationCTA";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
-import { GUIDES } from "@/lib/guides";
+import { GUIDES_BY_DATE } from "@/lib/guides";
 import { PRACTITIONER, SITE_URL } from "@/lib/site";
 import { breadcrumbSchema, graph } from "@/lib/schema";
 
@@ -35,7 +35,7 @@ export default function GuidesPage() {
           url: `${SITE_URL}/guides`,
           inLanguage: "en-PK",
           publisher: { "@id": `${SITE_URL}/#clinic` },
-          blogPost: GUIDES.map((g) => ({
+          blogPost: GUIDES_BY_DATE.map((g) => ({
             "@type": "BlogPosting",
             headline: g.h1,
             url: `${SITE_URL}/guides/${g.slug}`,
@@ -58,7 +58,8 @@ export default function GuidesPage() {
               <p className="text-lg leading-relaxed text-muted-foreground">
                 Straight answers to the questions patients in Mirpur actually ask — what treatment
                 costs, how to plan it around a trip home from Britain, what to do in an emergency,
-                and the risks that matter most in this part of the world. Written and reviewed by{" "}
+                how to replace a missing tooth, whether to choose braces or aligners, and the risks
+                that matter most in this part of the world. Written and reviewed by{" "}
                 <Link href="/about" className="font-medium text-primary underline underline-offset-2 hover:decoration-2">
                   {PRACTITIONER.name}
                 </Link>
@@ -71,7 +72,7 @@ export default function GuidesPage() {
         <section className="bg-background py-16">
           <div className="container mx-auto px-4">
             <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
-              {GUIDES.map((g) => (
+              {GUIDES_BY_DATE.map((g) => (
                 <article
                   key={g.slug}
                   className="group flex flex-col rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
