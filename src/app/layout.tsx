@@ -3,6 +3,8 @@ import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 import { RootProvider } from "./providers";
 import JsonLd from "@/components/JsonLd";
+import MobileActionBar from "@/components/MobileActionBar";
+import ConversionTracking from "@/components/ConversionTracking";
 import { BUSINESS, SITE_URL } from "@/lib/site";
 import { clinicSchema, graph, practitionerSchema, websiteSchema } from "@/lib/schema";
 import "./globals.css";
@@ -34,7 +36,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     // Every page inherits the geo qualifier, so no title can ship without it.
-    default: "Dentist in Mirpur AJK | The Dental Lounge | Dr. Jalal Aslam",
+    default: "Dentist & Dental Clinic in Mirpur AJK | The Dental Lounge",
     template: "%s | The Dental Lounge Mirpur",
   },
   description:
@@ -50,13 +52,13 @@ export const metadata: Metadata = {
     locale: "en_PK",
     url: SITE_URL,
     siteName: BUSINESS.name,
-    title: "Dentist in Mirpur AJK | The Dental Lounge",
+    title: "Dentist & Dental Clinic in Mirpur AJK | The Dental Lounge",
     description:
       "Dental clinic at Fazal Chowk, New Mirpur City, Azad Kashmir. Open 10am–9pm, seven days a week.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dentist in Mirpur AJK | The Dental Lounge",
+    title: "Dentist & Dental Clinic in Mirpur AJK | The Dental Lounge",
     description:
       "Dental clinic at Fazal Chowk, New Mirpur City, Azad Kashmir. Open 10am–9pm, seven days a week.",
   },
@@ -96,7 +98,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
       className={`${inter.variable} ${playfair.variable}`}
     >
-      <body>
+      {/* Bottom padding on phones matches the fixed MobileActionBar, so the
+          bar never sits on top of the last lines of the footer. */}
+      <body className="pb-[calc(4.5rem+env(safe-area-inset-bottom))] md:pb-0">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
@@ -104,6 +108,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <RootProvider>{children}</RootProvider>
+        <MobileActionBar />
+        <ConversionTracking />
         <JsonLd data={graph(clinicSchema(), practitionerSchema(), websiteSchema())} />
 
         {/* Analytics is loaded after the page has settled, not alongside it.
@@ -117,12 +123,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             visitor who leaves within the first second or two may not be counted.
             For a clinic measuring traffic trends that is an acceptable price for
             a faster first paint. GA4 enhanced measurement still handles
-            client-side route changes on its own. */}
+            client-side route changes on its own.
+
+            The ~150-byte inline init, by contrast, runs at afterInteractive: it
+            fetches nothing, it only defines gtag() and queues js/config. That
+            puts config at the front of the dataLayer, so a call or WhatsApp
+            tap made before the library arrives (ConversionTracking) is queued
+            behind it and sent once gtag.js loads, instead of being lost. */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
           strategy="lazyOnload"
         />
-        <Script id="ga-init" strategy="lazyOnload">
+        <Script id="ga-init" strategy="afterInteractive">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}
         </Script>
       </body>

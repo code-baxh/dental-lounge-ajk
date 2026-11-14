@@ -20,6 +20,12 @@ export type Service = {
   metaDescription: string;
   short: string;
   image: string;
+  /**
+   * Overrides the generated alt text when the image is shared with another
+   * service and does not literally show this one — alt text must describe
+   * what is in the picture.
+   */
+  imageAlt?: string;
   duration: string;
   price?: PriceBand;
   intro: string[];
@@ -749,7 +755,129 @@ export const SERVICES: Service[] = [
         a: "No. X-rays are taken when there is a clinical reason — typically every 12 to 24 months for adults with a low decay rate, more often if there is active disease.",
       },
     ],
-    related: ["teeth-cleaning-and-scaling-mirpur", "dental-fillings-mirpur", "root-canal-treatment-mirpur"],
+    related: ["childrens-dentistry-mirpur", "teeth-cleaning-and-scaling-mirpur", "dental-fillings-mirpur"],
+  },
+
+  /*
+   * Grounded in what the clinic already does and says: General Dentistry
+   * states children are seen from the first tooth with fluoride varnish and
+   * sealants, and a Google review (5- and 9-year-old, check-up and milk-tooth
+   * extraction) plus the clinic's reply ("we take time to talk with them
+   * first") describe the approach. Deliberately not called "paediatric
+   * dentist" — that is a specialist title Dr. Jalal does not hold, and the
+   * page says so.
+   */
+  {
+    slug: "childrens-dentistry-mirpur",
+    name: "Children's Dentistry",
+    urdu: "بچوں کے دانتوں کا علاج",
+    h1: "Children's Dentistry in Mirpur, AJK",
+    metaTitle: "Children's Dentist in Mirpur AJK | Kids' Dental Care",
+    metaDescription:
+      "Gentle check-ups, fluoride, sealants and fillings for kids in Mirpur, Azad Kashmir, from the first tooth. After-school visits until 9pm. Call +92 345 308 1698.",
+    short:
+      "Gentle check-ups, fluoride varnish, fissure sealants, fillings and milk-tooth care for kids, from the first tooth onwards.",
+    image: "general",
+    imageAlt: "Dental examination at The Dental Lounge, Fazal Chowk, New Mirpur City, Azad Kashmir",
+    duration: "20–30 minutes for a check-up",
+    intro: [
+      "Children's teeth are not a practice run. Milk teeth hold the space for the adult teeth growing underneath them, they let a child chew and speak properly, and decay in them hurts exactly as much as decay in adult teeth. A milk tooth lost early to decay lets the teeth beside it drift into the gap, which is one of the commonest reasons a child later needs braces.",
+      "The aim of children's dentistry here is simple: find problems while they are small, prevent the ones that have not started, and make sure your child's first experience of the dental chair is a calm one. A child who first meets a dentist because of toothache learns to fear dentistry. A child who first meets one for a short look while nothing hurts usually does not.",
+    ],
+    sections: [
+      {
+        heading: "What happens at a child's first visit",
+        body: [
+          "Bring your child from the age of one, or as soon as the first teeth appear. The first visit is mostly conversation. We talk to your child before we touch anything, show them the mirror and the chair light, and let a younger child sit on your lap if that is easier. Then we count their teeth, look for early decay, and check how the bite is developing.",
+          "Nothing is done at a first visit that your child is not ready for. If something needs treatment, we explain it to you first, then to your child in words they understand, and agree with you when to do it.",
+        ],
+      },
+      {
+        heading: "Treatment we provide for children",
+        list: [
+          "Check-ups from the first tooth onwards, with advice on brushing, diet and fluoride for your child's age",
+          "Fluoride varnish — painted on in under a minute, it strengthens the enamel against decay",
+          "Fissure sealants on the back teeth, sealing the deep grooves where most childhood decay starts",
+          "Fillings in milk teeth and young adult teeth, with local anaesthetic so they do not hurt",
+          "Removal of milk teeth that are badly decayed, infected, or blocking an adult tooth from coming through",
+          "Same-day appointments for toothache, swelling and teeth damaged in falls",
+          "An early orthodontic check — whether crowding, thumb-sucking or the bite needs watching before braces age",
+        ],
+      },
+      {
+        heading: "Milk teeth and adult teeth: what comes when",
+        list: [
+          "Around 6 months: the first milk teeth come through, usually the lower front ones",
+          "By about 3 years: all 20 milk teeth are in",
+          "Around 6 years: the first permanent molars come through behind the last milk teeth. Nothing falls out to make room for them, so parents often assume they are milk teeth — they are not, and they have to last a lifetime. These are the teeth sealants protect.",
+          "From 6 to 12 years: milk teeth loosen and fall out as the adult teeth push up underneath, front teeth first",
+          "Around 12 to 13 years: the second permanent molars arrive. Wisdom teeth, if they come at all, follow from the late teens.",
+        ],
+      },
+      {
+        heading: "Where childhood decay comes from",
+        body: [
+          "Decay in children is driven far more by how often they have sugar than by how much. Sweetened tea given to toddlers, a bottle of milk with sugar or juice at bedtime, and a steady supply of toffees, biscuits and fizzy drinks through the day all do the same thing: every sugary sip or snack starts an acid attack on the enamel that lasts roughly twenty minutes to half an hour. A child who sips and snacks all day never gives their teeth a break.",
+          "A bottle in bed is the worst of these. Milk or juice pools around the upper front teeth while the child sleeps, when there is least saliva to wash it away, and causes rapid decay of the front teeth. Only water in the bottle at night.",
+        ],
+        list: [
+          "Brush twice a day with fluoride toothpaste — a smear the size of a grain of rice until age three, then a pea-sized amount",
+          "Spit the toothpaste out afterwards but do not rinse with water, so the fluoride stays on the teeth",
+          "Brush for your child, or check their brushing, until about age seven or eight — they do not have the dexterity before then",
+          "Keep sweets and sweet drinks to mealtimes rather than spread through the day",
+          "No sugar in a toddler's tea or milk, and water between meals",
+        ],
+      },
+      {
+        heading: "If your child knocks out a tooth",
+        body: [
+          "Falls while playing or cycling are the commonest cause of dental injuries in children. What you do in the first hour depends on which kind of tooth it is.",
+        ],
+        list: [
+          "A milk tooth: do not try to put it back — that can damage the adult tooth developing underneath. Control any bleeding with clean gauze and bring your child in so we can check the area.",
+          "An adult tooth (usually age seven or older): pick it up by the crown, not the root. If it is dirty, rinse it briefly in milk or cold water — do not scrub it. If you can, push it gently back into its socket and have your child bite on a clean cloth; if not, keep it in a cup of milk. Then come straight in — a permanent tooth put back within the hour has the best chance of surviving.",
+          "Any blow to the head with vomiting, drowsiness or loss of consciousness is a hospital emergency first and a dental one second.",
+        ],
+      },
+      {
+        heading: "A note on specialist care",
+        body: [
+          "Dr. Jalal Aslam is a general dental surgeon, not a specialist paediatric dentist. Check-ups, fluoride, sealants, fillings and milk-tooth extractions are routine general dentistry, and they make up nearly all of the dental care most children ever need.",
+          "A small number of children need specialist care — for example, treatment under general anaesthesia for extensive decay in a very young or very anxious child. If your child is one of them, we will tell you plainly rather than attempt it here.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "What age should my child first see a dentist?",
+        a: "By their first birthday, or when the first tooth comes through — whichever comes first. Early visits are short. They are mainly about getting your child used to the chair while nothing hurts, and about giving you advice on brushing and diet.",
+      },
+      {
+        q: "Do milk teeth really need fillings if they are going to fall out?",
+        a: "Often, yes. A back milk tooth can stay in the mouth until age eleven or twelve. Decay in it can reach the nerve and cause pain and abscesses, and infection around a milk tooth can affect the adult tooth forming underneath. Losing it early also lets the neighbouring teeth drift into the gap. Whether a particular tooth is worth filling depends on how close it is to falling out naturally, and we will tell you which.",
+      },
+      {
+        q: "Will treatment hurt my child?",
+        a: "We use local anaesthetic for fillings and extractions, so your child does not feel pain during treatment, and we talk them through each step before we do it. Most children cope far better than their parents expect — especially when parents stay calm and avoid words like injection and pain on the way in.",
+      },
+      {
+        q: "My child is six and has a new back tooth. Is it a milk tooth?",
+        a: "Almost certainly not. The first permanent molars come through at around six, behind the last milk teeth, without any milk tooth falling out to make room. They are the teeth most often lost to decay in childhood, so they are worth sealing as soon as they are fully through.",
+      },
+      {
+        q: "When should my child be checked for braces?",
+        a: "Around seven to nine, once the first adult front teeth and molars are in. Most children will not need treatment that early, but a few bite problems are easier to correct while the jaw is still growing, so it is worth a look at a routine check-up at that age.",
+      },
+      {
+        q: "Can you see children after school?",
+        a: "Yes. We are open 10am to 9pm, seven days a week, so after-school and evening appointments are easy to arrange. Call +92 345 308 1698 or message us on WhatsApp.",
+      },
+      {
+        q: "We are visiting Mirpur from the UK with our children. Can they be seen?",
+        a: "Yes. Book a check-up early in the trip rather than the week before you fly, so there is time for any fillings or sealants your children need before you go home.",
+      },
+    ],
+    related: ["general-dentistry-mirpur", "dental-fillings-mirpur", "braces-and-orthodontics-mirpur"],
   },
 ];
 

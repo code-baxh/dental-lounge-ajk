@@ -10,10 +10,12 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQ from "@/components/FAQ";
 import JsonLd from "@/components/JsonLd";
 import AreasServed from "@/components/AreasServed";
+import Testimonials from "@/components/Testimonials";
 import { Button } from "@/components/ui/button";
 import { SERVICES, getService } from "@/lib/services";
+import { guidesForService } from "@/lib/guides";
 import { SERVICE_IMAGES, imageAlt } from "@/lib/service-images";
-import { BUSINESS, SITE_URL, TEL_HREF, WHATSAPP_HREF } from "@/lib/site";
+import { BUSINESS, GOOGLE_REVIEW_QUOTES, SITE_URL, TEL_HREF, WHATSAPP_HREF } from "@/lib/site";
 import { breadcrumbSchema, faqSchema, graph, medicalProcedureSchema } from "@/lib/schema";
 
 export function generateStaticParams() {
@@ -51,6 +53,8 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
 
   const image = SERVICE_IMAGES[service.image];
   const related = service.related.map(getService).filter(Boolean);
+  const guides = guidesForService(service.slug).slice(0, 3);
+  const reviews = GOOGLE_REVIEW_QUOTES.filter((q) => q.services?.includes(service.slug));
   const url = `${SITE_URL}/services/${service.slug}`;
 
   return (
@@ -141,7 +145,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
               <div className="relative overflow-hidden rounded-2xl shadow-lg">
                 <Image
                   src={image}
-                  alt={imageAlt(service.name)}
+                  alt={service.imageAlt ?? imageAlt(service.name)}
                   className="h-full w-full object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
                   priority
@@ -213,15 +217,62 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
           </div>
         </article>
 
+        {/* Real patients on this exact treatment, placed right after the
+            explanation and before the questions — where a hesitant reader
+            decides whether to book. */}
+        <Testimonials
+          quotes={reviews}
+          heading={`What patients say about ${service.name.toLowerCase()}`}
+          id="service-reviews"
+          compact
+        />
+
         <FAQ
           faqs={service.faqs}
           heading={`${service.name} in Mirpur — common questions`}
           intro="Straight answers to what patients ask us most about this treatment."
         />
 
+        {/* Guides that discuss this treatment. Guides already linked to
+            services; this closes the loop so each passes relevance both ways,
+            and gives a hesitant patient something to read instead of leaving. */}
+        {guides.length > 0 && (
+          <section className="bg-background py-16" aria-labelledby="service-guides">
+            <div className="container mx-auto px-4">
+              <div className="mx-auto max-w-4xl">
+                <h2
+                  id="service-guides"
+                  className="mb-8 font-display text-2xl font-bold text-foreground md:text-3xl"
+                >
+                  Read before you book
+                </h2>
+                <div className="grid gap-4 sm:grid-cols-3">
+                  {guides.map((g) => (
+                    <Link
+                      key={g.slug}
+                      href={`/guides/${g.slug}`}
+                      className="group flex flex-col rounded-xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
+                    >
+                      <h3 className="mb-2 font-display font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
+                        {g.title}
+                      </h3>
+                      <p className="mb-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+                        {g.excerpt}
+                      </p>
+                      <span className="mt-auto text-xs text-muted-foreground">
+                        {g.readingMinutes} min read
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Related services */}
         {related.length > 0 && (
-          <section className="bg-background py-16">
+          <section className="border-t border-border bg-background py-16">
             <div className="container mx-auto px-4">
               <div className="mx-auto max-w-4xl">
                 <h2 className="mb-8 font-display text-2xl font-bold text-foreground md:text-3xl">

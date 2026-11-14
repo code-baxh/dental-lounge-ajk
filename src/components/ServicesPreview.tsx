@@ -58,7 +58,7 @@ const ServicesPreview = () => {
                 <div className="relative h-48 overflow-hidden">
                   <Image
                     src={SERVICE_IMAGES[service.image]}
-                    alt={imageAlt(service.name)}
+                    alt={service.imageAlt ?? imageAlt(service.name)}
                     fill
                     // 100vw overstated it: the card sits inside the container's
                     // px-4, so on a 412px phone the real slot is ~380px, not

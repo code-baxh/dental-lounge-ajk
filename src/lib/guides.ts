@@ -251,7 +251,7 @@ export const GUIDES: Guide[] = [
         a: "Yes — Mirpur is the district hub and patients travel in from all three routinely. Journey times are roughly 45 minutes from Dadyal, an hour from Bhimber and an hour and a half from Kotli.",
       },
     ],
-    relatedServices: ["dental-implants-mirpur", "dental-crowns-and-bridges-mirpur", "root-canal-treatment-mirpur"],
+    relatedServices: ["dental-implants-mirpur", "dental-crowns-and-bridges-mirpur", "root-canal-treatment-mirpur", "childrens-dentistry-mirpur"],
   },
 
   {
@@ -364,7 +364,7 @@ export const GUIDES: Guide[] = [
         a: "Yes. We keep daily slots for acute pain, swelling and broken teeth, and we are open until 9pm every day. Call +92 345 308 1698 first so we can hold a time.",
       },
     ],
-    relatedServices: ["tooth-extraction-mirpur", "root-canal-treatment-mirpur", "dental-fillings-mirpur"],
+    relatedServices: ["tooth-extraction-mirpur", "root-canal-treatment-mirpur", "dental-fillings-mirpur", "childrens-dentistry-mirpur"],
   },
 
   {
@@ -955,3 +955,30 @@ export const GUIDES_BY_DATE = [...GUIDES].sort(
 );
 
 export const getGuide = (slug: string) => GUIDES.find((g) => g.slug === slug);
+
+/** Guides that discuss a treatment — linked from that service page. */
+export const guidesForService = (serviceSlug: string) =>
+  GUIDES_BY_DATE.filter((g) => g.relatedServices.includes(serviceSlug));
+
+/**
+ * "Read next" for the foot of a guide: guides sharing the most treatments
+ * first, then newest. Keeps a reader on the site instead of bouncing back to
+ * the results page.
+ */
+export function relatedGuides(guide: Guide, count = 3) {
+  const shared = (g: Guide) =>
+    g.relatedServices.filter((s) => guide.relatedServices.includes(s)).length;
+  return GUIDES_BY_DATE.filter((g) => g.slug !== guide.slug)
+    .map((g, i) => ({ g, score: shared(g), i }))
+    .sort((a, b) => b.score - a.score || a.i - b.i)
+    .slice(0, count)
+    .map(({ g }) => g);
+}
+
+/** Stable in-page anchor for a guide heading. */
+export const headingId = (text: string) =>
+  text
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");

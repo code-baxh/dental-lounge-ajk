@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { AlertTriangle, Clock, Phone } from "lucide-react";
+import { AlertTriangle, ArrowRight, Clock, MessageCircle, Phone } from "lucide-react";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -9,7 +9,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQ from "@/components/FAQ";
 import JsonLd from "@/components/JsonLd";
 import { Button } from "@/components/ui/button";
-import { GUIDES, getGuide, type GuideBlock } from "@/lib/guides";
+import { GUIDES, getGuide, headingId, relatedGuides, type GuideBlock } from "@/lib/guides";
 import { getService } from "@/lib/services";
 import { BUSINESS, PRACTITIONER, SITE_URL, TEL_HREF } from "@/lib/site";
 import { breadcrumbSchema, faqSchema, graph } from "@/lib/schema";
@@ -46,7 +46,11 @@ function Block({ block }: { block: GuideBlock }) {
   switch (block.type) {
     case "h2":
       return (
-        <h2 className="mb-4 mt-12 font-display text-2xl font-bold text-foreground md:text-3xl">
+        // scroll-mt clears the fixed 80px header when a contents link jumps here.
+        <h2
+          id={headingId(block.text)}
+          className="mb-4 mt-12 scroll-mt-28 font-display text-2xl font-bold text-foreground md:text-3xl"
+        >
           {block.text}
         </h2>
       );
@@ -152,6 +156,12 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
   ];
 
   const related = guide.relatedServices.map(getService).filter(Boolean);
+  const url = `${SITE_URL}/guides/${guide.slug}`;
+  const sections = guide.blocks.flatMap((b) => (b.type === "h2" ? [b.text] : []));
+  const readNext = relatedGuides(guide);
+  // Most of this audience shares health information through family WhatsApp
+  // groups; a pre-filled share link meets them there.
+  const shareHref = `https://wa.me/?text=${encodeURIComponent(`${guide.title} — ${url}`)}`;
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -163,14 +173,14 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
             "@type": "Article",
             headline: guide.h1,
             description: guide.metaDescription,
-            url: `${SITE_URL}/guides/${guide.slug}`,
+            url,
             datePublished: guide.datePublished,
             dateModified: guide.dateModified,
             inLanguage: "en-PK",
             author: { "@id": `${SITE_URL}/#dr-jalal-aslam` },
             reviewedBy: { "@id": `${SITE_URL}/#dr-jalal-aslam` },
             publisher: { "@id": `${SITE_URL}/#clinic` },
-            mainEntityOfPage: `${SITE_URL}/guides/${guide.slug}`,
+            mainEntityOfPage: url,
             about: { "@type": "MedicalEntity", name: "Dentistry" },
           },
           faqSchema(guide.faqs),
@@ -216,6 +226,31 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
 
               <p className="mb-8 text-lg leading-relaxed text-foreground">{guide.excerpt}</p>
 
+              {/* Contents: lets a reader jump to the part they came for, and
+                  the anchors are what Google uses for "Jump to" links. */}
+              {sections.length >= 3 && (
+                <nav
+                  aria-labelledby="guide-contents"
+                  className="mb-10 rounded-2xl border border-border bg-card p-6"
+                >
+                  <p id="guide-contents" className="mb-3 font-display text-lg font-bold text-foreground">
+                    In this guide
+                  </p>
+                  <ol className="ml-5 list-decimal space-y-2 text-sm marker:text-muted-foreground">
+                    {sections.map((text) => (
+                      <li key={text}>
+                        <a
+                          href={`#${headingId(text)}`}
+                          className="text-primary underline-offset-2 hover:underline"
+                        >
+                          {text}
+                        </a>
+                      </li>
+                    ))}
+                  </ol>
+                </nav>
+              )}
+
               {guide.blocks.map((block, i) => (
                 <Block key={i} block={block} />
               ))}
@@ -234,6 +269,22 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
                   {BUSINESS.street}, {BUSINESS.locality} — open {BUSINESS.openingHours.human}.
                 </p>
               </aside>
+
+              <div className="mt-8 flex flex-col items-start gap-3 rounded-2xl border border-border bg-card p-6 sm:flex-row sm:items-center sm:justify-between">
+                <p className="text-sm text-muted-foreground">
+                  Know someone who needs this? Send it to them.
+                </p>
+                <a
+                  href={shareHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-track-location="guide_share"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-[#0A2E1F] transition-colors hover:bg-[#25D366]/90"
+                >
+                  <MessageCircle className="h-4 w-4" aria-hidden />
+                  Share on WhatsApp
+                </a>
+              </div>
             </div>
           </div>
         </article>
@@ -247,7 +298,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
                 <h2 className="mb-6 font-display text-2xl font-bold text-foreground">
                   Related treatments in Mirpur
                 </h2>
-                <div className="grid gap-4 sm:grid-cols-3">
+                <div className={`grid gap-4 ${related.length === 4 ? "sm:grid-cols-2" : "sm:grid-cols-3"}`}>
                   {related.map((r) => (
                     <Link
                       key={r!.slug}
@@ -257,6 +308,35 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
                       <h3 className="font-display font-semibold text-foreground transition-colors group-hover:text-primary">
                         {r!.name}
                       </h3>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {readNext.length > 0 && (
+          <section className="border-t border-border bg-secondary/30 py-14" aria-labelledby="read-next">
+            <div className="container mx-auto px-4">
+              <div className="mx-auto max-w-3xl">
+                <h2 id="read-next" className="mb-6 font-display text-2xl font-bold text-foreground">
+                  More guides
+                </h2>
+                <div className="grid gap-4 sm:grid-cols-3">
+                  {readNext.map((g) => (
+                    <Link
+                      key={g.slug}
+                      href={`/guides/${g.slug}`}
+                      className="group flex flex-col rounded-xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
+                    >
+                      <h3 className="mb-2 font-display font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
+                        {g.title}
+                      </h3>
+                      <span className="mt-auto inline-flex items-center gap-1 pt-2 text-xs text-muted-foreground">
+                        {g.readingMinutes} min read
+                        <ArrowRight className="h-3 w-3" aria-hidden />
+                      </span>
                     </Link>
                   ))}
                 </div>
