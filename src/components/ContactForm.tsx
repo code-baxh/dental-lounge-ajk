@@ -8,6 +8,8 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { MessageCircle, CheckCircle, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { track } from "@/lib/analytics";
+import { WHATSAPP_HREF } from "@/lib/site";
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -63,8 +65,10 @@ const ContactForm = () => {
 
     const whatsappMessage = encodeURIComponent(messageParts.join("\n"));
     
-    // Open WhatsApp with the message
-    window.open(`https://wa.me/923453081698?text=${whatsappMessage}`, "_blank");
+    // Open WhatsApp with the message. This is window.open, not a link, so the
+    // site-wide click tracker cannot see it — record the lead here.
+    track("generate_lead", { method: "whatsapp_form", link_location: "contact_form" });
+    window.open(`${WHATSAPP_HREF}?text=${whatsappMessage}`, "_blank");
 
     toast({
       title: "Opening WhatsApp",

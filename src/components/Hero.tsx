@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone, Sparkles } from "lucide-react";
 import { GoogleRatingBadge } from "@/components/GoogleRating";
+import { SERVICES } from "@/lib/services";
+import { TEL_HREF } from "@/lib/site";
 
 /**
  * Server component. This was "use client" purely to run framer-motion entrance
@@ -41,9 +43,14 @@ const Hero = () => {
           </div>
 
           {/* Main Heading */}
+          {/* "Dental clinic" is searched as often as "dentist" here (see the
+              metadata note in app/page.tsx), so the H1 carries both. The
+              underline sits on an inline-block span so it stays under the
+              place name when the heading wraps on a phone. */}
           <h1 className="hero-rise font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-4">
-            <span className="text-primary relative">
-              Dentist in Mirpur, AJK
+            Dentist &amp; Dental Clinic{" "}
+            <span className="text-primary relative inline-block">
+              in Mirpur, AJK
               <svg
                 className="absolute -bottom-2 left-0 w-full"
                 viewBox="0 0 200 12"
@@ -90,7 +97,7 @@ const Hero = () => {
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="text-lg px-8 py-7 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300">
-              <a href="tel:+923453081698">
+              <a href={TEL_HREF}>
                 <Phone className="mr-2 h-5 w-5" />
                 Call Now
               </a>
@@ -114,7 +121,7 @@ const Hero = () => {
                 these are the statements AI answers and snippets can lift. */}
             {[
               { value: "10am–9pm", label: "Open every day" },
-              { value: "10", label: "Treatments offered" },
+              { value: String(SERVICES.length), label: "Treatments offered" },
               { value: "Fazal Chowk", label: "New Mirpur City" },
             ].map((stat) => (
               <div

@@ -72,7 +72,7 @@ export const BUSINESS = {
  */
 export const GOOGLE_REVIEWS = {
   ratingValue: 5.0,
-  reviewCount: 30,
+  reviewCount: 42,
   /** Built from the listing CID (0x57817c5738eab132 → decimal). */
   readUrl: "https://www.google.com/maps?cid=6305457667354308914",
 
@@ -89,8 +89,117 @@ export const GOOGLE_REVIEWS = {
   writeUrl:
     "https://www.google.com/search?q=The+Dental+Lounge+Mirpur#lrd=0x391feb2c23e2fbb3:0x57817c5738eab132,3,,,,",
 
-  lastChecked: "2026-08-10",
+  lastChecked: "2026-11-14",
 } as const;
+
+export type GoogleReviewQuote = {
+  /**
+   * First name and last initial. The full name is on Google for anyone who
+   * follows the link; these patients agreed to post on Google, not to have
+   * their full name beside a treatment on the clinic's own site.
+   */
+  author: string;
+  rating: 1 | 2 | 3 | 4 | 5;
+  /** Verbatim review text. Shorten with "…" only; never reword. */
+  text: string;
+  /**
+   * Month and year it was posted. Never Google's relative "2 weeks ago" — on
+   * a static page that is wrong a week later.
+   */
+  when?: string;
+  /** Treatment the patient mentions in the review, if any. */
+  service?: string;
+  /** Shown in the homepage testimonial section. */
+  featured?: boolean;
+  /**
+   * Service page slugs this review is shown on — only treatments the review
+   * itself names. A root canal review on the root canal page answers the
+   * fear people bring to that search far better than any copy we write.
+   */
+  services?: string[];
+};
+
+/**
+ * Real reviews copied verbatim from the Google Business Profile.
+ *
+ * These replaced four testimonials that came with the original site template
+ * and could not be traced to any patient. Invented patient quotes on a
+ * medical site are a trust liability, so the homepage testimonial section
+ * renders nothing at all while this list is empty.
+ *
+ * Copied from the listing (GOOGLE_REVIEWS.readUrl) on 2026-11-14. Rules:
+ * text verbatim, typos included — shorten only with "…", where Google's own
+ * "More" cut it or to skip a sentence; never reword. No Google-translated
+ * reviews (not the patient's words), and none written by anyone who works on
+ * the clinic or this site.
+ */
+export const GOOGLE_REVIEW_QUOTES: GoogleReviewQuote[] = [
+  {
+    author: "Mudassar T.",
+    rating: 5,
+    text: "If you're scared of root canals, go here! The procedure was gentle, thorough, and I felt no pain, even after the anesthesia wore off.",
+    service: "Root canal",
+    services: ["root-canal-treatment-mirpur"],
+  },
+  {
+    author: "Aimen J.",
+    rating: 5,
+    text: "I recently had my root canal treatment (RCT) at TML. After taking opinions from 2–3 doctors, I finally chose Dr. Jalal Aslam, and honestly, I couldn't have made a better choice!…",
+    service: "Root canal",
+    services: ["root-canal-treatment-mirpur"],
+  },
+  {
+    author: "Zee Z.",
+    rating: 5,
+    text: "I visited this clinic with my 5year and 9 year kids for check up.the dr was very professional and so friendly with kids.during sweet discussion with kids dr easy first checked and than after injection easy remove the kid's teeth…",
+    service: "Children's check-up & extraction",
+    services: ["childrens-dentistry-mirpur", "tooth-extraction-mirpur"],
+  },
+  {
+    author: "Areeba M.",
+    rating: 5,
+    featured: true,
+    text: "Hands down the best dental experience I’ve had. I was always scared of dental clinics, but the team here made the whole visit stress-free and comfortable. The office is super clean and modern. Truly the best dental clinic in Mirpur AJK with the best dentist in town. 10/10 recommendation...",
+  },
+  {
+    author: "Harum M.",
+    rating: 5,
+    text: "I was really nervous at first because of a bad experience in the past. But Dr. Jalal was very kind and took everything at my own pace, explaining each step beforehand. He was very gentle during my root canal and made sure it was painless…",
+    service: "Root canal",
+    featured: true,
+    services: ["root-canal-treatment-mirpur"],
+  },
+  {
+    author: "Nasar G.",
+    rating: 5,
+    featured: true,
+    text: "Absolutely fantastic service. I was visiting from the uk when I required some treatment. The dental lounge came highly recommended and I was not disappointed. Dr Aslam explained everything clearly and went through my options…",
+  },
+  {
+    author: "Abubakar S.",
+    rating: 5,
+    text: "I got my root canal and crown for my upper two incisors along with scaling from the dental lounge by Dr Jalal Aslam. … His clinic is probably the most advanced and tidy clinic in Mirpur…",
+    service: "Root canal, crowns & scaling",
+    featured: true,
+    services: [
+      "root-canal-treatment-mirpur",
+      "dental-crowns-and-bridges-mirpur",
+      "teeth-cleaning-and-scaling-mirpur",
+    ],
+  },
+  {
+    author: "Shahid M.",
+    rating: 5,
+    featured: true,
+    text: "I had visited many dentists in the city as well as in Jhelum but couldn't get satisfied. A friend of mine recommended The Dental Lounge, I was initially reluctant but when I went through procedure I felt the real relief in my teeth. Dr. Jalal is a wonderful guy must visit him if you want to get rid of disturbing pain",
+  },
+  {
+    author: "Talha B.",
+    rating: 5,
+    featured: true,
+    text: "I took my father to Dental Lounge and I found The staff and the doctors so cooperative and well trained. Perhaps it’s the perfect dental clinic in our city.",
+  },
+];
 
 export const PRACTITIONER = {
   name: "Dr. Jalal Aslam",
@@ -110,6 +219,8 @@ export const ADDRESS_ONE_LINE = `${BUSINESS.street}, ${BUSINESS.locality}, ${BUS
 export const TEL_HREF = `tel:${BUSINESS.phoneIntl}`;
 export const WHATSAPP_HREF = `https://wa.me/${BUSINESS.whatsapp}`;
 export const MAILTO_HREF = `mailto:${BUSINESS.email}`;
+/** Opens the clinic's own Maps listing, where Directions is one tap. */
+export const DIRECTIONS_HREF = BUSINESS.mapsUrl;
 
 /**
  * "Mirpur" is ambiguous in search: Mirpur in Dhaka (Bangladesh) and Mirpur

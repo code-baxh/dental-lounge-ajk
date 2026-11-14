@@ -13,11 +13,25 @@ import JsonLd from "@/components/JsonLd";
 import { faqSchema, graph } from "@/lib/schema";
 import { ADDRESS_ONE_LINE, BUSINESS, GOOGLE_REVIEWS } from "@/lib/site";
 
+/**
+ * Search Console (Nov 2026): the "dental clinic" family — "dental clinic
+ * mirpur", "mirpur dental clinic", "dental clinic in mirpur" — out-draws any
+ * single "dentist" variant, but the title only said "Dentist". It now carries
+ * both. "Dr. Jalal Aslam" moved out: nobody searches it, and /about holds it.
+ *
+ * The description leads with the Google rating because the top query is "best
+ * dentist in mirpur ajk": a checkable rating answers "best" without the page
+ * claiming it. It reads from GOOGLE_REVIEWS, so keep those numbers current.
+ */
+const HOME_TITLE = "Dentist & Dental Clinic in Mirpur AJK | The Dental Lounge";
+const HOME_DESCRIPTION = `Rated ${GOOGLE_REVIEWS.ratingValue.toFixed(1)} from ${GOOGLE_REVIEWS.reviewCount} Google reviews. Dental clinic at Fazal Chowk, New Mirpur City, AJK: root canals, implants, braces, whitening. Open 10am–9pm, 7 days.`;
+
 export const metadata: Metadata = {
-  title: { absolute: "Dentist in Mirpur AJK | The Dental Lounge | Dr. Jalal Aslam" },
-  description:
-    "Dental clinic at Sardar Plaza, Fazal Chowk, New Mirpur City, Azad Kashmir. Root canals, implants, braces, crowns, whitening and family check-ups. Open 10am–9pm, seven days. Call +92 345 308 1698.",
+  title: { absolute: HOME_TITLE },
+  description: HOME_DESCRIPTION,
   alternates: { canonical: "/" },
+  openGraph: { title: HOME_TITLE, description: HOME_DESCRIPTION, url: "/" },
+  twitter: { title: HOME_TITLE, description: HOME_DESCRIPTION },
 };
 
 /**
@@ -33,6 +47,12 @@ const HOME_FAQS = [
   {
     q: "Is this Mirpur in Azad Kashmir, or Mirpur in Dhaka or Mirpur Khas?",
     a: "This is Mirpur in Azad Jammu and Kashmir, Pakistan — the district city near Mangla Dam, sometimes called New Mirpur City. It is not Mirpur in Dhaka, Bangladesh, and not Mirpur Khas in Sindh.",
+  },
+  {
+    // Targets "best dentist in mirpur ajk", the site's top query. Answered as
+    // a checklist a patient can apply to any clinic, not as a claim.
+    q: "How do I choose the best dentist in Mirpur, AJK?",
+    a: "Check four things at any clinic, ours included. Ask for the dentist's PMDC registration number and look it up on the Pakistan Medical and Dental Council register. Ask how instruments are sterilised — they should be autoclaved between patients. Expect a written treatment plan with the cost before anything starts. And read recent Google reviews from real patients rather than testimonials on a clinic's own website.",
   },
   {
     q: "Who is the dentist at The Dental Lounge?",

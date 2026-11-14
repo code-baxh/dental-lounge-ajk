@@ -78,7 +78,7 @@ export default function ServicesPage() {
                     <div className="relative h-44 overflow-hidden">
                       <Image
                         src={SERVICE_IMAGES[service.image]}
-                        alt={imageAlt(service.name)}
+                        alt={service.imageAlt ?? imageAlt(service.name)}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
