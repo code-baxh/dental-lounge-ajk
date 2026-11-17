@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { GUIDES, getGuide, headingId, relatedGuides, type GuideBlock } from "@/lib/guides";
 import { getService } from "@/lib/services";
 import { BUSINESS, PRACTITIONER, SITE_URL, TEL_HREF } from "@/lib/site";
-import { breadcrumbSchema, faqSchema, graph } from "@/lib/schema";
+import { breadcrumbSchema, faqSchema, graph, guideSchema } from "@/lib/schema";
 
 export function generateStaticParams() {
   return GUIDES.map((g) => ({ slug: g.slug }));
@@ -169,20 +169,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
 
       <JsonLd
         data={graph(
-          {
-            "@type": "Article",
-            headline: guide.h1,
-            description: guide.metaDescription,
-            url,
-            datePublished: guide.datePublished,
-            dateModified: guide.dateModified,
-            inLanguage: "en-PK",
-            author: { "@id": `${SITE_URL}/#dr-jalal-aslam` },
-            reviewedBy: { "@id": `${SITE_URL}/#dr-jalal-aslam` },
-            publisher: { "@id": `${SITE_URL}/#clinic` },
-            mainEntityOfPage: url,
-            about: { "@type": "MedicalEntity", name: "Dentistry" },
-          },
+          ...guideSchema(guide),
           faqSchema(guide.faqs),
           breadcrumbSchema(trail),
         )}

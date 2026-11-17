@@ -40,9 +40,13 @@ export const GUIDES: Guide[] = [
     slug: "dental-treatment-cost-in-pakistan-2026",
     title: "What dental treatment costs in Pakistan in 2026",
     h1: "What Dental Treatment Costs in Pakistan (2026 Guide)",
-    metaTitle: "Dental Treatment Cost in Pakistan 2026 | Price Guide",
+    // Search Console, Nov 2026: 632 impressions, 1.1% CTR — the site's
+    // second-largest page by impressions. People searching a price saw a
+    // snippet with no price in it. The description now leads with the
+    // figures from the table below; keep the two in step if prices change.
+    metaTitle: "Dental Treatment Cost in Pakistan 2026: Full Price List",
     metaDescription:
-      "What root canals, implants, braces, crowns, scaling and whitening cost in Pakistan in 2026 — the ranges private clinics publish, and what moves the price.",
+      "Root canal PKR 7,000–25,000, implant PKR 80,000–200,000, braces PKR 50,000–300,000, scaling from PKR 1,500: 2026 prices for 11 dental treatments in Pakistan.",
     excerpt:
       "Published price ranges for every common dental treatment in Pakistan, what makes each one more or less expensive, and how to avoid the quote that doubles halfway through.",
     datePublished: "2026-08-10",

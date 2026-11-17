@@ -239,9 +239,20 @@ export const AREAS: Area[] = [
 
 export const getArea = (slug: string) => AREAS.find((a) => a.slug === slug);
 
-/** Feeds the LocalBusiness `areaServed` node. */
-export const areaServedNames = [
-  "Mirpur",
-  "New Mirpur City",
-  ...AREAS.flatMap((a) => a.name.split(" & ")),
+const AJK = "Azad Jammu and Kashmir";
+
+/**
+ * Feeds the LocalBusiness `areaServed` node. Each place carries the region it
+ * actually sits in, read from `district` — the schema previously put every
+ * town, Dina and Jhelum included, inside AJK, contradicting the area pages.
+ */
+export const areaServedPlaces: { name: string; region: string }[] = [
+  { name: "Mirpur", region: AJK },
+  { name: "New Mirpur City", region: AJK },
+  ...AREAS.flatMap((a) =>
+    a.name.split(" & ").map((name) => ({
+      name,
+      region: /Punjab/.test(a.district) ? "Punjab" : AJK,
+    })),
+  ),
 ];
