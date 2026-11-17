@@ -9,7 +9,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import { GUIDES_BY_DATE } from "@/lib/guides";
 import { PRACTITIONER, SITE_URL } from "@/lib/site";
-import { breadcrumbSchema, graph } from "@/lib/schema";
+import { breadcrumbSchema, graph, personRef } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: { absolute: "Dental Health Guides | The Dental Lounge Mirpur" },
@@ -41,7 +41,7 @@ export default function GuidesPage() {
             url: `${SITE_URL}/guides/${g.slug}`,
             datePublished: g.datePublished,
             dateModified: g.dateModified,
-            author: { "@id": `${SITE_URL}/#dr-jalal-aslam` },
+            author: personRef(),
           })),
         })}
       />

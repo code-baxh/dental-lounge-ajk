@@ -16,7 +16,7 @@ import { SERVICES, getService } from "@/lib/services";
 import { guidesForService } from "@/lib/guides";
 import { SERVICE_IMAGES, imageAlt } from "@/lib/service-images";
 import { BUSINESS, GOOGLE_REVIEW_QUOTES, SITE_URL, TEL_HREF, WHATSAPP_HREF } from "@/lib/site";
-import { breadcrumbSchema, faqSchema, graph, medicalProcedureSchema } from "@/lib/schema";
+import { breadcrumbSchema, faqSchema, graph, serviceSchema } from "@/lib/schema";
 
 export function generateStaticParams() {
   return SERVICES.map((s) => ({ slug: s.slug }));
@@ -55,7 +55,6 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
   const related = service.related.map(getService).filter(Boolean);
   const guides = guidesForService(service.slug).slice(0, 3);
   const reviews = GOOGLE_REVIEW_QUOTES.filter((q) => q.services?.includes(service.slug));
-  const url = `${SITE_URL}/services/${service.slug}`;
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -63,13 +62,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
 
       <JsonLd
         data={graph(
-          medicalProcedureSchema({
-            name: `${service.name} in Mirpur, AJK`,
-            description: service.metaDescription,
-            url,
-            howPerformed: service.sections.find((s) => /what happens|the stages|what we do/i.test(s.heading))
-              ?.body?.join(" "),
-          }),
+          serviceSchema(service),
           faqSchema(service.faqs),
           breadcrumbSchema([
             { name: "Home", path: "/" },

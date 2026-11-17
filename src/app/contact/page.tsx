@@ -17,10 +17,17 @@ import {
 } from "@/lib/site";
 import { breadcrumbSchema, graph } from "@/lib/schema";
 
+/**
+ * Search Console, Nov 2026: 577 impressions, 0.7% CTR. This page is found by
+ * people looking the clinic up — they want timings, where it is and the number.
+ * The old snippet put the hours last, where Google cuts it off. Brand first,
+ * with "Mirpur AJK" to tell it apart from other clinics called The Dental Lounge;
+ * "Dentist in Mirpur" searches belong to the homepage.
+ */
 export const metadata: Metadata = {
-  title: { absolute: "Contact & Book an Appointment | Dentist in Mirpur AJK" },
+  title: { absolute: "The Dental Lounge Mirpur AJK: Timings, Address & Phone" },
   description:
-    "Book a dental appointment at The Dental Lounge, Sardar Plaza, Fazal Chowk, New Mirpur City, Azad Kashmir. Call +92 345 308 1698 or message on WhatsApp. Open 10am–9pm daily.",
+    "Open 10am–9pm, 7 days a week. Sardar Plaza, Fazal Chowk, New Mirpur City, AJK. Call or WhatsApp +92 345 308 1698 to book, or get directions on Google Maps.",
   alternates: { canonical: "/contact" },
 };
 
