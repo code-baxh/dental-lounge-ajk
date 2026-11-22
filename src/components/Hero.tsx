@@ -38,7 +38,7 @@ const Hero = () => {
           <div className="hero-fade-rise inline-flex items-center gap-2 bg-primary/10 text-primary px-5 py-2.5 rounded-full mb-8 border border-primary/20">
             <Sparkles className="w-4 h-4 text-primary animate-pulse" aria-hidden />
             <span className="text-sm font-medium">
-              Fazal Chowk, New Mirpur City · Open 10am–9pm, 7 days
+              Fazal Chowk, New Mirpur City · Open 10am–8pm, 7 days
             </span>
           </div>
 
@@ -82,7 +82,7 @@ const Hero = () => {
           >
             A modern dental clinic at Sardar Plaza, Fazal Chowk in New Mirpur City,
             Azad Kashmir. Root canals, implants, braces, crowns and family check-ups —
-            led by Dr. Jalal Aslam, seven days a week until 9pm.
+            led by Dr. Jalal Aslam, seven days a week until 8pm.
           </p>
 
           {/* CTA Buttons */}
@@ -120,7 +120,7 @@ const Hero = () => {
             {/* Concrete, checkable facts rather than unverifiable claims —
                 these are the statements AI answers and snippets can lift. */}
             {[
-              { value: "10am–9pm", label: "Open every day" },
+              { value: "10am–8pm", label: "Open every day" },
               { value: String(SERVICES.length), label: "Treatments offered" },
               { value: "Fazal Chowk", label: "New Mirpur City" },
             ].map((stat) => (

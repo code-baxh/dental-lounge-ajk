@@ -24,7 +24,7 @@ import { ADDRESS_ONE_LINE, BUSINESS, GOOGLE_REVIEWS } from "@/lib/site";
  * claiming it. It reads from GOOGLE_REVIEWS, so keep those numbers current.
  */
 const HOME_TITLE = "Dentist & Dental Clinic in Mirpur AJK | The Dental Lounge";
-const HOME_DESCRIPTION = `Rated ${GOOGLE_REVIEWS.ratingValue.toFixed(1)} from ${GOOGLE_REVIEWS.reviewCount} Google reviews. Dental clinic at Fazal Chowk, New Mirpur City, AJK: root canals, implants, braces, whitening. Open 10am–9pm, 7 days.`;
+const HOME_DESCRIPTION = `Rated ${GOOGLE_REVIEWS.ratingValue.toFixed(1)} from ${GOOGLE_REVIEWS.reviewCount} Google reviews. Dental clinic at Fazal Chowk, New Mirpur City, AJK: root canals, implants, braces, whitening. Open 10am–8pm, 7 days.`;
 
 export const metadata: Metadata = {
   title: { absolute: HOME_TITLE },
@@ -64,7 +64,7 @@ const HOME_FAQS = [
   },
   {
     q: "What are your opening hours?",
-    a: `${BUSINESS.openingHours.human}. Evening appointments up to 9pm suit patients travelling in from Dadyal, Chakswari, Khari Sharif and the surrounding areas after work.`,
+    a: `${BUSINESS.openingHours.human}. Evening appointments up to 8pm suit patients travelling in from Dadyal, Chakswari, Khari Sharif and the surrounding areas after work.`,
   },
   {
     q: "Do you see emergency toothache the same day?",

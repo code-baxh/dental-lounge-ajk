@@ -50,7 +50,7 @@ export function clinicSchema() {
     // public/ and list it first here.
     image: `${SITE_URL}/web-app-manifest-512x512.png`,
     logo: `${SITE_URL}/web-app-manifest-512x512.png`,
-    description: `Dental clinic at Fazal Chowk in New Mirpur City, Azad Kashmir, offering general dentistry, root canal treatment, dental implants, orthodontics, crowns, dentures, teeth whitening and cosmetic dentistry. Open 10am to 9pm, seven days a week.`,
+    description: `Dental clinic at Fazal Chowk in New Mirpur City, Azad Kashmir, offering general dentistry, root canal treatment, dental implants, orthodontics, crowns, dentures, teeth whitening and cosmetic dentistry. Open 10am to 8pm, seven days a week.`,
     telephone: BUSINESS.phoneIntl,
     email: BUSINESS.email,
     priceRange: "$$",

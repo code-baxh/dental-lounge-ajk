@@ -27,7 +27,7 @@ import { breadcrumbSchema, graph } from "@/lib/schema";
 export const metadata: Metadata = {
   title: { absolute: "The Dental Lounge Mirpur AJK: Timings, Address & Phone" },
   description:
-    "Open 10am–9pm, 7 days a week. Sardar Plaza, Fazal Chowk, New Mirpur City, AJK. Call or WhatsApp +92 345 308 1698 to book, or get directions on Google Maps.",
+    "Open 10am–8pm, 7 days a week. Sardar Plaza, Fazal Chowk, New Mirpur City, AJK. Call or WhatsApp +92 345 308 1698 to book, or get directions on Google Maps.",
   alternates: { canonical: "/contact" },
 };
 
