@@ -41,8 +41,8 @@ export const BUSINESS = {
   openingHours: {
     days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
     opens: "10:00",
-    closes: "21:00",
-    human: "10:00 AM – 9:00 PM, seven days a week",
+    closes: "20:00",
+    human: "10:00 AM – 8:00 PM, seven days a week",
   },
 
   social: [
