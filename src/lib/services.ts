@@ -45,7 +45,7 @@ export const SERVICES: Service[] = [
     h1: "Root Canal Treatment in Mirpur, AJK",
     metaTitle: "Root Canal Treatment in Mirpur AJK | The Dental Lounge",
     metaDescription:
-      "Gentle, single-visit root canal treatment in Mirpur, Azad Kashmir. Save the tooth instead of losing it. Open 10am–8pm, seven days, at Fazal Chowk. Call +92 345 308 1698.",
+      "Gentle, single-visit root canal treatment in Mirpur, Azad Kashmir. Save the tooth instead of losing it. Open 10am–8pm, Sat–Thu, at Fazal Chowk. Call +92 345 308 1698.",
     short:
       "Save a badly decayed or infected tooth and end the pain, using modern rotary instruments and proper anaesthesia.",
     image: "rootcanal",
@@ -254,7 +254,7 @@ export const SERVICES: Service[] = [
     h1: "Teeth Cleaning & Scaling in Mirpur, AJK",
     metaTitle: "Teeth Scaling & Cleaning in Mirpur AJK | Dental Lounge",
     metaDescription:
-      "Professional teeth scaling and polishing in Mirpur, Azad Kashmir. Treat bleeding gums, tartar and bad breath. Open 10am–8pm daily. Call +92 345 308 1698.",
+      "Professional teeth scaling and polishing in Mirpur, Azad Kashmir. Treat bleeding gums, tartar and bad breath. Open 10am–8pm, Sat–Thu. Call +92 345 308 1698.",
     short:
       "Ultrasonic removal of tartar and stain that brushing cannot shift — the treatment that keeps gums and bone healthy.",
     image: "cleaning",
@@ -492,7 +492,7 @@ export const SERVICES: Service[] = [
       },
       {
         q: "Do you take emergency cases?",
-        a: "Yes. We are open 10am to 8pm seven days a week at Fazal Chowk, and we keep slots for acute pain and swelling. Call ahead so we know you are coming.",
+        a: "Yes. We are open 10am to 8pm, Saturday to Thursday, at Fazal Chowk, and we keep slots for acute pain and swelling. Call ahead so we know you are coming.",
       },
     ],
     related: ["dental-implants-mirpur", "root-canal-treatment-mirpur", "dentures-mirpur"],
@@ -697,7 +697,7 @@ export const SERVICES: Service[] = [
     h1: "General Dentistry & Check-ups in Mirpur, AJK",
     metaTitle: "Dental Check-up in Mirpur AJK | Family Dentist",
     metaDescription:
-      "Routine dental check-ups, X-rays and preventive care for the whole family in Mirpur, Azad Kashmir. Open 10am–8pm, seven days. Call +92 345 308 1698.",
+      "Routine dental check-ups, X-rays and preventive care for the whole family in Mirpur, Azad Kashmir. Open 10am–8pm, Sat–Thu. Call +92 345 308 1698.",
     short:
       "Routine examinations, X-rays, oral cancer screening and preventive care for adults and children.",
     image: "general",
@@ -870,7 +870,7 @@ export const SERVICES: Service[] = [
       },
       {
         q: "Can you see children after school?",
-        a: "Yes. We are open 10am to 8pm, seven days a week, so after-school and evening appointments are easy to arrange. Call +92 345 308 1698 or message us on WhatsApp.",
+        a: "Yes. We are open 10am to 8pm, Saturday to Thursday, so after-school and evening appointments are easy to arrange. Call +92 345 308 1698 or message us on WhatsApp.",
       },
       {
         q: "We are visiting Mirpur from the UK with our children. Can they be seen?",

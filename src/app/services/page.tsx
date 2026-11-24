@@ -131,7 +131,7 @@ export default function ServicesPage() {
               </p>
               <p className="leading-relaxed text-muted-foreground">
                 Consultations are available in Urdu, English and Pahari-Pothwari. We are open{" "}
-                {BUSINESS.openingHours.human}, which includes evenings and both weekend days.
+                {BUSINESS.openingHours.human}, including evenings, Saturdays and Sundays.
               </p>
             </div>
           </div>

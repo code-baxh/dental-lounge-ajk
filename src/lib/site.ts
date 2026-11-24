@@ -39,10 +39,10 @@ export const BUSINESS = {
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4367.064681671599!2d73.75559407657603!3d33.14735297351112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391feb2c23e2fbb3%3A0x57817c5738eab132!2sThe%20Dental%20Lounge!5e1!3m2!1sen!2s!4v1773600462287!5m2!1sen!2s",
 
   openingHours: {
-    days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    days: ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
     opens: "10:00",
     closes: "20:00",
-    human: "10:00 AM – 8:00 PM, seven days a week",
+    human: "10:00 AM – 8:00 PM, Saturday to Thursday (closed Friday)",
   },
 
   social: [

@@ -36,7 +36,7 @@ export const AREAS: Area[] = [
     route: "via the Mirpur–Dadyal road, past Chakswari",
     metaTitle: "Dentist for Dadyal | Dental Clinic in Mirpur AJK",
     metaDescription:
-      "Dental clinic in Mirpur AJK serving Dadyal — implants, braces, root canals and cosmetic dentistry. About 45 minutes from Dadyal, open until 8pm daily. Call +92 345 308 1698.",
+      "Dental clinic in Mirpur AJK serving Dadyal — implants, braces, root canals and cosmetic dentistry. About 45 minutes from Dadyal, open until 8pm Saturday to Thursday. Call +92 345 308 1698.",
     intro: [
       "Dadyal is the second-largest town in Mirpur District and, like Mirpur city itself, has one of the strongest British-Kashmiri connections anywhere in Azad Kashmir. A large share of the patients we see from Dadyal are either back visiting family or managing treatment for relatives at home.",
       "Dadyal has its own dental practitioners, and for a check-up or a simple filling there is no reason to travel. Patients come to us at Fazal Chowk when they need something that requires more equipment or more chair time — implant placement, a full course of orthodontics, a crown made to match a front tooth, or a complex root canal on a molar.",
@@ -62,7 +62,7 @@ export const AREAS: Area[] = [
     route: "straight along the Mirpur–Khari Sharif road",
     metaTitle: "Dentist Near Khari Sharif | Dental Clinic Mirpur AJK",
     metaDescription:
-      "Dental clinic about 15 minutes from Khari Sharif, Mirpur AJK. Check-ups, scaling, fillings, root canals and braces. Open 10am–8pm daily. Call +92 345 308 1698.",
+      "Dental clinic about 15 minutes from Khari Sharif, Mirpur AJK. Check-ups, scaling, fillings, root canals and braces. Open 10am–8pm, Sat–Thu. Call +92 345 308 1698.",
     intro: [
       "Khari Sharif sits about ten kilometres from Mirpur city and is known across the region for the shrine of Hazrat Mian Muhammad Bakhsh, the author of Saif-ul-Malook. It draws visitors from across Azad Kashmir and Punjab throughout the year.",
       "It is close enough to Mirpur that we see Khari Sharif patients for everything, including routine six-monthly check-ups and scaling. The journey is short enough that even a two-visit crown or a course of braces is no real inconvenience.",
@@ -70,7 +70,7 @@ export const AREAS: Area[] = [
     localContext: [
       "Roughly 10 km from Fazal Chowk — about 15 to 20 minutes",
       "Regular Suzuki and taxi service into Mirpur city throughout the day",
-      "Close enough for evening appointments; we are open until 8pm, seven days",
+      "Close enough for evening appointments; we are open until 8pm every day except Friday",
     ],
     commonReasons: [
       "Routine check-ups, scaling and family appointments",
@@ -114,7 +114,7 @@ export const AREAS: Area[] = [
     route: "via the Mirpur–Islamgarh road",
     metaTitle: "Dentist for Islamgarh | Dental Clinic Mirpur AJK",
     metaDescription:
-      "Dental clinic serving Islamgarh, Mirpur District AJK. General dentistry, extractions, dentures and implants. Open seven days until 8pm. Call +92 345 308 1698.",
+      "Dental clinic serving Islamgarh, Mirpur District AJK. General dentistry, extractions, dentures and implants. Open until 8pm, Saturday to Thursday. Call +92 345 308 1698.",
     intro: [
       "Islamgarh is one of the tehsils of Mirpur District, and for anything beyond basic dentistry most residents travel into Mirpur city. We see Islamgarh patients regularly for treatment that needs equipment, laboratory work or several planned visits.",
       "Because the journey takes the better part of an hour there and back, we try to consolidate treatment into fewer, longer appointments where it is clinically sensible — rather than asking you to travel in five times for work that can be done in three.",
@@ -148,7 +148,7 @@ export const AREAS: Area[] = [
     localContext: [
       "About 18 km from the clinic, roughly 25 to 30 minutes along the Mirpur–Jhelum road",
       "Convenient for anyone already travelling into Mirpur city for work or shopping",
-      "Late appointments available — we are open until 8pm every day",
+      "Late appointments available — we are open until 8pm every day except Friday",
     ],
     commonReasons: [
       "Routine examinations and scaling for families",
@@ -226,7 +226,7 @@ export const AREAS: Area[] = [
     localContext: [
       "Around 30 km from the clinic, roughly 40 minutes via Mangla",
       "Frequent transport along the Jhelum–Mirpur route throughout the day",
-      "Open 10am to 8pm seven days, which suits patients travelling after work",
+      "Open 10am to 8pm, Saturday to Thursday, which suits patients travelling after work",
     ],
     commonReasons: [
       "Orthodontics and clear aligners",

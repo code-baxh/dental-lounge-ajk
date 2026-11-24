@@ -225,7 +225,7 @@ export const GUIDES: Guide[] = [
       { type: "h2", text: "Getting to the clinic" },
       {
         type: "p",
-        text: "The Dental Lounge is at Sardar Plaza, Fazal Chowk, in the centre of New Mirpur City — a few minutes from Kachehri Chowk and Allama Iqbal Road, and easy to reach from the sectors. If family are in Dadyal it is roughly 45 minutes, from Chakswari around 35, from Khari Sharif about 15, and from Bhimber about an hour. We are open 10am to 8pm every day, which usually means an appointment can be fitted around whatever else the visit involves.",
+        text: "The Dental Lounge is at Sardar Plaza, Fazal Chowk, in the centre of New Mirpur City — a few minutes from Kachehri Chowk and Allama Iqbal Road, and easy to reach from the sectors. If family are in Dadyal it is roughly 45 minutes, from Chakswari around 35, from Khari Sharif about 15, and from Bhimber about an hour. We are open 10am to 8pm every day except Friday, which usually means an appointment can be fitted around whatever else the visit involves.",
       },
       { type: "h2", text: "A note on doing it well rather than quickly" },
       {
@@ -347,7 +347,7 @@ export const GUIDES: Guide[] = [
       { type: "h2", text: "Emergency dental care in Mirpur" },
       {
         type: "p",
-        text: "The Dental Lounge is at Fazal Chowk in New Mirpur City and is open 10am to 8pm, seven days a week, with slots kept free each day for acute pain and swelling. Call ahead so we know you are coming, particularly if you are travelling in from Dadyal, Bhimber or Kotli.",
+        text: "The Dental Lounge is at Fazal Chowk in New Mirpur City and is open 10am to 8pm, Saturday to Thursday, with slots kept free each day for acute pain and swelling. Call ahead so we know you are coming, particularly if you are travelling in from Dadyal, Bhimber or Kotli.",
       },
     ],
     faqs: [
@@ -365,7 +365,7 @@ export const GUIDES: Guide[] = [
       },
       {
         q: "Can I be seen the same day in Mirpur?",
-        a: "Yes. We keep daily slots for acute pain, swelling and broken teeth, and we are open until 8pm every day. Call +92 345 308 1698 first so we can hold a time.",
+        a: "Yes. We keep daily slots for acute pain, swelling and broken teeth, and we are open until 8pm every day except Friday. Call +92 345 308 1698 first so we can hold a time.",
       },
     ],
     relatedServices: ["tooth-extraction-mirpur", "root-canal-treatment-mirpur", "dental-fillings-mirpur", "childrens-dentistry-mirpur"],
@@ -579,7 +579,7 @@ export const GUIDES: Guide[] = [
       { type: "h2", text: "Booking around fasting hours" },
       {
         type: "p",
-        text: "We are open until 8pm seven days a week, which in practice means most Ramadan appointments fall into one of two slots: late morning, when you have energy but have not been fasting long, or after iftar, when nobody minds the water spray. Long treatments and anything involving scaling are easier after iftar. Short appointments, check-ups and reviews are easier in the morning.",
+        text: "We are open until 8pm, Saturday to Thursday, which in practice means most Ramadan appointments fall into one of two slots: late morning, when you have energy but have not been fasting long, or after iftar, when nobody minds the water spray. Long treatments and anything involving scaling are easier after iftar. Short appointments, check-ups and reviews are easier in the morning.",
       },
       {
         type: "p",
