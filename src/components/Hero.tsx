@@ -1,153 +1,128 @@
-import Link from "next/link";
+import Image from "next/image";
+import { MessageCircle, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Phone, Sparkles } from "lucide-react";
 import { GoogleRatingBadge } from "@/components/GoogleRating";
-import { SERVICES } from "@/lib/services";
-import { TEL_HREF } from "@/lib/site";
+import OpenStatus from "@/components/OpenStatus";
+import { BUSINESS, PRACTITIONER, TEL_HREF, WHATSAPP_BOOK_HREF } from "@/lib/site";
+import heroPhoto from "@/assets/clinic-hero-chair.jpg";
+import drAvatar from "@/assets/dr-jalal-avatar.jpg";
 
 /**
- * Server component. This was "use client" purely to run framer-motion entrance
- * animations, which cost the homepage 2.4s of LCP: every element started at
- * opacity 0 and stayed invisible until the client bundle hydrated. The
- * entrances are now CSS (see globals.css), so the hero ships zero JS and paints
- * with the document.
+ * Answers the four questions a visitor arrives with, in one screen on a phone:
+ * is this the right clinic (name, place, a real photo), is it any good (the
+ * Google rating, the dentist's face), is it open, and how do I book.
  *
- * The heading and subheading use .hero-rise — transform only, no opacity —
- * because the subheading is the LCP element and opacity would gate it again.
+ * It replaces a centred, text-only hero at 90% of the screen height, which on a
+ * phone read as a complete page with nothing below it, and kept the rating and
+ * any photo below the fold. Booking now goes straight to WhatsApp, which is how
+ * most patients here book, instead of through the contact page.
+ *
+ * Server component apart from the small OpenStatus island. The heading and
+ * subheading keep .hero-rise (transform only, no opacity) so they paint at
+ * first paint; see globals.css.
  */
-const Hero = () => {
-  return (
-    <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-secondary via-background to-muted overflow-hidden">
-      {/* Decorative ambient blobs — aria-hidden, no layout impact. */}
-      <div
-        className="absolute top-20 right-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-blob-a"
-        aria-hidden
-      />
-      <div
-        className="absolute bottom-20 left-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-blob-b"
-        aria-hidden
-      />
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl animate-blob-spin"
-        aria-hidden
-      />
+const Hero = () => (
+  <section className="relative overflow-hidden border-b border-border bg-gradient-to-b from-secondary to-background">
+    <div className="container mx-auto grid items-center gap-6 px-4 pb-10 pt-4 md:grid-cols-2 md:gap-12 md:py-14 lg:py-20">
+      <div>
+        <p className="hero-fade-rise mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-background px-3.5 py-1.5 text-sm font-medium text-foreground md:mb-6">
+          <OpenStatus />
+          <span aria-hidden className="text-muted-foreground">
+            ·
+          </span>
+          <span className="text-muted-foreground">
+            Fazal Chowk<span className="hidden sm:inline">, New Mirpur City</span>
+          </span>
+        </p>
 
-      <div className="container mx-auto px-4 py-20 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <div className="hero-fade-rise inline-flex items-center gap-2 bg-primary/10 text-primary px-5 py-2.5 rounded-full mb-8 border border-primary/20">
-            <Sparkles className="w-4 h-4 text-primary animate-pulse" aria-hidden />
-            <span className="text-sm font-medium">
-              Fazal Chowk, New Mirpur City · Open 10am–8pm, 7 days
-            </span>
-          </div>
+        {/* "Dental clinic" is searched as often as "dentist" here (see the
+            metadata note in app/page.tsx), so the H1 carries both. */}
+        <h1 className="hero-rise mb-4 font-display text-[2rem] font-bold leading-[1.15] text-foreground sm:text-5xl md:text-[2.75rem] lg:text-[3.5rem]">
+          Dentist &amp; Dental Clinic{" "}
+          <span className="whitespace-nowrap text-primary">in Mirpur, AJK</span>
+        </h1>
 
-          {/* Main Heading */}
-          {/* "Dental clinic" is searched as often as "dentist" here (see the
-              metadata note in app/page.tsx), so the H1 carries both. The
-              underline sits on an inline-block span so it stays under the
-              place name when the heading wraps on a phone. */}
-          <h1 className="hero-rise font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-4">
-            Dentist &amp; Dental Clinic{" "}
-            <span className="text-primary relative inline-block">
-              in Mirpur, AJK
-              <svg
-                className="absolute -bottom-2 left-0 w-full"
-                viewBox="0 0 200 12"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M2 8C50 2 150 2 198 8"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  className="text-primary/40"
-                />
-              </svg>
-            </span>
-          </h1>
+        <p
+          className="hero-rise mb-5 max-w-xl text-lg leading-relaxed text-muted-foreground md:mb-6 md:text-xl"
+          style={{ animationDelay: "60ms" }}
+        >
+          {PRACTITIONER.name}&rsquo;s clinic at Sardar Plaza, Fazal Chowk. Gentle root canals,
+          implants, braces and family check-ups, with every cost explained first.
+        </p>
 
-          <p
-            className="hero-rise font-display text-2xl md:text-3xl font-semibold text-muted-foreground mb-6"
-            style={{ animationDelay: "60ms" }}
+        <div className="hero-fade-rise mb-6 md:mb-8" style={{ animationDelay: "120ms" }}>
+          <GoogleRatingBadge />
+        </div>
+
+        <div
+          className="hero-fade-rise flex flex-col gap-3 sm:flex-row"
+          style={{ animationDelay: "180ms" }}
+          data-track-location="hero"
+        >
+          <Button
+            asChild
+            size="lg"
+            className="h-14 bg-[#25D366] px-7 text-base font-semibold text-[#0A2E1F] shadow-lg shadow-[#25D366]/25 hover:bg-[#25D366]/90"
           >
-            The Dental Lounge — Healthy Teeth, Better Smile
-          </p>
-
-          {/* Subheading — this is the LCP element on the homepage. */}
-          <p
-            className="hero-rise text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed"
-            style={{ animationDelay: "120ms" }}
+            <a href={WHATSAPP_BOOK_HREF} target="_blank" rel="noopener noreferrer">
+              <MessageCircle className="mr-2 h-5 w-5" aria-hidden />
+              Book on WhatsApp
+            </a>
+          </Button>
+          <Button
+            asChild
+            variant="outline"
+            size="lg"
+            className="h-14 border-2 border-primary px-7 text-base font-semibold text-primary hover:bg-primary hover:text-primary-foreground"
           >
-            A modern dental clinic at Sardar Plaza, Fazal Chowk in New Mirpur City,
-            Azad Kashmir. Root canals, implants, braces, crowns and family check-ups —
-            led by Dr. Jalal Aslam, seven days a week until 8pm.
-          </p>
+            <a href={TEL_HREF}>
+              <Phone className="mr-2 h-5 w-5" aria-hidden />
+              Call {BUSINESS.phoneDisplay}
+            </a>
+          </Button>
+        </div>
 
-          {/* CTA Buttons */}
-          <div
-            className="hero-fade-rise flex flex-col sm:flex-row items-center justify-center gap-4"
-            style={{ animationDelay: "180ms" }}
-          >
-            <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8 py-7 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5">
-              <Link href="/contact">
-                Book Appointment
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="text-lg px-8 py-7 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300">
-              <a href={TEL_HREF}>
-                <Phone className="mr-2 h-5 w-5" />
-                Call Now
-              </a>
-            </Button>
-          </div>
+        <p className="mt-4 text-sm text-muted-foreground">
+          Toothache or swelling? We keep same-day slots free.
+        </p>
+      </div>
 
-          {/* Google rating — real, verifiable social proof, linked to source */}
-          <div
-            className="hero-fade-rise mt-10 flex justify-center"
-            style={{ animationDelay: "240ms" }}
-          >
-            <GoogleRatingBadge />
-          </div>
-
-          {/* Trust Indicators */}
-          <div
-            className="hero-fade-rise mt-12 grid grid-cols-3 gap-8 max-w-lg mx-auto"
-            style={{ animationDelay: "300ms" }}
-          >
-            {/* Concrete, checkable facts rather than unverifiable claims —
-                these are the statements AI answers and snippets can lift. */}
-            {[
-              { value: "10am–8pm", label: "Open every day" },
-              { value: String(SERVICES.length), label: "Treatments offered" },
-              { value: "Fazal Chowk", label: "New Mirpur City" },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="text-center group cursor-default transition-transform duration-300 hover:scale-105"
-              >
-                <div className="text-4xl font-display font-bold text-primary mb-1 transition-transform duration-300 group-hover:scale-110">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
+      {/* First on phones, so a real photo and the dentist's face are the first
+          thing seen; beside the text from tablet width up. In this photo the
+          glass door behind the unit is softened (blurred and toned down, with
+          feathered edges) so the eye stays on the chair, not the door handle
+          and reflections. */}
+      <div className="relative order-first md:order-last">
+        <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-border shadow-xl md:aspect-[4/3] md:rounded-3xl">
+          <Image
+            src={heroPhoto}
+            alt="Dental chair and touch-screen treatment unit at The Dental Lounge, Fazal Chowk, New Mirpur City"
+            fill
+            priority
+            sizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 1400px) 50vw, 680px"
+            className="object-cover"
+            placeholder="blur"
+          />
+        </div>
+        <div className="absolute bottom-3 left-3 flex items-center gap-3 rounded-xl border border-border bg-background/95 py-2 pl-2 pr-4 shadow-lg md:-bottom-6 md:-left-6 md:py-3 md:pl-3 md:pr-5">
+          <Image
+            src={drAvatar}
+            alt=""
+            width={44}
+            height={44}
+            className="h-11 w-11 rounded-full object-cover"
+          />
+          <div className="leading-tight">
+            <p className="text-sm font-semibold text-foreground">{PRACTITIONER.name}</p>
+            <p className="text-xs text-muted-foreground">
+              {PRACTITIONER.jobTitle}
+              {PRACTITIONER.degree ? `, ${PRACTITIONER.degree}` : ""}
+            </p>
           </div>
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2" aria-hidden>
-        <div className="animate-scroll-nudge">
-          <div className="w-6 h-10 border-2 border-primary/30 rounded-full flex justify-center pt-2">
-            <div className="w-1.5 h-3 bg-primary/50 rounded-full animate-scroll-dot" />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Hero;

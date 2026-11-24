@@ -1,7 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -10,7 +7,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import AreasServed from "@/components/AreasServed";
 import JsonLd from "@/components/JsonLd";
 import { SERVICES } from "@/lib/services";
-import { SERVICE_IMAGES, imageAlt } from "@/lib/service-images";
+import ServiceCard from "@/components/ServiceCard";
 import { BUSINESS, SITE_URL, TEL_HREF } from "@/lib/site";
 import { breadcrumbSchema, graph } from "@/lib/schema";
 
@@ -58,7 +55,7 @@ export default function ServicesPage() {
                 <span className="whitespace-nowrap text-primary">Mirpur, AJK</span>
               </h1>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                Ten treatments, all under one roof at Sardar Plaza, Fazal Chowk in New Mirpur
+                {SERVICES.length} treatments, all under one roof at Sardar Plaza, Fazal Chowk in New Mirpur
                 City. Each page below sets out what the treatment involves, how long it takes,
                 what it typically costs in Pakistan, and the questions patients ask us most.
               </p>
@@ -70,38 +67,13 @@ export default function ServicesPage() {
           <div className="container mx-auto px-4">
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {SERVICES.map((service) => (
-                <article
+                <ServiceCard
                   key={service.slug}
-                  className="group overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl"
-                >
-                  <Link href={`/services/${service.slug}`} className="block">
-                    <div className="relative h-44 overflow-hidden">
-                      <Image
-                        src={SERVICE_IMAGES[service.image]}
-                        alt={service.imageAlt ?? imageAlt(service.name)}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        placeholder="blur"
-                      />
-                    </div>
-                    <div className="p-6">
-                      <h2 className="mb-1 font-display text-xl font-semibold text-foreground transition-colors group-hover:text-primary">
-                        {service.name}
-                      </h2>
-                      <p className="mb-3 text-sm text-muted-foreground" lang="ur" dir="rtl">
-                        {service.urdu}
-                      </p>
-                      <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-                        {service.short}
-                      </p>
-                      <span className="inline-flex items-center gap-2 text-sm font-medium text-primary">
-                        {service.name} in Mirpur
-                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </span>
-                    </div>
-                  </Link>
-                </article>
+                  service={service}
+                  as="h2"
+                  showUrdu
+                  linkLabel={`${service.name} in Mirpur`}
+                />
               ))}
             </div>
           </div>
@@ -131,7 +103,7 @@ export default function ServicesPage() {
               </p>
               <p className="leading-relaxed text-muted-foreground">
                 Consultations are available in Urdu, English and Pahari-Pothwari. We are open{" "}
-                {BUSINESS.openingHours.human}, which includes evenings and both weekend days.
+                {BUSINESS.openingHours.human}. That includes evenings and both weekend days.
               </p>
             </div>
           </div>

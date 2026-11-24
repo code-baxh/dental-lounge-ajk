@@ -228,24 +228,42 @@ const Footer = () => {
           {PRACTITIONER.pmdcNumber && (
             <p className="mb-4 text-center text-xs text-brand-foreground/60">
               Dental services provided by {PRACTITIONER.name}
-              {PRACTITIONER.degree ? `, ${PRACTITIONER.degree}` : ""} · Registered with the
-              Pakistan Medical &amp; Dental Council, registration no.{" "}
-              {PRACTITIONER.pmdcNumber}
+              {PRACTITIONER.degree ? `, ${PRACTITIONER.degree}` : ""} · Registered with the Pakistan
+              Medical &amp; Dental Council, registration no. {PRACTITIONER.pmdcNumber}
             </p>
           )}
 
           <div className="flex flex-col items-center justify-between gap-4 text-sm text-brand-foreground/70 md:flex-row">
             <p>
-              © {new Date().getFullYear()} {BUSINESS.name}, {BUSINESS.locality}, {BUSINESS.regionShort}.
-              All rights reserved.
+              © {new Date().getFullYear()} {BUSINESS.name}, {BUSINESS.locality},{" "}
+              {BUSINESS.regionShort}. All rights reserved.
             </p>
-            <div className="flex gap-5">
-              <Link href="/privacy-policy" className="transition-colors hover:text-brand-foreground">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="transition-colors hover:text-brand-foreground">
-                Terms &amp; Disclaimer
-              </Link>
+            <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-5">
+              <div className="flex gap-5">
+                <Link
+                  href="/privacy-policy"
+                  className="transition-colors hover:text-brand-foreground"
+                >
+                  Privacy Policy
+                </Link>
+                <Link href="/terms" className="transition-colors hover:text-brand-foreground">
+                  Terms &amp; Disclaimer
+                </Link>
+              </div>
+              {/* nofollow: Google's link-spam policy names links in the footers
+                  of many sites as a link scheme, and a site credit is exactly
+                  that. The credit itself still shows and still links. */}
+              <p>
+                Developed by{" "}
+                <a
+                  href="https://codebaxh.com"
+                  target="_blank"
+                  rel="noopener nofollow"
+                  className="font-medium text-brand-foreground underline-offset-4 hover:underline"
+                >
+                  codebaxh
+                </a>
+              </p>
             </div>
           </div>
         </div>

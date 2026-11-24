@@ -1,130 +1,82 @@
-"use client";
+import { ClipboardList, HeartHandshake, ShieldCheck, Zap } from "lucide-react";
 
-import { Shield, Heart, Sparkles, Clock } from "lucide-react";
-import { motion } from "framer-motion";
-
-const features = [
+/**
+ * Specific, checkable statements only. The previous cards ("highest standards
+ * of sterilization", "state-of-the-art dental technology", "flexible
+ * appointment times") could have sat on any clinic's site, which is exactly
+ * what makes copy read as templated or machine-written. Each point states
+ * something the clinic does, sourced from elsewhere on the site (the about
+ * page's hygiene and consultation commitments, the emergency FAQ, the root
+ * canal page) or from a patient's own Google review.
+ *
+ * Server component. It used framer-motion to fade the cards in on scroll, which
+ * left them invisible until the script had loaded; on a slow phone connection
+ * that was a blank space where the reasons to choose the clinic should be.
+ */
+const POINTS = [
   {
-    icon: Shield,
-    title: "Hygiene First",
-    description: "We maintain the highest standards of sterilization and cleanliness for your safety.",
-    color: "from-blue-500/20 to-blue-600/10",
+    icon: HeartHandshake,
+    title: "No pain, even for root canals",
+    text: "We do not start until the tooth is fully numb. “I felt no pain, even after the anesthesia wore off,” one root canal patient wrote.",
   },
   {
-    icon: Heart,
-    title: "Patient Care",
-    description: "Your comfort is our priority. We ensure a gentle and anxiety-free dental experience.",
-    color: "from-rose-500/20 to-rose-600/10",
+    icon: ClipboardList,
+    title: "Every option and cost explained first",
+    text: "Before any treatment you are told what is wrong, what the options are, what each one costs, and what happens if you do nothing.",
   },
   {
-    icon: Sparkles,
-    title: "Modern Equipment",
-    description: "State-of-the-art dental technology for precise diagnosis and effective treatment.",
-    color: "from-amber-500/20 to-amber-600/10",
+    icon: ShieldCheck,
+    title: "Sterilised for every patient",
+    text: "Instruments are autoclaved between every patient, and single-use items are used wherever they are required.",
   },
   {
-    icon: Clock,
-    title: "Convenient Hours",
-    description: "Flexible appointment times to fit your busy schedule.",
-    color: "from-emerald-500/20 to-emerald-600/10",
+    icon: Zap,
+    title: "Toothache? Seen the same day",
+    text: "We keep slots free every day for pain, swelling and broken teeth. Call or WhatsApp so we know you are coming.",
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-    },
-  },
-};
-
-const WhyChooseUs = () => {
-  return (
-    <section className="py-24 bg-gradient-to-b from-secondary/30 via-secondary/50 to-secondary/30 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-50">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+const WhyChooseUs = () => (
+  <section
+    className="border-t border-border bg-secondary/40 py-14 md:py-20"
+    aria-labelledby="why-us"
+  >
+    <div className="container mx-auto px-4">
+      <div className="mb-8 max-w-2xl md:mb-10">
+        <span className="mb-2 inline-block text-sm font-medium uppercase tracking-wider text-primary">
+          Why The Dental Lounge?
+        </span>
+        <h2
+          id="why-us"
+          className="mb-3 font-display text-3xl font-bold text-foreground md:text-4xl"
+        >
+          Why patients choose us
+        </h2>
+        <p className="text-muted-foreground md:text-lg">
+          How we work, in four commitments you can hold us to.
+        </p>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <motion.span 
-            className="inline-block text-sm font-medium text-primary mb-3 tracking-wider uppercase"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {POINTS.map(({ icon: Icon, title, text }) => (
+          <li
+            key={title}
+            className="flex gap-4 rounded-2xl border border-border bg-card p-5 sm:flex-col md:p-6"
           >
-            Why The Dental Lounge?
-          </motion.span>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-5">
-            Why Choose Us?
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            At The Dental Lounge, we combine expertise with compassion to deliver 
-            exceptional dental care that you can trust.
-          </p>
-        </motion.div>
-
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {features.map((feature, index) => (
-            <motion.div 
-              key={index} 
-              className="group relative"
-              variants={itemVariants}
-            >
-              <div className="relative bg-background rounded-2xl p-8 shadow-sm border border-border hover:shadow-xl hover:border-primary/20 transition-all duration-500 h-full hover:-translate-y-1">
-                {/* Gradient overlay on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                
-                <div className="relative z-10">
-                  <motion.div 
-                    className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300"
-                    whileHover={{ rotate: [0, -10, 10, 0] }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <feature.icon className="h-8 w-8 text-primary" />
-                  </motion.div>
-                  <h3 className="font-display text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
-                    {feature.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  );
-};
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <Icon className="h-5 w-5" aria-hidden />
+            </span>
+            <div>
+              <h3 className="mb-1.5 font-display text-lg font-semibold leading-snug text-foreground">
+                {title}
+              </h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">{text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+);
 
 export default WhyChooseUs;

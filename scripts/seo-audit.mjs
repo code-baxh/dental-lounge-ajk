@@ -1227,7 +1227,7 @@ async function main() {
     points: 2,
     status: quotable >= 6 ? "pass" : quotable >= 2 ? "warn" : "fail",
     finding: `${quotable} quotable statistic-style statements found.`,
-    fix: 'Statements like "200+ Happy Patients" are unattributed. Concrete, sourced facts ("Open 10am–8pm, seven days, at Fazal Chowk Mirpur") are what AI answers lift.',
+    fix: 'Statements like "200+ Happy Patients" are unattributed. Concrete, sourced facts ("Open until 9pm, 7 days a week, at Fazal Chowk Mirpur") are what AI answers lift.',
   });
 
   check({
