@@ -79,7 +79,7 @@ export default async function OpengraphImage() {
           <div style={{ display: "flex" }}>
             {BUSINESS.street}, {BUSINESS.locality}
           </div>
-          <div style={{ display: "flex" }}>Open 10am – 8pm, Saturday to Thursday</div>
+          <div style={{ display: "flex" }}>Open until 9pm, 7 days a week</div>
         </div>
         <div
           style={{

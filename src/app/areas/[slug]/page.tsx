@@ -252,7 +252,7 @@ export default function AreaPage({ params }: { params: { slug: string } }) {
           </div>
         </section>
 
-        <AreasServed exclude={area.slug} />
+        <AreasServed exclude={area.slug} heading="Other areas we serve" />
       </main>
 
       <Footer />

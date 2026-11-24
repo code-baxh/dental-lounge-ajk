@@ -14,7 +14,8 @@ import Testimonials from "@/components/Testimonials";
 import { Button } from "@/components/ui/button";
 import { SERVICES, getService } from "@/lib/services";
 import { guidesForService } from "@/lib/guides";
-import { SERVICE_IMAGES, imageAlt } from "@/lib/service-images";
+import { SERVICE_IMAGES, SERVICE_VIDEOS, imageAlt } from "@/lib/service-images";
+import LoopingVideo from "@/components/LoopingVideo";
 import { BUSINESS, GOOGLE_REVIEW_QUOTES, SITE_URL, TEL_HREF, WHATSAPP_HREF } from "@/lib/site";
 import { breadcrumbSchema, faqSchema, graph, serviceSchema } from "@/lib/schema";
 
@@ -52,6 +53,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
   if (!service) notFound();
 
   const image = SERVICE_IMAGES[service.image];
+  const video = SERVICE_VIDEOS[service.slug];
   const related = service.related.map(getService).filter(Boolean);
   const guides = guidesForService(service.slug).slice(0, 3);
   const reviews = GOOGLE_REVIEW_QUOTES.filter((q) => q.services?.includes(service.slug));
@@ -136,14 +138,25 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
               </div>
 
               <div className="relative overflow-hidden rounded-2xl shadow-lg">
-                <Image
-                  src={image}
-                  alt={service.imageAlt ?? imageAlt(service.name)}
-                  className="h-full w-full object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
-                  placeholder="blur"
-                />
+                {video ? (
+                  <LoopingVideo
+                    src={video.src}
+                    poster={video.poster}
+                    width={video.width}
+                    height={video.height}
+                    label={video.label}
+                    className="block h-auto w-full"
+                  />
+                ) : (
+                  <Image
+                    src={image}
+                    alt={service.imageAlt ?? imageAlt(service.name, service.image)}
+                    className="h-full w-full object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
+                    placeholder="blur"
+                  />
+                )}
               </div>
             </div>
           </div>

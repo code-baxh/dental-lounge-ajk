@@ -4,11 +4,11 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import ServicesPreview from "@/components/ServicesPreview";
 import WhyChooseUs from "@/components/WhyChooseUs";
-import Testimonials from "@/components/Testimonials";
-import GoogleRating from "@/components/GoogleRating";
+import HomeReviews from "@/components/HomeReviews";
 import LocationCTA from "@/components/LocationCTA";
 import UkVisitors from "@/components/UkVisitors";
 import MeetTheDentist from "@/components/MeetTheDentist";
+import ClinicGallery from "@/components/ClinicGallery";
 import AreasServed from "@/components/AreasServed";
 import FAQ from "@/components/FAQ";
 import JsonLd from "@/components/JsonLd";
@@ -32,7 +32,7 @@ import { ADDRESS_ONE_LINE, BUSINESS, GOOGLE_REVIEWS } from "@/lib/site";
  * "Best" would be an unprovable superlative.
  */
 const HOME_TITLE = "Top-Rated Dentist & Dental Clinic in Mirpur AJK | The Dental Lounge";
-const HOME_DESCRIPTION = `Rated ${GOOGLE_REVIEWS.ratingValue.toFixed(1)} from ${GOOGLE_REVIEWS.reviewCount} Google reviews. Dental clinic at Fazal Chowk, New Mirpur City, AJK: root canals, implants, braces, whitening. Open 10am–8pm, Sat–Thu.`;
+const HOME_DESCRIPTION = `Rated ${GOOGLE_REVIEWS.ratingValue.toFixed(1)} from ${GOOGLE_REVIEWS.reviewCount} Google reviews. Dental clinic at Fazal Chowk, New Mirpur City, AJK: root canals, implants, braces, whitening. Open until 9pm, 7 days.`;
 
 export const metadata: Metadata = {
   title: { absolute: HOME_TITLE },
@@ -72,7 +72,7 @@ const HOME_FAQS = [
   },
   {
     q: "What are your opening hours?",
-    a: `${BUSINESS.openingHours.human}. Evening appointments up to 8pm suit patients travelling in from Dadyal, Chakswari, Khari Sharif and the surrounding areas after work.`,
+    a: `${BUSINESS.openingHours.human}. Evening appointments up to 9pm suit patients travelling in from Dadyal, Chakswari, Khari Sharif and the surrounding areas after work.`,
   },
   {
     q: "Do you see emergency toothache the same day?",
@@ -98,19 +98,24 @@ export default function Home() {
       <Header />
       <JsonLd data={graph(faqSchema(HOME_FAQS))} />
       <main id="main" className="flex-1">
+        {/* Order follows what a first-time visitor needs, in turn: right
+            clinic and how to book (hero), can they treat my problem
+            (treatments), is it any good (reviews), who will treat me, how
+            they work, what it looks like inside. Reference material (UK
+            planning, FAQ, areas) comes after, then booking and directions. */}
         <Hero />
         <ServicesPreview />
-        <WhyChooseUs />
+        <HomeReviews />
         <MeetTheDentist />
-        <GoogleRating />
-        <Testimonials />
+        <WhyChooseUs />
+        <ClinicGallery />
         <UkVisitors />
-        <AreasServed />
         <FAQ
           faqs={HOME_FAQS}
           heading="Questions patients ask us"
           intro="Practical answers about the clinic, our hours, costs and how to find us."
         />
+        <AreasServed />
         <LocationCTA />
       </main>
       <Footer />

@@ -1,111 +1,149 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { SERVICES } from "@/lib/services";
-import { SERVICE_IMAGES, imageAlt } from "@/lib/service-images";
+import { IMAGE_POSITION, SERVICE_IMAGES, imageAlt } from "@/lib/service-images";
 
 /**
- * Server component. This was previously a client component purely to run
- * framer-motion scroll animations on the cards — which shipped the whole
- * grid's JS to the browser and delayed the largest above-the-fold content
- * block. CSS transitions give the same feel at zero JS cost.
+ * Every treatment as a photo card in a bento grid, the name over the photo, so
+ * a visitor finds theirs in one scroll and taps straight through. The full
+ * cards, with times and typical costs, stay on /services.
+ *
+ * One card is shown large: the one with the strongest photo, which is the
+ * real one of Dr. Jalal treating a young patient (root canals, the X-ray
+ * photo, looked poor at that size). Its tag is quoted word for word from a
+ * parent's Google review (see GOOGLE_REVIEW_QUOTES in lib/site.ts).
+ *
+ * Grid arithmetic, so no cell is left empty: the large card takes 2x2 cells;
+ * the last card takes two cells on phones and at 1024px+, one at 640px.
+ * 4+10+2 = 16 (2 columns), 4+10+1 = 15 (3 columns), 4+10+2 = 16 (4 columns).
+ *
+ * The Urdu name sits under each one because many patients know a treatment by
+ * that name ("taar" for braces, "kaip" for a crown) rather than the English;
+ * small cards show the first term only, so the name fits over the photo.
+ *
+ * Server component, no JS.
  */
-const FEATURED = [
-  "general-dentistry-mirpur",
-  "dental-implants-mirpur",
-  "braces-and-orthodontics-mirpur",
-  "root-canal-treatment-mirpur",
-  "teeth-whitening-mirpur",
-  "cosmetic-dentistry-mirpur",
-];
+const FEATURED = {
+  slug: "childrens-dentistry-mirpur",
+  tag: "\u201cSo friendly with kids\u201d, a parent on Google",
+};
+const ORDERED = [...SERVICES].sort(
+  (a, b) => Number(b.slug === FEATURED.slug) - Number(a.slug === FEATURED.slug),
+);
+const LAST = ORDERED.length - 1;
 
-const ServicesPreview = () => {
-  const featured = FEATURED.map((slug) => SERVICES.find((s) => s.slug === slug)!).filter(Boolean);
+const span = (i: number) =>
+  i === 0 ? "col-span-2 row-span-2" : i === LAST ? "col-span-2 sm:col-span-1 lg:col-span-2" : "";
 
-  return (
-    <section className="relative overflow-hidden bg-background py-24" aria-labelledby="services-heading">
-      <div className="absolute inset-0 opacity-30" aria-hidden>
-        <div className="absolute right-0 top-20 h-72 w-72 rounded-full bg-primary/5 blur-3xl" />
-        <div className="absolute bottom-20 left-0 h-72 w-72 rounded-full bg-accent/5 blur-3xl" />
-      </div>
-
-      <div className="container relative z-10 mx-auto px-4">
-        <div className="mb-16 text-center">
-          <span className="mb-3 inline-block text-sm font-medium uppercase tracking-wider text-primary">
-            What We Offer
+const ServicesPreview = () => (
+  <section
+    className="bg-gradient-to-b from-background to-secondary/50 py-14 md:py-20"
+    aria-labelledby="services-heading"
+  >
+    <div className="container mx-auto px-4">
+      <div className="mb-8 flex flex-col gap-4 md:mb-10 md:flex-row md:items-end md:justify-between">
+        <div className="max-w-2xl">
+          <span className="mb-2 inline-block text-sm font-medium uppercase tracking-wider text-primary">
+            Treatments
           </span>
           <h2
             id="services-heading"
-            className="mb-5 font-display text-4xl font-bold text-foreground md:text-5xl"
+            className="mb-3 font-display text-3xl font-bold text-foreground md:text-4xl"
           >
-            Dental Services in Mirpur, AJK
+            Dental services in Mirpur, AJK
           </h2>
-          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            {SERVICES.length} treatments under one roof at Fazal Chowk, from routine check-ups and
-            scaling to implants, braces and full smile makeovers.
+          <p className="text-muted-foreground md:text-lg">
+            Tap a treatment to see what happens, how long it takes and what it typically costs.
           </p>
         </div>
+        <Link
+          href="/services"
+          className="hidden shrink-0 items-center gap-1.5 font-medium text-primary underline-offset-4 hover:underline md:inline-flex"
+        >
+          Compare all {SERVICES.length} treatments
+          <ArrowRight className="h-4 w-4" aria-hidden />
+        </Link>
+      </div>
 
-        <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {featured.map((service) => (
-            <article key={service.slug} className="group">
+      <ul className="grid auto-rows-[10.5rem] grid-cols-2 gap-3 sm:auto-rows-[12rem] sm:grid-cols-3 sm:gap-4 lg:auto-rows-[13.5rem] lg:grid-cols-4">
+        {ORDERED.map((service, i) => {
+          const featured = service.slug === FEATURED.slug;
+          return (
+            <li key={service.slug} className={span(i)}>
               <Link
                 href={`/services/${service.slug}`}
-                className="relative block h-full overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:-translate-y-2 hover:border-primary/30 hover:shadow-2xl"
+                className="group relative flex h-full overflow-hidden rounded-2xl bg-muted shadow-sm ring-1 ring-border transition-shadow duration-300 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={SERVICE_IMAGES[service.image]}
-                    alt={service.imageAlt ?? imageAlt(service.name)}
-                    fill
-                    // 100vw overstated it: the card sits inside the container's
-                    // px-4, so on a 412px phone the real slot is ~380px, not
-                    // 412 — enough to make next/image serve w=750 instead of
-                    // w=384 and roughly double the bytes for no visible gain.
-                    sizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 1024px) calc(50vw - 2rem), 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    placeholder="blur"
-                  />
-                  <div
-                    className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent"
-                    aria-hidden
-                  />
-                </div>
+                <Image
+                  src={SERVICE_IMAGES[service.image]}
+                  alt={service.imageAlt ?? imageAlt(service.name, service.image)}
+                  fill
+                  sizes={
+                    featured
+                      ? "(max-width: 640px) calc(100vw - 2rem), (max-width: 1024px) 66vw, 680px"
+                      : "(max-width: 640px) calc(50vw - 1.5rem), (max-width: 1024px) 33vw, 340px"
+                  }
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04] motion-reduce:transition-none"
+                  style={{ objectPosition: IMAGE_POSITION[service.image] }}
+                  placeholder="blur"
+                />
+                {/* Legibility scrim: dark at the foot, where the name sits. */}
+                <div
+                  className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"
+                  aria-hidden
+                />
 
-                <div className="p-6">
-                  <h3 className="mb-2 font-display text-xl font-semibold text-foreground transition-colors group-hover:text-primary">
-                    {service.name}
-                  </h3>
-                  <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-                    {service.short}
-                  </p>
-                  <span className="inline-flex items-center gap-2 text-sm font-medium text-primary">
-                    Learn about {service.name.toLowerCase()} in Mirpur
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                <div className="relative mt-auto flex w-full items-end justify-between gap-3 p-3 text-white md:p-5">
+                  <div className="min-w-0">
+                    {featured && (
+                      <span className="mb-2 inline-block rounded-full bg-white/15 px-2.5 py-0.5 text-xs font-medium backdrop-blur-sm">
+                        {FEATURED.tag}
+                      </span>
+                    )}
+                    <h3
+                      className={`font-display font-semibold leading-snug [text-wrap:balance] ${
+                        featured ? "text-2xl md:text-3xl" : "text-base md:text-lg"
+                      }`}
+                    >
+                      {service.name}
+                    </h3>
+                    <p
+                      className="mt-0.5 text-left text-xs leading-relaxed text-white/80 md:text-sm"
+                      lang="ur"
+                      dir="rtl"
+                    >
+                      {featured ? service.urdu : service.urdu.split(" / ")[0]}
+                    </p>
+                    {featured && (
+                      <p className="mt-2 hidden max-w-md text-sm leading-relaxed text-white/85 sm:block">
+                        {service.short}
+                      </p>
+                    )}
+                  </div>
+                  <span
+                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-colors duration-200 group-hover:bg-white group-hover:text-foreground md:h-9 md:w-9"
+                    aria-hidden
+                  >
+                    <ArrowUpRight className="h-4 w-4" />
                   </span>
                 </div>
               </Link>
-            </article>
-          ))}
-        </div>
+            </li>
+          );
+        })}
+      </ul>
 
-        <div className="text-center">
-          <Button
-            asChild
-            size="lg"
-            className="bg-primary px-8 py-6 text-lg shadow-lg shadow-primary/20 transition-all hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/25"
-          >
-            <Link href="/services">
-              View all 10 dental services
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </Button>
-        </div>
-      </div>
-    </section>
-  );
-};
+      <Link
+        href="/services"
+        className="mt-6 flex min-h-[48px] items-center justify-center gap-1.5 rounded-xl border border-border bg-card font-medium text-primary md:hidden"
+      >
+        Compare all treatments, times and costs
+        <ArrowRight className="h-4 w-4" aria-hidden />
+      </Link>
+    </div>
+  </section>
+);
 
 export default ServicesPreview;

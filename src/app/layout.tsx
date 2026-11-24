@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     template: "%s | The Dental Lounge Mirpur",
   },
   description:
-    "Dental clinic at Fazal Chowk, New Mirpur City, Azad Kashmir. Root canals, implants, braces, crowns, whitening and family check-ups. Open 10am–8pm, Saturday to Thursday. Call +92 345 308 1698.",
+    "Dental clinic at Fazal Chowk, New Mirpur City, Azad Kashmir. Root canals, implants, braces, crowns, whitening and family check-ups. Open until 9pm, 7 days a week. Call +92 345 308 1698.",
   applicationName: BUSINESS.name,
   authors: [{ name: "Dr. Jalal Aslam", url: `${SITE_URL}/about` }],
   creator: "The Dental Lounge Mirpur",
@@ -54,13 +54,13 @@ export const metadata: Metadata = {
     siteName: BUSINESS.name,
     title: "Dentist & Dental Clinic in Mirpur AJK | The Dental Lounge",
     description:
-      "Dental clinic at Fazal Chowk, New Mirpur City, Azad Kashmir. Open 10am–8pm, Saturday to Thursday.",
+      "Dental clinic at Fazal Chowk, New Mirpur City, Azad Kashmir. Open until 9pm, 7 days a week.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Dentist & Dental Clinic in Mirpur AJK | The Dental Lounge",
     description:
-      "Dental clinic at Fazal Chowk, New Mirpur City, Azad Kashmir. Open 10am–8pm, Saturday to Thursday.",
+      "Dental clinic at Fazal Chowk, New Mirpur City, Azad Kashmir. Open until 9pm, 7 days a week.",
   },
   robots: {
     index: true,

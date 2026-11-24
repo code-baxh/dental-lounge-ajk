@@ -45,7 +45,7 @@ export const SERVICES: Service[] = [
     h1: "Root Canal Treatment in Mirpur, AJK",
     metaTitle: "Root Canal Treatment in Mirpur AJK | The Dental Lounge",
     metaDescription:
-      "Gentle, single-visit root canal treatment in Mirpur, Azad Kashmir. Save the tooth instead of losing it. Open 10am–8pm, Sat–Thu, at Fazal Chowk. Call +92 345 308 1698.",
+      "Gentle, single-visit root canal treatment in Mirpur, Azad Kashmir. Save the tooth instead of losing it. Open 7 days till 9pm at Fazal Chowk. Call +92 345 308 1698.",
     short:
       "Save a badly decayed or infected tooth and end the pain, using modern rotary instruments and proper anaesthesia.",
     image: "rootcanal",
@@ -254,7 +254,7 @@ export const SERVICES: Service[] = [
     h1: "Teeth Cleaning & Scaling in Mirpur, AJK",
     metaTitle: "Teeth Scaling & Cleaning in Mirpur AJK | Dental Lounge",
     metaDescription:
-      "Professional teeth scaling and polishing in Mirpur, Azad Kashmir. Treat bleeding gums, tartar and bad breath. Open 10am–8pm, Sat–Thu. Call +92 345 308 1698.",
+      "Professional teeth scaling and polishing in Mirpur, Azad Kashmir. Treat bleeding gums, tartar and bad breath. Open 7 days till 9pm. Call +92 345 308 1698.",
     short:
       "Ultrasonic removal of tartar and stain that brushing cannot shift — the treatment that keeps gums and bone healthy.",
     image: "cleaning",
@@ -444,7 +444,7 @@ export const SERVICES: Service[] = [
     h1: "Tooth Extraction & Wisdom Teeth in Mirpur, AJK",
     metaTitle: "Tooth & Wisdom Tooth Extraction in Mirpur AJK",
     metaDescription:
-      "Safe, painless tooth and wisdom tooth extraction in Mirpur, Azad Kashmir. Emergency same-day appointments, open until 8pm. Call +92 345 308 1698.",
+      "Safe, painless tooth and wisdom tooth extraction in Mirpur, Azad Kashmir. Emergency same-day appointments, open until 9pm. Call +92 345 308 1698.",
     short:
       "Painless removal when a tooth cannot be saved, including impacted wisdom teeth, with clear aftercare.",
     image: "extraction",
@@ -480,7 +480,7 @@ export const SERVICES: Service[] = [
       },
       {
         q: "Can I have a tooth out while fasting in Ramadan?",
-        a: "Yes. Local anaesthetic does not break the fast, but many patients prefer an appointment after Iftar so that they can take painkillers and eat normally afterwards. We keep evening slots for exactly this and stay open until 8pm.",
+        a: "Yes. Local anaesthetic does not break the fast, but many patients prefer an appointment after Iftar so that they can take painkillers and eat normally afterwards. We keep evening slots for exactly this and stay open until 9pm.",
       },
       {
         q: "What is dry socket?",
@@ -492,7 +492,7 @@ export const SERVICES: Service[] = [
       },
       {
         q: "Do you take emergency cases?",
-        a: "Yes. We are open 10am to 8pm, Saturday to Thursday, at Fazal Chowk, and we keep slots for acute pain and swelling. Call ahead so we know you are coming.",
+        a: "Yes. We are open until 9pm seven days a week (from 4pm on Fridays) at Fazal Chowk, and we keep slots for acute pain and swelling. Call ahead so we know you are coming.",
       },
     ],
     related: ["dental-implants-mirpur", "root-canal-treatment-mirpur", "dentures-mirpur"],
@@ -573,7 +573,7 @@ export const SERVICES: Service[] = [
       "Full and partial dentures in Mirpur, Azad Kashmir — comfortable, natural-looking, properly fitted. Repairs and relines too. Call +92 345 308 1698.",
     short:
       "Full and partial removable dentures, fitted properly so they stay put and let you eat comfortably.",
-    image: "prosthesis",
+    image: "dentures",
     duration: "4–5 appointments over 3–6 weeks",
     intro: [
       "Dentures replace missing teeth and restore the shape of the face and the ability to chew. A partial denture fills gaps where some natural teeth remain; a complete denture replaces a full arch.",
@@ -697,7 +697,7 @@ export const SERVICES: Service[] = [
     h1: "General Dentistry & Check-ups in Mirpur, AJK",
     metaTitle: "Dental Check-up in Mirpur AJK | Family Dentist",
     metaDescription:
-      "Routine dental check-ups, X-rays and preventive care for the whole family in Mirpur, Azad Kashmir. Open 10am–8pm, Sat–Thu. Call +92 345 308 1698.",
+      "Routine dental check-ups, X-rays and preventive care for the whole family in Mirpur, Azad Kashmir. Open 7 days till 9pm. Call +92 345 308 1698.",
     short:
       "Routine examinations, X-rays, oral cancer screening and preventive care for adults and children.",
     image: "general",
@@ -774,11 +774,10 @@ export const SERVICES: Service[] = [
     h1: "Children's Dentistry in Mirpur, AJK",
     metaTitle: "Children's Dentist in Mirpur AJK | Kids' Dental Care",
     metaDescription:
-      "Gentle check-ups, fluoride, sealants and fillings for kids in Mirpur, Azad Kashmir, from the first tooth. After-school visits until 8pm. Call +92 345 308 1698.",
+      "Gentle check-ups, fluoride, sealants and fillings for kids in Mirpur, Azad Kashmir, from the first tooth. After-school visits until 9pm. Call +92 345 308 1698.",
     short:
       "Gentle check-ups, fluoride varnish, fissure sealants, fillings and milk-tooth care for kids, from the first tooth onwards.",
-    image: "general",
-    imageAlt: "Dental examination at The Dental Lounge, Fazal Chowk, New Mirpur City, Azad Kashmir",
+    image: "children",
     duration: "20–30 minutes for a check-up",
     intro: [
       "Children's teeth are not a practice run. Milk teeth hold the space for the adult teeth growing underneath them, they let a child chew and speak properly, and decay in them hurts exactly as much as decay in adult teeth. A milk tooth lost early to decay lets the teeth beside it drift into the gap, which is one of the commonest reasons a child later needs braces.",
@@ -870,7 +869,7 @@ export const SERVICES: Service[] = [
       },
       {
         q: "Can you see children after school?",
-        a: "Yes. We are open 10am to 8pm, Saturday to Thursday, so after-school and evening appointments are easy to arrange. Call +92 345 308 1698 or message us on WhatsApp.",
+        a: "Yes. We are open until 9pm seven days a week, so after-school and evening appointments are easy to arrange. Call +92 345 308 1698 or message us on WhatsApp.",
       },
       {
         q: "We are visiting Mirpur from the UK with our children. Can they be seen?",

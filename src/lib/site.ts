@@ -38,11 +38,14 @@ export const BUSINESS = {
   mapEmbedSrc:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4367.064681671599!2d73.75559407657603!3d33.14735297351112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391feb2c23e2fbb3%3A0x57817c5738eab132!2sThe%20Dental%20Lounge!5e1!3m2!1sen!2s!4v1773600462287!5m2!1sen!2s",
 
+  // Seven days. Fridays open later, after Jumu'ah. Keep in step with the
+  // Google Business Profile: Google compares the two.
   openingHours: {
     days: ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
     opens: "10:00",
-    closes: "20:00",
-    human: "10:00 AM – 8:00 PM, Saturday to Thursday (closed Friday)",
+    closes: "21:00",
+    friday: { opens: "16:00", closes: "21:00" },
+    human: "10:00 AM – 9:00 PM Saturday to Thursday, 4:00 PM – 9:00 PM Friday",
   },
 
   social: [
@@ -218,6 +221,13 @@ export const ADDRESS_ONE_LINE = `${BUSINESS.street}, ${BUSINESS.locality}, ${BUS
 
 export const TEL_HREF = `tel:${BUSINESS.phoneIntl}`;
 export const WHATSAPP_HREF = `https://wa.me/${BUSINESS.whatsapp}`;
+/**
+ * WhatsApp with the first line already typed. Most patients here book by
+ * WhatsApp, and an empty chat is one more thing to think about.
+ */
+export const WHATSAPP_BOOK_HREF = `${WHATSAPP_HREF}?text=${encodeURIComponent(
+  "Hi, I would like to book an appointment at The Dental Lounge.",
+)}`;
 export const MAILTO_HREF = `mailto:${BUSINESS.email}`;
 /** Opens the clinic's own Maps listing, where Directions is one tap. */
 export const DIRECTIONS_HREF = BUSINESS.mapsUrl;

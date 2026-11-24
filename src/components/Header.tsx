@@ -39,7 +39,7 @@ const Header = () => {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? "bg-background/98 backdrop-blur-md shadow-lg border-b border-border" 
+          ? "bg-background/95 backdrop-blur-md shadow-lg border-b border-border" 
           : "bg-background/95 backdrop-blur-sm border-b border-transparent"
       }`}
     >
@@ -59,7 +59,8 @@ const Header = () => {
             />
             {/* Deliberately NOT an <h1>: this renders on every page, so it
                 gave every page a second H1 competing with the real one. */}
-            <div className="hidden sm:block">
+            {/* Shown on phones too: a logo alone does not say whose site this is. */}
+            <div>
               <span className="block font-display text-xl font-semibold text-primary transition-colors group-hover:text-primary/80">
                 The Dental Lounge
               </span>

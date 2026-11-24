@@ -45,12 +45,11 @@ export function clinicSchema() {
     legalName: BUSINESS.legalName,
     slogan: BUSINESS.tagline,
     url: SITE_URL,
-    // TODO(clinic): `image` should be a real photo of the clinic (front of
-    // Sardar Plaza, reception or surgery), not the app icon. Add it to
-    // public/ and list it first here.
-    image: `${SITE_URL}/web-app-manifest-512x512.png`,
+    // A real photo of the treatment room first. TODO(clinic): add a photo of
+    // the front of Sardar Plaza with the sign once one is taken.
+    image: [`${SITE_URL}/clinic-treatment-room.jpg`, `${SITE_URL}/web-app-manifest-512x512.png`],
     logo: `${SITE_URL}/web-app-manifest-512x512.png`,
-    description: `Dental clinic at Fazal Chowk in New Mirpur City, Azad Kashmir, offering general dentistry, root canal treatment, dental implants, orthodontics, crowns, dentures, teeth whitening and cosmetic dentistry. Open 10am to 8pm, Saturday to Thursday; closed Friday.`,
+    description: `Dental clinic at Fazal Chowk in New Mirpur City, Azad Kashmir, offering general dentistry, root canal treatment, dental implants, orthodontics, crowns, dentures, teeth whitening and cosmetic dentistry. Open 10am to 9pm Saturday to Thursday, and 4pm to 9pm on Friday.`,
     telephone: BUSINESS.phoneIntl,
     email: BUSINESS.email,
     priceRange: "$$",
@@ -76,6 +75,12 @@ export function clinicSchema() {
         dayOfWeek: [...BUSINESS.openingHours.days],
         opens: BUSINESS.openingHours.opens,
         closes: BUSINESS.openingHours.closes,
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Friday",
+        opens: BUSINESS.openingHours.friday.opens,
+        closes: BUSINESS.openingHours.friday.closes,
       },
     ],
     areaServed: areaServedPlaces.map(({ name, region }) => ({
