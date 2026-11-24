@@ -1,31 +1,45 @@
 "use client";
 
-import { Shield, Heart, Sparkles, Clock } from "lucide-react";
+import { Shield, Heart, ClipboardList, Clock } from "lucide-react";
 import { motion } from "framer-motion";
+import { GOOGLE_REVIEWS } from "@/lib/site";
 
+/**
+ * Specific, checkable statements only. The previous cards ("highest standards
+ * of sterilization", "state-of-the-art dental technology", "flexible
+ * appointment times") could have sat on any clinic's site, which is exactly
+ * what makes copy read as templated or machine-written. Each card now states
+ * something the clinic does, sourced from elsewhere on the site (the about
+ * page's hygiene and consultation commitments, the root canal page) or from a
+ * patient's own Google review.
+ */
 const features = [
   {
-    icon: Shield,
-    title: "Hygiene First",
-    description: "We maintain the highest standards of sterilization and cleanliness for your safety.",
-    color: "from-blue-500/20 to-blue-600/10",
-  },
-  {
     icon: Heart,
-    title: "Patient Care",
-    description: "Your comfort is our priority. We ensure a gentle and anxiety-free dental experience.",
+    title: "No pain, even for root canals",
+    description:
+      "We do not start until the tooth is fully numb. “I felt no pain, even after the anesthesia wore off,” one root canal patient wrote.",
     color: "from-rose-500/20 to-rose-600/10",
   },
   {
-    icon: Sparkles,
-    title: "Modern Equipment",
-    description: "State-of-the-art dental technology for precise diagnosis and effective treatment.",
+    icon: ClipboardList,
+    title: "Every option and cost explained first",
+    description:
+      "Before any treatment you are told what is wrong, what the options are, what each one costs, and what happens if you do nothing.",
     color: "from-amber-500/20 to-amber-600/10",
   },
   {
+    icon: Shield,
+    title: "Sterilised for every patient",
+    description:
+      "Instruments are autoclaved between every patient, and single-use items are used wherever they are required.",
+    color: "from-blue-500/20 to-blue-600/10",
+  },
+  {
     icon: Clock,
-    title: "Convenient Hours",
-    description: "Flexible appointment times to fit your busy schedule.",
+    title: "Open until 8pm",
+    description:
+      "10am to 8pm, Saturday to Thursday, so appointments fit around work and school. Closed on Fridays.",
     color: "from-emerald-500/20 to-emerald-600/10",
   },
 ];
@@ -78,11 +92,11 @@ const WhyChooseUs = () => {
             Why The Dental Lounge?
           </motion.span>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-5">
-            Why Choose Us?
+            Why patients choose us
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            At The Dental Lounge, we combine expertise with compassion to deliver 
-            exceptional dental care that you can trust.
+            Rated {GOOGLE_REVIEWS.ratingValue.toFixed(1)} from {GOOGLE_REVIEWS.reviewCount} Google
+            reviews. This is how we work, in four commitments you can hold us to.
           </p>
         </motion.div>
 

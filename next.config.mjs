@@ -3,6 +3,17 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
+  // Earlier address of the cost guide. Google still shows it (Search Console,
+  // Nov 2026) and it returned a 404, so it is sent to the current page.
+  async redirects() {
+    return [
+      {
+        source: "/guides/dental-treatment-cost-in-pakistan",
+        destination: "/guides/dental-treatment-cost-in-pakistan-2026",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     // Was `unoptimized: true`, which shipped the original ~50KB JPEGs to every
     // device. @netlify/plugin-nextjs supports the Next image optimizer, so

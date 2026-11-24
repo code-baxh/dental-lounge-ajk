@@ -43,8 +43,8 @@ const ServicesPreview = () => {
             Dental Services in Mirpur, AJK
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            Ten treatments under one roof at Fazal Chowk — from routine check-ups and scaling to
-            implants, braces and full smile makeovers.
+            {SERVICES.length} treatments under one roof at Fazal Chowk, from routine check-ups and
+            scaling to implants, braces and full smile makeovers.
           </p>
         </div>
 

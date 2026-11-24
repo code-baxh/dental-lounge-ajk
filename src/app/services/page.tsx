@@ -58,7 +58,7 @@ export default function ServicesPage() {
                 <span className="whitespace-nowrap text-primary">Mirpur, AJK</span>
               </h1>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                Ten treatments, all under one roof at Sardar Plaza, Fazal Chowk in New Mirpur
+                {SERVICES.length} treatments, all under one roof at Sardar Plaza, Fazal Chowk in New Mirpur
                 City. Each page below sets out what the treatment involves, how long it takes,
                 what it typically costs in Pakistan, and the questions patients ask us most.
               </p>

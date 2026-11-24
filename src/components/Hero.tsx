@@ -80,9 +80,9 @@ const Hero = () => {
             className="hero-rise text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed"
             style={{ animationDelay: "120ms" }}
           >
-            A modern dental clinic at Sardar Plaza, Fazal Chowk in New Mirpur City,
-            Azad Kashmir. Root canals, implants, braces, crowns and family check-ups —
-            led by Dr. Jalal Aslam, open until 8pm every day except Friday.
+            A dental clinic at Sardar Plaza, Fazal Chowk in New Mirpur City, Azad Kashmir,
+            led by Dr. Jalal Aslam. Root canals, implants, braces, crowns and family
+            check-ups, until 8pm every day except Friday.
           </p>
 
           {/* CTA Buttons */}

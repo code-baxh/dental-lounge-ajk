@@ -28,8 +28,8 @@ const trail = [
 const values = [
   {
     icon: Heart,
-    title: "Patient-Centered Care",
-    description: "Every treatment plan is tailored to your needs, your budget and your comfort level.",
+    title: "At Your Pace",
+    description: "Nervous patients are taken through treatment step by step, with each stage explained before it starts.",
   },
   {
     icon: Shield,
@@ -43,8 +43,8 @@ const values = [
   },
   {
     icon: Users,
-    title: "Community Trust",
-    description: "Building long-term relationships with families across Mirpur District, Bhimber and Kotli.",
+    title: "Three Languages",
+    description: "Consultations in Urdu, English and Pahari-Pothwari, so you can describe the problem in the language you think in.",
   },
 ];
 
@@ -130,19 +130,21 @@ export default function About() {
                   </div>
 
                   <p className="mb-4 leading-relaxed text-muted-foreground">
-                    I am Dr. Jalal Aslam, a dental surgeon committed to bringing modern,
-                    high-standard oral healthcare to the heart of Mirpur, AJK. My training began
-                    at the Institute of Dentistry, CMH Lahore Medical College, where I built a
-                    foundation in clinical excellence, ethical practice and patient-first care.
-                    Since then my focus has been on closing the gap between advanced dental
-                    technology and a gentle, personalised patient experience — the kind of care
-                    people in this district previously travelled to Islamabad or Lahore for.
+                    {/* TODO(clinic): Dr. Jalal should rewrite this in his own words, with
+                        the year he qualified, how long he has practised and why he set up
+                        in Mirpur. First-hand detail like that is the strongest experience
+                        signal a medical page can carry; this text only removes the stock
+                        phrases the previous version was built from. */}
+                    I am Dr. Jalal Aslam, a dental surgeon practising at Fazal Chowk in New
+                    Mirpur City. I trained at the Institute of Dentistry, CMH Lahore Medical
+                    College. I set up The Dental Lounge so that people in this district could
+                    have root canals, implants and braces done properly here, without travelling
+                    to Islamabad or Lahore for them.
                   </p>
                   <p className="mb-4 leading-relaxed text-muted-foreground">
-                    I believe a dental visit should be informative and anxiety-free, not a source
-                    of stress. Whether it is a routine cleaning or a complex smile makeover, my
-                    priority is a painless, transparent process in which you are an active partner
-                    in your own treatment. You will always be told what is wrong, what the options
+                    A lot of people put off the dentist because of one bad experience. I work at
+                    your pace, make sure the tooth is fully numb before starting, and explain each
+                    step before I do it. You will always be told what is wrong, what the options
                     are, what each one costs, and what happens if you do nothing.
                   </p>
                   <p className="leading-relaxed text-muted-foreground">
@@ -161,9 +163,8 @@ export default function About() {
               <div className="rounded-2xl border border-border bg-card p-8">
                 <h2 className="mb-4 font-display text-2xl font-bold text-foreground">Our Vision</h2>
                 <p className="leading-relaxed text-muted-foreground">
-                  To be the most trusted dental care provider in Mirpur, AJK — known for
-                  commitment to excellence, patient comfort, and transforming smiles that boost
-                  confidence and improve lives.
+                  That nobody in Mirpur District has to travel to Islamabad or Lahore to have
+                  a root canal, an implant or braces done properly.
                 </p>
               </div>
               <div className="rounded-2xl border border-border bg-card p-8">

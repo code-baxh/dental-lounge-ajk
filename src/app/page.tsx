@@ -7,6 +7,8 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import Testimonials from "@/components/Testimonials";
 import GoogleRating from "@/components/GoogleRating";
 import LocationCTA from "@/components/LocationCTA";
+import UkVisitors from "@/components/UkVisitors";
+import MeetTheDentist from "@/components/MeetTheDentist";
 import AreasServed from "@/components/AreasServed";
 import FAQ from "@/components/FAQ";
 import JsonLd from "@/components/JsonLd";
@@ -22,8 +24,14 @@ import { ADDRESS_ONE_LINE, BUSINESS, GOOGLE_REVIEWS } from "@/lib/site";
  * The description leads with the Google rating because the top query is "best
  * dentist in mirpur ajk": a checkable rating answers "best" without the page
  * claiming it. It reads from GOOGLE_REVIEWS, so keep those numbers current.
+ *
+ * Search Console (3 months to 22 Nov 2026): "best dental clinic mirpur" became
+ * the largest query, 238 impressions at position ~3 with no clicks, beside
+ * "best dentist in mirpur ajk" (168). "Top-Rated" answers that "best" intent
+ * with a claim the 5.0 Google rating in the description backs up, where
+ * "Best" would be an unprovable superlative.
  */
-const HOME_TITLE = "Dentist & Dental Clinic in Mirpur AJK | The Dental Lounge";
+const HOME_TITLE = "Top-Rated Dentist & Dental Clinic in Mirpur AJK | The Dental Lounge";
 const HOME_DESCRIPTION = `Rated ${GOOGLE_REVIEWS.ratingValue.toFixed(1)} from ${GOOGLE_REVIEWS.reviewCount} Google reviews. Dental clinic at Fazal Chowk, New Mirpur City, AJK: root canals, implants, braces, whitening. Open 10am–8pm, Sat–Thu.`;
 
 export const metadata: Metadata = {
@@ -46,20 +54,20 @@ const HOME_FAQS = [
   },
   {
     q: "Is this Mirpur in Azad Kashmir, or Mirpur in Dhaka or Mirpur Khas?",
-    a: "This is Mirpur in Azad Jammu and Kashmir, Pakistan — the district city near Mangla Dam, sometimes called New Mirpur City. It is not Mirpur in Dhaka, Bangladesh, and not Mirpur Khas in Sindh.",
+    a: "This is Mirpur in Azad Jammu and Kashmir, Pakistan: the district city near Mangla Dam, also called New Mirpur City. It is not Mirpur in Dhaka, Bangladesh, and not Mirpur Khas in Sindh.",
   },
   {
     // Targets "best dentist in mirpur ajk", the site's top query. Answered as
     // a checklist a patient can apply to any clinic, not as a claim.
     q: "How do I choose the best dentist in Mirpur, AJK?",
-    a: "Check four things at any clinic, ours included. Ask for the dentist's PMDC registration number and look it up on the Pakistan Medical and Dental Council register. Ask how instruments are sterilised — they should be autoclaved between patients. Expect a written treatment plan with the cost before anything starts. And read recent Google reviews from real patients rather than testimonials on a clinic's own website.",
+    a: "Check four things at any clinic, ours included. Ask for the dentist's PMDC registration number and look it up on the Pakistan Medical and Dental Council register. Ask how instruments are sterilised; they should be autoclaved between patients. Expect a written treatment plan with the cost before anything starts. And read recent Google reviews from real patients rather than testimonials on a clinic's own website.",
   },
   {
     q: "Who is the dentist at The Dental Lounge?",
     a: "Dr. Jalal Aslam, a dental surgeon trained at the Institute of Dentistry, CMH Lahore Medical College. He treats every patient personally.",
   },
   {
-    q: "Is The Dental Lounge Mirpur any good — what do patients say?",
+    q: "Is The Dental Lounge Mirpur any good? What do patients say?",
     a: `The clinic holds a ${GOOGLE_REVIEWS.ratingValue.toFixed(1)} out of 5 rating from ${GOOGLE_REVIEWS.reviewCount} reviews on its Google Business Profile. Those are verified reviews left by patients on Google, and you can read all of them on the listing.`,
   },
   {
@@ -93,8 +101,10 @@ export default function Home() {
         <Hero />
         <ServicesPreview />
         <WhyChooseUs />
+        <MeetTheDentist />
         <GoogleRating />
         <Testimonials />
+        <UkVisitors />
         <AreasServed />
         <FAQ
           faqs={HOME_FAQS}

@@ -70,7 +70,7 @@ export default function GoogleRating() {
 
           <p className="mx-auto mb-6 max-w-xl leading-relaxed text-muted-foreground">
             Every one of these is a verified review left by a patient on our Google Business
-            Profile — not a testimonial we wrote. Read them in full, or add your own, on Google.
+            Profile, not a testimonial we wrote. Read them in full, or add your own, on Google.
           </p>
 
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">

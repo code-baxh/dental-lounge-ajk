@@ -56,7 +56,7 @@ const LocationCTA = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
           >
-            Ready to Transform Your Smile?
+            Book your appointment
           </motion.h2>
           <motion.p 
             className="text-xl text-brand-foreground/80 mb-12 max-w-2xl mx-auto leading-relaxed"
@@ -65,8 +65,8 @@ const LocationCTA = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
           >
-            Schedule your appointment today and experience the difference of 
-            personalized dental care at The Dental Lounge.
+            Call or WhatsApp us and tell us what is bothering you. We will find you a
+            time between 10am and 8pm, Saturday to Thursday.
           </motion.p>
 
           <motion.div 

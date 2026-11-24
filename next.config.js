@@ -6,6 +6,17 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
+  // Earlier address of the cost guide. Google still shows it (Search Console,
+  // Nov 2026) and it returned a 404, so it is sent to the current page.
+  async redirects() {
+    return [
+      {
+        source: "/guides/dental-treatment-cost-in-pakistan",
+        destination: "/guides/dental-treatment-cost-in-pakistan-2026",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [360, 414, 640, 750, 828, 1080, 1200, 1920],
