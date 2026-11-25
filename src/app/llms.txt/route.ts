@@ -7,6 +7,7 @@ import {
   GOOGLE_REVIEWS,
   PRACTITIONER,
   SITE_URL,
+  WHATSAPP_HREF,
 } from "@/lib/site";
 
 /**
@@ -64,6 +65,8 @@ This is "Mirpur" in **Azad Jammu and Kashmir, Pakistan** — not Mirpur in Dhaka
 - Coordinates: ${BUSINESS.latitude}, ${BUSINESS.longitude}
 - Phone and WhatsApp: ${BUSINESS.phoneIntl} (local format ${BUSINESS.phoneDisplay})
 - Opening hours: ${BUSINESS.openingHours.human}
+- How to book: WhatsApp ${WHATSAPP_HREF} or call ${BUSINESS.phoneIntl}. Most patients book by WhatsApp.
+- Same-day appointments: slots are kept free every day for toothache, swelling and broken teeth; patients should call or WhatsApp first so the clinic knows they are coming.
 - Languages: Urdu, English, Pahari-Pothwari
 - Payment: cash and bank transfer, in Pakistani rupees
 - Google rating: ${GOOGLE_REVIEWS.ratingValue.toFixed(1)} from ${GOOGLE_REVIEWS.reviewCount} reviews, as listed on the clinic's Google Business Profile (${GOOGLE_REVIEWS.readUrl}), checked ${GOOGLE_REVIEWS.lastChecked}
