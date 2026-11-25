@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
-// Kept in sync with next.config.mjs. Next.js only loads one of these — .mjs
-// wins when both exist — but a drifting duplicate is a trap for the next
-// person, so both hold the same config.
+// Kept in sync with next.config.mjs. Next.js only loads one of these, and it
+// is this one: .js is checked before .mjs (the build log says "Running
+// next.config.js"). A drifting duplicate is a trap, so both hold the same config.
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,

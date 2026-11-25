@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { getGuide } from "@/lib/guides";
+import { GUIDES, getGuide } from "@/lib/guides";
 import { BUSINESS, PRACTITIONER } from "@/lib/site";
 
 /**
@@ -15,8 +15,15 @@ export const alt = "Dental health guide from The Dental Lounge, Mirpur AJK";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default async function GuideImage({ params }: { params: { slug: string } }) {
-  const guide = getGuide(params.slug);
+// Without this, Next 16 renders every guide's share preview on request instead
+// of once at build time.
+export function generateStaticParams() {
+  return GUIDES.map((g) => ({ slug: g.slug }));
+}
+
+export default async function GuideImage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const guide = getGuide(slug);
   const title = guide?.title ?? "Dental health guides";
 
   return new ImageResponse(

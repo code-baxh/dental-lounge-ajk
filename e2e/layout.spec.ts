@@ -127,7 +127,7 @@ test("hero text renders without JavaScript — LCP is not gated on hydration", a
   const page = await context.newPage();
   await page.goto("/");
 
-  for (const locator of [page.locator("h1"), page.getByText(/A modern dental clinic at Sardar Plaza/)]) {
+  for (const locator of [page.locator("h1"), page.getByText(/clinic at Sardar Plaza, Fazal Chowk\. Gentle root canals/)]) {
     const el = locator.first();
     await expect(el).toBeVisible();
 

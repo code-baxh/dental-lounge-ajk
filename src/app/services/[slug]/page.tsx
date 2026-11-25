@@ -26,9 +26,10 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const service = getService(params.slug);
+  const { slug } = await params;
+  const service = getService(slug);
   if (!service) return {};
 
   return {
@@ -48,8 +49,9 @@ export async function generateMetadata({
 
 const pkr = (n: number) => `PKR ${n.toLocaleString("en-PK")}`;
 
-export default function ServicePage({ params }: { params: { slug: string } }) {
-  const service = getService(params.slug);
+export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const service = getService(slug);
   if (!service) notFound();
 
   const image = SERVICE_IMAGES[service.image];

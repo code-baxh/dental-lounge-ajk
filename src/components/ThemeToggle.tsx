@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
+
+const subscribe = () => () => {};
 
 /**
  * Light/dark toggle.
@@ -10,12 +12,12 @@ import { Moon, Sun } from "lucide-react";
  * Renders a fixed-size placeholder until mounted: `theme` is unknowable during
  * SSR, so rendering the real icon immediately causes a hydration mismatch, and
  * rendering nothing causes the header to shift when it appears.
+ * useSyncExternalStore gives false on the server and during hydration, then
+ * true, without the extra render a setState-in-effect costs.
  */
 export default function ThemeToggle({ className = "" }: { className?: string }) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(subscribe, () => true, () => false);
   const { resolvedTheme, setTheme } = useTheme();
-
-  useEffect(() => setMounted(true), []);
 
   const isDark = resolvedTheme === "dark";
 

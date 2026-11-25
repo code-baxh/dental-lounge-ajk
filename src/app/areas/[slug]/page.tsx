@@ -21,9 +21,10 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const area = getArea(params.slug);
+  const { slug } = await params;
+  const area = getArea(slug);
   if (!area) return {};
 
   return {
@@ -39,8 +40,9 @@ export async function generateMetadata({
   };
 }
 
-export default function AreaPage({ params }: { params: { slug: string } }) {
-  const area = getArea(params.slug);
+export default async function AreaPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const area = getArea(slug);
   if (!area) notFound();
 
   const trail = [

@@ -21,9 +21,10 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const guide = getGuide(params.slug);
+  const { slug } = await params;
+  const guide = getGuide(slug);
   if (!guide) return {};
 
   return {
@@ -145,8 +146,9 @@ function Block({ block }: { block: GuideBlock }) {
   }
 }
 
-export default function GuidePage({ params }: { params: { slug: string } }) {
-  const guide = getGuide(params.slug);
+export default async function GuidePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const guide = getGuide(slug);
   if (!guide) notFound();
 
   const trail = [
