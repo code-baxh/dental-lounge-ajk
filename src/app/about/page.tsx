@@ -12,13 +12,14 @@ import JsonLd from "@/components/JsonLd";
 import { ADDRESS_ONE_LINE, BUSINESS, PRACTITIONER } from "@/lib/site";
 import { breadcrumbSchema, graph } from "@/lib/schema";
 import drJalal from "../../../public/jalal.jpeg";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: { absolute: "Dr. Jalal Aslam — Dentist in Mirpur AJK | The Dental Lounge" },
+export const metadata: Metadata = pageMetadata({
+  title: "Dr. Jalal Aslam — Dentist in Mirpur AJK | The Dental Lounge",
   description:
     "Meet Dr. Jalal Aslam, dental surgeon at The Dental Lounge, Fazal Chowk, New Mirpur City. Trained at the Institute of Dentistry, CMH Lahore. Call +92 345 308 1698.",
-  alternates: { canonical: "/about" },
-};
+  path: "/about",
+});
 
 const trail = [
   { name: "Home", path: "/" },

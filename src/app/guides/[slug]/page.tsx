@@ -11,7 +11,7 @@ import JsonLd from "@/components/JsonLd";
 import { Button } from "@/components/ui/button";
 import { GUIDES, getGuide, headingId, relatedGuides, type GuideBlock } from "@/lib/guides";
 import { getService } from "@/lib/services";
-import { BUSINESS, PRACTITIONER, SITE_URL, TEL_HREF } from "@/lib/site";
+import { BUSINESS, OPEN_GRAPH_BASE, PRACTITIONER, SITE_URL, TEL_HREF } from "@/lib/site";
 import { breadcrumbSchema, faqSchema, graph, guideSchema } from "@/lib/schema";
 
 export function generateStaticParams() {
@@ -32,6 +32,7 @@ export async function generateMetadata({
     description: guide.metaDescription,
     alternates: { canonical: `/guides/${guide.slug}` },
     openGraph: {
+      ...OPEN_GRAPH_BASE,
       title: guide.metaTitle,
       description: guide.metaDescription,
       url: `${SITE_URL}/guides/${guide.slug}`,

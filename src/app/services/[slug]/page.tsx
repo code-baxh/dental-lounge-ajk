@@ -16,7 +16,14 @@ import { SERVICES, getService } from "@/lib/services";
 import { guidesForService } from "@/lib/guides";
 import { SERVICE_IMAGES, SERVICE_VIDEOS, imageAlt } from "@/lib/service-images";
 import LoopingVideo from "@/components/LoopingVideo";
-import { BUSINESS, GOOGLE_REVIEW_QUOTES, SITE_URL, TEL_HREF, WHATSAPP_HREF } from "@/lib/site";
+import {
+  BUSINESS,
+  GOOGLE_REVIEW_QUOTES,
+  OPEN_GRAPH_BASE,
+  SITE_URL,
+  TEL_HREF,
+  WHATSAPP_HREF,
+} from "@/lib/site";
 import { breadcrumbSchema, faqSchema, graph, serviceSchema } from "@/lib/schema";
 
 export function generateStaticParams() {
@@ -32,6 +39,16 @@ export async function generateMetadata({
   const service = getService(slug);
   if (!service) return {};
 
+  // The treatment's own clinic photo, so a link shared on WhatsApp previews
+  // as that treatment. 1600×1200 JPEGs under 220 KB, within WhatsApp's limit.
+  const photo = SERVICE_IMAGES[service.image];
+  const shareImage = {
+    url: photo.src,
+    width: photo.width,
+    height: photo.height,
+    alt: imageAlt(service.name, service.image),
+  };
+
   return {
     // `absolute` bypasses the "| The Dental Lounge Mirpur" template — these
     // titles already carry the brand and would otherwise overflow 60 chars.
@@ -39,10 +56,12 @@ export async function generateMetadata({
     description: service.metaDescription,
     alternates: { canonical: `/services/${service.slug}` },
     openGraph: {
+      ...OPEN_GRAPH_BASE,
       title: service.metaTitle,
       description: service.metaDescription,
       url: `${SITE_URL}/services/${service.slug}`,
       type: "article",
+      images: [shareImage],
     },
   };
 }

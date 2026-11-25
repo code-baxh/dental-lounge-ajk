@@ -16,6 +16,7 @@ import {
   WHATSAPP_HREF,
 } from "@/lib/site";
 import { breadcrumbSchema, graph } from "@/lib/schema";
+import { pageMetadata } from "@/lib/metadata";
 
 /**
  * Search Console, Nov 2026: 577 impressions, 0.7% CTR. This page is found by
@@ -24,12 +25,12 @@ import { breadcrumbSchema, graph } from "@/lib/schema";
  * with "Mirpur AJK" to tell it apart from other clinics called The Dental Lounge;
  * "Dentist in Mirpur" searches belong to the homepage.
  */
-export const metadata: Metadata = {
-  title: { absolute: "The Dental Lounge Mirpur AJK: Timings, Address & Phone" },
+export const metadata: Metadata = pageMetadata({
+  title: "The Dental Lounge Mirpur AJK: Timings, Address & Phone",
   description:
     "Open 7 days until 9pm (Fridays from 4pm). Sardar Plaza, Fazal Chowk, New Mirpur City, AJK. Call or WhatsApp +92 345 308 1698 to book.",
-  alternates: { canonical: "/contact" },
-};
+  path: "/contact",
+});
 
 const trail = [
   { name: "Home", path: "/" },

@@ -5,12 +5,15 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import { ADDRESS_ONE_LINE, BUSINESS, MAILTO_HREF, TEL_HREF } from "@/lib/site";
 import { breadcrumbSchema, graph } from "@/lib/schema";
+import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = {
-  title: { absolute: "Privacy Policy | The Dental Lounge Mirpur AJK" },
-  description:
-    "How The Dental Lounge, Mirpur AJK collects, uses and protects the personal information you share when booking an appointment or contacting the clinic.",
-  alternates: { canonical: "/privacy-policy" },
+  ...pageMetadata({
+    title: "Privacy Policy | The Dental Lounge Mirpur AJK",
+    description:
+      "How The Dental Lounge, Mirpur AJK collects, uses and protects the personal information you share when booking an appointment or contacting the clinic.",
+    path: "/privacy-policy",
+  }),
   robots: { index: true, follow: true },
 };
 

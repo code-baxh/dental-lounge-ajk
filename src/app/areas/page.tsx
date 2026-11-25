@@ -10,13 +10,14 @@ import JsonLd from "@/components/JsonLd";
 import { AREAS } from "@/lib/areas";
 import { ADDRESS_ONE_LINE, BUSINESS, SITE_URL } from "@/lib/site";
 import { breadcrumbSchema, graph } from "@/lib/schema";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: { absolute: "Areas We Serve Around Mirpur AJK | The Dental Lounge" },
+export const metadata: Metadata = pageMetadata({
+  title: "Areas We Serve Around Mirpur AJK | The Dental Lounge",
   description:
     "Dental clinic at Fazal Chowk, New Mirpur City, serving Dadyal, Chakswari, Khari Sharif, Islamgarh, Jatlan, Mangla, Bhimber, Kotli, Dina and Jhelum. Call +92 345 308 1698.",
-  alternates: { canonical: "/areas" },
-};
+  path: "/areas",
+});
 
 const trail = [
   { name: "Home", path: "/" },
