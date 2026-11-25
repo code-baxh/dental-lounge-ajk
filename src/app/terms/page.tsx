@@ -5,13 +5,14 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import { ADDRESS_ONE_LINE, BUSINESS, MAILTO_HREF, TEL_HREF } from "@/lib/site";
 import { breadcrumbSchema, graph } from "@/lib/schema";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: { absolute: "Terms of Use & Medical Disclaimer | The Dental Lounge Mirpur" },
+export const metadata: Metadata = pageMetadata({
+  title: "Terms of Use & Medical Disclaimer | The Dental Lounge Mirpur",
   description:
     "Terms of use, appointment policy and medical disclaimer for The Dental Lounge, Fazal Chowk, New Mirpur City, Azad Kashmir.",
-  alternates: { canonical: "/terms" },
-};
+  path: "/terms",
+});
 
 const trail = [
   { name: "Home", path: "/" },

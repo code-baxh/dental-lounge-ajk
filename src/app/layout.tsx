@@ -5,7 +5,7 @@ import { RootProvider } from "./providers";
 import JsonLd from "@/components/JsonLd";
 import MobileActionBar from "@/components/MobileActionBar";
 import ConversionTracking from "@/components/ConversionTracking";
-import { BUSINESS, SITE_URL } from "@/lib/site";
+import { BUSINESS, OPEN_GRAPH_BASE, SITE_URL } from "@/lib/site";
 import { clinicSchema, graph, practitionerSchema, websiteSchema } from "@/lib/schema";
 import "./globals.css";
 
@@ -48,20 +48,17 @@ export const metadata: Metadata = {
   category: "Dentistry",
   alternates: { canonical: "/" },
   openGraph: {
+    ...OPEN_GRAPH_BASE,
     type: "website",
-    locale: "en_PK",
     url: SITE_URL,
-    siteName: BUSINESS.name,
     title: "Dentist & Dental Clinic in Mirpur AJK | The Dental Lounge",
     description:
       "Dental clinic at Fazal Chowk, New Mirpur City, Azad Kashmir. Open until 9pm, 7 days a week.",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Dentist & Dental Clinic in Mirpur AJK | The Dental Lounge",
-    description:
-      "Dental clinic at Fazal Chowk, New Mirpur City, Azad Kashmir. Open until 9pm, 7 days a week.",
-  },
+  // Card type only. X reads og:title, og:description and og:image when the
+  // twitter: versions are absent; setting them here gave every page the
+  // homepage's title when shared on X, because pages set only openGraph.
+  twitter: { card: "summary_large_image" },
   robots: {
     index: true,
     follow: true,

@@ -216,6 +216,24 @@ export const PRACTITIONER = {
   yearsPracticing: 2,
 } as const;
 
+/**
+ * Open Graph fields every page shares. Next merges metadata shallowly, so a
+ * page that sets its own `openGraph` replaces the layout's whole object,
+ * image included; pages spread this in to keep the site name and locale.
+ */
+export const OPEN_GRAPH_BASE = { siteName: BUSINESS.name, locale: "en_PK" } as const;
+
+/**
+ * The clinic's branded share card (app/opengraph-image.tsx), for pages that
+ * set their own `openGraph` and have no image of their own.
+ */
+export const DEFAULT_SHARE_IMAGE = {
+  url: "/opengraph-image",
+  width: 1200,
+  height: 630,
+  alt: "The Dental Lounge — Dentist in Mirpur, AJK",
+} as const;
+
 /** Full postal address on one line — for footers and citation copy-paste. */
 export const ADDRESS_ONE_LINE = `${BUSINESS.street}, ${BUSINESS.locality}, ${BUSINESS.region} ${BUSINESS.postalCode}, ${BUSINESS.country}`;
 

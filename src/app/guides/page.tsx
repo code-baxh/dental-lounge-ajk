@@ -10,13 +10,14 @@ import JsonLd from "@/components/JsonLd";
 import { GUIDES_BY_DATE } from "@/lib/guides";
 import { PRACTITIONER, SITE_URL } from "@/lib/site";
 import { breadcrumbSchema, graph, personRef } from "@/lib/schema";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: { absolute: "Dental Health Guides | The Dental Lounge Mirpur" },
+export const metadata: Metadata = pageMetadata({
+  title: "Dental Health Guides | The Dental Lounge Mirpur",
   description:
     "Practical dental health guides from The Dental Lounge, Mirpur AJK — treatment costs in Pakistan, planning treatment during a visit from the UK, dental emergencies, and the risks of paan and chhaliya.",
-  alternates: { canonical: "/guides" },
-};
+  path: "/guides",
+});
 
 const trail = [
   { name: "Home", path: "/" },

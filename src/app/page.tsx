@@ -14,6 +14,7 @@ import FAQ from "@/components/FAQ";
 import JsonLd from "@/components/JsonLd";
 import { faqSchema, graph } from "@/lib/schema";
 import { ADDRESS_ONE_LINE, BUSINESS, GOOGLE_REVIEWS } from "@/lib/site";
+import { pageMetadata } from "@/lib/metadata";
 
 /**
  * Search Console (Nov 2026): the "dental clinic" family — "dental clinic
@@ -34,13 +35,11 @@ import { ADDRESS_ONE_LINE, BUSINESS, GOOGLE_REVIEWS } from "@/lib/site";
 const HOME_TITLE = "Top-Rated Dentist & Dental Clinic in Mirpur AJK | The Dental Lounge";
 const HOME_DESCRIPTION = `Rated ${GOOGLE_REVIEWS.ratingValue.toFixed(1)} from ${GOOGLE_REVIEWS.reviewCount} Google reviews. Dental clinic at Fazal Chowk, New Mirpur City, AJK: root canals, implants, braces, whitening. Open until 9pm, 7 days.`;
 
-export const metadata: Metadata = {
-  title: { absolute: HOME_TITLE },
+export const metadata: Metadata = pageMetadata({
+  title: HOME_TITLE,
   description: HOME_DESCRIPTION,
-  alternates: { canonical: "/" },
-  openGraph: { title: HOME_TITLE, description: HOME_DESCRIPTION, url: "/" },
-  twitter: { title: HOME_TITLE, description: HOME_DESCRIPTION },
-};
+  path: "/",
+});
 
 /**
  * Answer-first FAQs targeting the actual queries people type. Note the

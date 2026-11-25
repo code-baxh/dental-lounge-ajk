@@ -10,13 +10,14 @@ import { SERVICES } from "@/lib/services";
 import ServiceCard from "@/components/ServiceCard";
 import { BUSINESS, SITE_URL, TEL_HREF } from "@/lib/site";
 import { breadcrumbSchema, graph } from "@/lib/schema";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: { absolute: "Dental Services in Mirpur AJK | The Dental Lounge" },
+export const metadata: Metadata = pageMetadata({
+  title: "Dental Services in Mirpur AJK | The Dental Lounge",
   description:
     "All dental treatments at The Dental Lounge, Fazal Chowk, New Mirpur City — root canals, implants, braces, crowns, dentures, scaling, whitening and check-ups. Call +92 345 308 1698.",
-  alternates: { canonical: "/services" },
-};
+  path: "/services",
+});
 
 const trail = [
   { name: "Home", path: "/" },

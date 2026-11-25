@@ -11,7 +11,15 @@ import AreasServed from "@/components/AreasServed";
 import { Button } from "@/components/ui/button";
 import { AREAS, getArea } from "@/lib/areas";
 import { SERVICES } from "@/lib/services";
-import { ADDRESS_ONE_LINE, BUSINESS, SITE_URL, TEL_HREF, WHATSAPP_HREF } from "@/lib/site";
+import {
+  ADDRESS_ONE_LINE,
+  BUSINESS,
+  DEFAULT_SHARE_IMAGE,
+  OPEN_GRAPH_BASE,
+  SITE_URL,
+  TEL_HREF,
+  WHATSAPP_HREF,
+} from "@/lib/site";
 import { breadcrumbSchema, faqSchema, graph } from "@/lib/schema";
 
 export function generateStaticParams() {
@@ -32,10 +40,12 @@ export async function generateMetadata({
     description: area.metaDescription,
     alternates: { canonical: `/areas/${area.slug}` },
     openGraph: {
+      ...OPEN_GRAPH_BASE,
       title: area.metaTitle,
       description: area.metaDescription,
       url: `${SITE_URL}/areas/${area.slug}`,
       type: "article",
+      images: [DEFAULT_SHARE_IMAGE],
     },
   };
 }
